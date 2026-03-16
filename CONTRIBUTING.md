@@ -35,7 +35,7 @@ Providing as much details as possible in your issue will ease its processing.
 ## Open a pull request
 
 Read the following sub-chapters before opening a pull request.  
-Make sure to create your merge request from a dedicated branch (do not use the `main` branch) and to provide the information requested in the [pull request template](https://github.com/Antiz96/antiz/blob/main/.github/PULL_REQUEST_TEMPLATE.md).
+Make sure to create your merge request from a dedicated branch (do not use the `main` branch) and to provide the information requested in the [pull request template](https://github.com/Antiz96/zaman/blob/main/.github/PULL_REQUEST_TEMPLATE.md).
 
 ### Open an issue first
 
@@ -99,7 +99,7 @@ Split the functions inside the main script into their own separate libraries scr
 
 Closes https://github.com/Antiz96/zaman/issues/230
 
-BREAKING CHANGE: People that installed zaman from source will have to either uninstall it (with `make uninstall`) **before** pulling and installing the new version (with `make install`). Otherwise, some files will remain un-tracked on the system.
+BREAKING CHANGE: People that installed zaman from source will have to uninstall it (with `make uninstall`) **before** pulling and installing the new version (with `make install`). Otherwise, some files will remain un-tracked on the system.
 ```
 
 ### License
