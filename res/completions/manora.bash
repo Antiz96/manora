@@ -5,7 +5,6 @@ _manora() {
 	opts=('-m --menu
 	       -o --output
 	       -O --save
-	       -D --debug
 	       -h --help
 	       -V --version')
 

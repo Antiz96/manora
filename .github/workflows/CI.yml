@@ -9,7 +9,7 @@ jobs:
 
     steps:
       - name: Clone repo
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Run actionlint
         run: actionlint -ignore 'label "CI-CD" is unknown' .github/workflows/CI.yml
@@ -20,14 +20,23 @@ jobs:
       - name: Run mdl
         run: mdl --style .github/workflows/mdl_style.rb .
 
+      - name: Run scdoc
+        run: scdoc < doc/man/oniri.1.scd > doc/man/oniri.1
+
       - name: Run shellcheck
         run: find . -name '*.sh' -exec shellcheck --color=always {} +
 
-      - name: Run make clean
-        run: make clean
+      - name: Run cargo fmt
+        run: cargo fmt --check
 
-      - name: Run make
-        run: make
+      - name: Run cargo clippy
+        run: cargo clippy --all-targets --all-features -- -D warnings
 
-      - name: Run make test
-        run: make test
+      - name: Run cargo test
+        run: cargo test
+
+      - name: Run cargo build
+        run: cargo build --release
+
+      - name: Cleanup
+        run: rm -rvf target/ ~/.cargo

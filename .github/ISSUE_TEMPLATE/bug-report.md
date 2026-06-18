@@ -24,8 +24,7 @@ The manora version can be retrieved by running `manora --version` -->
 
 ### Screenshots / Logs
 
-<!-- If you have any screenshots to illustrate the issue or any relevant logs, paste them below
-For instance, it could be useful to provide debug traces by running `manora --debug` (or `manora [OPTION] --debug` if the issue you're facing is about a specific option) -->
+<!-- If you have any screenshots to illustrate the issue or any relevant logs, paste them below -->
 
 ```text
 Paste any relevant logs here (if you have some)

@@ -45,7 +45,7 @@ Apart from trivial changes (like simple typo fixes), it is advised to first [ope
 
 When submitting code changes, try to respect the coding style and the overall way things work, as much as possible.
 
-Bash code is checked with [shellcheck](https://www.shellcheck.net/).  
+Rust code is checked with [rustfmt](https://rust-lang.github.io/rustfmt/?version=v1.9.0&search=) & [clippy](doc.rust-lang.org/cargo/commands/cargo-clippy.html).
 Markdown syntax is checked with [markdownlint](https://github.com/markdownlint/markdownlint).
 
 ### Commit message format
@@ -108,7 +108,7 @@ By contributing to this project, you agree that your contributions will be licen
 
 ## Donations
 
-You can also support this project development (and my work in general) by making a donation via my [GitHub sponsor page](https://github.com/sponsors/Antiz96).
+You can also support this project development (and my work in general) by making a donation via my [GitHub sponsor](https://github.com/sponsors/Antiz96) or [Ko-fi](https://ko-fi.com/Antiz96) page.
 
 ## Thank you
 
