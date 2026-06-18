@@ -1,11 +1,11 @@
 #!/bin/bash
 
-# zaman: A simple CLI tool to display (or save) man pages as PDFs files for an easier reading.
-# https://github.com/Antiz96/zaman
+# manora: A simple CLI tool to display (or save) man pages as PDFs files for an easier reading.
+# https://github.com/Antiz96/manora
 # Licensed under the GPL-3.0 license (or any later version of that license).
 
 # General variables
-name="zaman"
+name="manora"
 version="1.3.3"
 option="${1}"
 man_selected="${2}"

@@ -1,4 +1,4 @@
-_zaman() {
+_manora() {
 	local arg="${2}"
 	local -a opts 
 
@@ -15,4 +15,4 @@ _zaman() {
 	COMPREPLY=( $(compgen -W "${opts[*]}" -- "${arg}") )
 }
 
-complete -F _zaman zaman
+complete -F _manora manora

@@ -42,11 +42,11 @@ esac
 
 # Bump version where necessary
 sed_pattern="${latest_tag//./\\.}" # escape dots
-sed -i "s/${sed_pattern#v}/${release_tag}/g" doc/man/zaman.* src/zaman.sh
+sed -i "s/${sed_pattern#v}/${release_tag}/g" doc/man/manora.* src/manora.sh
 
 # Update changelog
 git-cliff -up CHANGELOG.md
-sed -i "s|\[unreleased\]|\[v${release_tag}\](https://github.com/Antiz96/zaman/releases/tag/v${release_tag})\ -\ $(date '+%Y-%m-%d')|g" CHANGELOG.md
+sed -i "s|\[unreleased\]|\[v${release_tag}\](https://github.com/Antiz96/manora/releases/tag/v${release_tag})\ -\ $(date '+%Y-%m-%d')|g" CHANGELOG.md
 
 # Review changes
 git diff
@@ -79,10 +79,10 @@ gh release create "v${release_tag}" --title "v${release_tag}" --verify-tag -F -
 
 # Download and sign auto-generated source tarball and checksum
 gh release download "v${release_tag}" --archive tar.gz --clobber
-gpg --local-user D33FAA16B937F3B2 --armor --detach-sign "zaman-${release_tag}.tar.gz"
-sha256sum "zaman-${release_tag}.tar.gz" > "zaman-${release_tag}.tar.gz.sha256"
-gpg --local-user D33FAA16B937F3B2 --armor --detach-sign "zaman-${release_tag}.tar.gz.sha256"
+gpg --local-user D33FAA16B937F3B2 --armor --detach-sign "manora-${release_tag}.tar.gz"
+sha256sum "manora-${release_tag}.tar.gz" > "manora-${release_tag}.tar.gz.sha256"
+gpg --local-user D33FAA16B937F3B2 --armor --detach-sign "manora-${release_tag}.tar.gz.sha256"
 
 # Upload source tarball and checksum signatures
-gh release upload "v${release_tag}" "zaman-${release_tag}.tar.gz.asc" "zaman-${release_tag}.tar.gz.sha256" "zaman-${release_tag}.tar.gz.sha256.asc"
-rm -f "zaman-${release_tag}.tar.gz"*
+gh release upload "v${release_tag}" "manora-${release_tag}.tar.gz.asc" "manora-${release_tag}.tar.gz.sha256" "manora-${release_tag}.tar.gz.sha256.asc"
+rm -f "manora-${release_tag}.tar.gz"*

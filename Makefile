@@ -1,4 +1,4 @@
-pkgname=zaman
+pkgname=manora
 
 PREFIX ?= /usr/local
 

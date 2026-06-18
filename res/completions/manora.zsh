@@ -1,4 +1,4 @@
-#compdef zaman
+#compdef manora
 
 local -a opts
 opts=(

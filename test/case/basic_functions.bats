@@ -1,7 +1,7 @@
 @test "version" {
-	src/zaman.sh --version
+	src/manora.sh --version
 }
 
 @test "help" {
-	src/zaman.sh --help
+	src/manora.sh --help
 }
