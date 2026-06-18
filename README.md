@@ -110,7 +110,7 @@ Alternatively, you can specify the destination file with the `-o` (or `--output`
 
 ## Documentation
 
-See `manora --help` and the [manora(1) man page](https://github.com/Antiz96/manora/blob/main/doc/man/manora.1.scd).
+See `manora --help` and the [manora(1) man page](https://raw.githubusercontent.com/Antiz96/manora/refs/heads/main/doc/man/manora.1.scd).
 
 ## Contributing
 
