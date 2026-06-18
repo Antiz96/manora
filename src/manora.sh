@@ -92,14 +92,14 @@ print_to_pdf() {
 # Definition of the menu function: Print the list of available man pages through a `rofi` or `dmenu` menu
 # --- Drop that in favor of ratatui ---
 menu() {
-#	if command -v rofi > /dev/null; then
-#		man_selected=$(man -k . | awk '{print $1}' | rofi -dmenu -sort)
-#	elif command -v dmenu > /dev/null; then
-#		man_selected=$(man -k . | awk '{print $1}' | dmenu -l 15)
-#	else
-#		echo -e >&2 "A dynamic menu is required to print the list of available man pages\nPlease, install rofi or dmenu"
-#		exit 2
-#	fi
+	if command -v rofi > /dev/null; then
+		man_selected=$(man -k . | awk '{print $1}' | rofi -dmenu -sort)
+	elif command -v dmenu > /dev/null; then
+		man_selected=$(man -k . | awk '{print $1}' | dmenu -l 15)
+	else
+		echo -e >&2 "A dynamic menu is required to print the list of available man pages\nPlease, install rofi or dmenu"
+		exit 2
+	fi
 }
 
 # Definition of the save_to_file function: Save output to "${file}" (used in the "output" and "save" functions) 
