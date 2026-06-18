@@ -2,7 +2,7 @@ manora(1) ["Manora 1.3.3" ["Manora Manual"]]
 
 # NAME
 
-*Manora* - A simple CLI / TUI tool to display (or save) man pages as PDFs files.
+*Manora* - A simple CLI / TUI tool to display (or save) man pages as PDFs
 
 # DESCRIPTION
 
@@ -26,13 +26,13 @@ manora ls
 	Display the list of all the available man pages in a TUI, allowing you to search for the one to display as a PDF (default operation).
 
 *-o, --output* <man_page> <file>
-	Export <man_page> into the PDF <file>.
+	Export <man page> into the <file> PDF file.
 	For instance, `manora -o ls ~/Documents/man/ls.pdf`.
 
 *-O, --save* <man_page>
-	Export <man_page> into a "man_<command>.pdf" PDF file inside your current directory. 
+	Export <man page> into a "man_<man page>.pdf" file in the current directory.
 	For instance, `manora -O ls` will save the `ls` man page in a file called `man_ls.pdf` PDF file in your current directory.
-	If <man_page> isn't specified (`manora -O`), it opens a TUI listing all man pages available on your system, allowing you to choose the one to export.
+	if <man page> isn't specified, open a TUI listing every man pages to choose from.
 
 *-V, --version*
 	Display version information.
