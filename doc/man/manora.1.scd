@@ -1,25 +1,25 @@
-zaman(1) ["Zaman 1.3.3" ["Zaman Manual"]]
+manora(1) ["Manora 1.3.3" ["Manora Manual"]]
 
 # NAME
 
-*Zaman* - A simple CLI tool to display (or save) man pages as PDFs files.
+*Manora* - A simple CLI tool to display (or save) man pages as PDFs files.
 
 # DESCRIPTION
 
 A simple CLI tool to display (or save) man pages as PDFs files for an easier reading.
-Zaman first looks for the default PDF reader defined in XDG MIME Applications and fallback to Zathura if no default PDF reader is set.
+Manora first looks for the default PDF reader defined in XDG MIME Applications and fallback to Zathura if no default PDF reader is set.
 It also allows to navigate through all the man pages available on the system through a dynamic menu via Rofi or Dmenu.
 
 # SYNOPSIS
 
-*zaman* [OPTION] [MAN_PAGE]
+*manora* [OPTION] [MAN_PAGE]
 
 # OPTIONS
 
 You can directly specify the man page to display as a PDF. For instance, to display the `ls` man page:
 
 ```
-zaman ls
+manora ls
 ```
 
 *-m, --menu*
@@ -27,12 +27,12 @@ zaman ls
 
 *-o, --output* <man_page> <file>
 	Export <man_page> into the PDF <file>. 
-	For instance, `zaman -o ls ~/Documents/man/ls.pdf`.
+	For instance, `manora -o ls ~/Documents/man/ls.pdf`.
 
 *-O, --save* <man_page>
 	Export <man_page> into a "man_<command>.pdf" PDF file inside your current directory. 
-	For instance, `zaman -O ls` (which will save the `ls` man page in a file called `man_ls.pdf` PDF file in your current directory).
-	If <man_page> isn't specified (`zaman -O`), it opens a dynamic menu listing all man pages available on your system, allowing you to choose the one to export.
+	For instance, `manora -O ls` (which will save the `ls` man page in a file called `man_ls.pdf` PDF file in your current directory).
+	If <man_page> isn't specified (`manora -O`), it opens a dynamic menu listing all man pages available on your system, allowing you to choose the one to export.
 
 *-D, --debug*
 	Display debug traces.
@@ -75,7 +75,7 @@ zaman ls
 
 # BUGS
 
-Please report bugs to the GitHub page: https://github.com/Antiz96/zaman
+Please report bugs to the GitHub page: https://github.com/Antiz96/manora
 
 # AUTHOR
 

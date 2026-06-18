@@ -7,7 +7,7 @@
 
 ## Disable the main branch protection rule temporarily
 
-<https://github.com/Antiz96/zaman/settings/branches>
+<https://github.com/Antiz96/manora/settings/branches>
 
 ## Run the script
 
@@ -21,4 +21,4 @@ Where `X.Y.Z` is the version / tag number to create (example: 3.16.2)
 
 ## Re-enable the main branch protection rule
 
-<https://github.com/Antiz96/zaman/settings/branches>
+<https://github.com/Antiz96/manora/settings/branches>

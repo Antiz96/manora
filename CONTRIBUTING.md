@@ -1,6 +1,6 @@
 # Contributing
 
-Thank you for considering contributing to [zaman](https://github.com/Antiz96/zaman)!
+Thank you for considering contributing to [manora](https://github.com/Antiz96/manora)!
 
 With the exception of the [general rules](#general-rules) (which **must** be acknowledged and applied in any contribution / interaction in this project), these guidelines represent an ideal target & standards that I would like this project to follow but may not all be **strictly** enforced (depending on the situation).
 
@@ -24,9 +24,9 @@ Use English as much as possible for contributions & discussions. If required, I 
 
 ## Open an issue
 
-**Note:** To report security concerns, please follow the instructions in the [SECURITY.md](https://github.com/Antiz96/zaman/blob/main/SECURITY.md) document.
+**Note:** To report security concerns, please follow the instructions in the [SECURITY.md](https://github.com/Antiz96/manora/blob/main/SECURITY.md) document.
 
-Before [opening an issue](https://github.com/Antiz96/zaman/issues/new/choose), verify that there isn't one already open on the same (or a similar) subject.
+Before [opening an issue](https://github.com/Antiz96/manora/issues/new/choose), verify that there isn't one already open on the same (or a similar) subject.
 
 Make sure to use the correct type for your issue (`Bug Report` or `Feature Request`) and to provide the requested information. If you have a doubt about which one is the most appropriate for your issue (or if you think that none of these types apply to your issue), feel free to use the general `Other` type.
 
@@ -35,7 +35,7 @@ Providing as much details as possible in your issue will ease its processing.
 ## Open a pull request
 
 Read the following sub-chapters before opening a pull request.  
-Make sure to create your merge request from a dedicated branch (do not use the `main` branch) and to provide the information requested in the [pull request template](https://github.com/Antiz96/zaman/blob/main/.github/PULL_REQUEST_TEMPLATE.md).
+Make sure to create your merge request from a dedicated branch (do not use the `main` branch) and to provide the information requested in the [pull request template](https://github.com/Antiz96/manora/blob/main/.github/PULL_REQUEST_TEMPLATE.md).
 
 ### Open an issue first
 
@@ -71,7 +71,7 @@ feat(menu): Add rofi support
 
 Add rofi support (in addition of dmenu) for the menu option.
 
-Closes https://github.com/Antiz96/zaman/issues/163
+Closes https://github.com/Antiz96/manora/issues/163
 ```
 
 ```text
@@ -79,7 +79,7 @@ fix: Run the zathura process in the background
 
 Run the zathura process in the background so people can still use their terminal while reading PDF man pages.
 
-Fixes https://github.com/Antiz96/zaman/issues/103
+Fixes https://github.com/Antiz96/manora/issues/103
 ```
 
 ```text
@@ -97,14 +97,14 @@ chore!(code structure): Split the script functions into separate libraries
 
 Split the functions inside the main script into their own separate libraries scripts to improve readability and ease the overall maintenance and contribution processes.
 
-Closes https://github.com/Antiz96/zaman/issues/230
+Closes https://github.com/Antiz96/manora/issues/230
 
-BREAKING CHANGE: People that installed zaman from source will have to uninstall it (with `make uninstall`) **before** pulling and installing the new version (with `make install`). Otherwise, some files will remain un-tracked on the system.
+BREAKING CHANGE: People that installed manora from source will have to uninstall it (with `make uninstall`) **before** pulling and installing the new version (with `make install`). Otherwise, some files will remain un-tracked on the system.
 ```
 
 ### License
 
-By contributing to this project, you agree that your contributions will be licensed under the [GPL-3.0 license](https://github.com/Antiz96/zaman/blob/main/LICENSE) (or any later version of this license).
+By contributing to this project, you agree that your contributions will be licensed under the [GPL-3.0 license](https://github.com/Antiz96/manora/blob/main/LICENSE) (or any later version of this license).
 
 ## Donations
 
@@ -112,5 +112,5 @@ You can also support this project development (and my work in general) by making
 
 ## Thank you
 
-Once again, thank you for considering contributing to zaman!  
-I'd also like to sincerely thank everyone that gave zaman a star, opened issues, feature requests, pull requests or contributed to this project in any other way! :heart:
+Once again, thank you for considering contributing to manora!  
+I'd also like to sincerely thank everyone that gave manora a star, opened issues, feature requests, pull requests or contributed to this project in any other way! :heart:

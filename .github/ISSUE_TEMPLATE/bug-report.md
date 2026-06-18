@@ -7,16 +7,16 @@ assignees: Antiz96
 
 ---
 
-<!-- Please, read the contributing guidelines before opening an issue: https://github.com/Antiz96/zaman/blob/main/CONTRIBUTING.md -->
+<!-- Please, read the contributing guidelines before opening an issue: https://github.com/Antiz96/manora/blob/main/CONTRIBUTING.md -->
 
 ### Environment
 
 <!-- Please, provide the following information
 Distribution examples are Arch Linux, Debian, Alpine, Gentoo, Fedora...
-The zaman version can be retrieved by running `zaman --version` -->
+The manora version can be retrieved by running `manora --version` -->
 
 - Distribution:
-- zaman version:
+- manora version:
 
 ### Description of the bug
 
@@ -25,7 +25,7 @@ The zaman version can be retrieved by running `zaman --version` -->
 ### Screenshots / Logs
 
 <!-- If you have any screenshots to illustrate the issue or any relevant logs, paste them below
-For instance, it could be useful to provide debug traces by running `zaman --debug` (or `zaman [OPTION] --debug` if the issue you're facing is about a specific option) -->
+For instance, it could be useful to provide debug traces by running `manora --debug` (or `manora [OPTION] --debug` if the issue you're facing is about a specific option) -->
 
 ```text
 Paste any relevant logs here (if you have some)
