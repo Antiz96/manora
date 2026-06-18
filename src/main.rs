@@ -1,7 +1,7 @@
 //! Manora - A simple CLI / TUI tool to display (or save) man pages as PDFs.
 
 // Import external modules
-use log::{debug, info};
+use log::{error, info};
 use std::env;
 
 // Import internal modules
@@ -26,4 +26,5 @@ fn main() -> anyhow::Result<()> {
         println!("{} {}", env!("CARGO_PKG_NAME"), env!("CARGO_PKG_VERSION"));
         return Ok(());
     }
+    Ok(())
 }
