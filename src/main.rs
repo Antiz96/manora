@@ -34,6 +34,15 @@ struct Args {
     version: bool,
 }
 
+// Define actions for each arguments
+enum Action {
+    Menu,
+    Save { man_page: String, file: Option<String> },
+    Help,
+    Version,
+    Open(String),
+}
+
 fn main() {
     // Create temporary working directory
     let workdir = tmpdir::create_tmpdir().unwrap_or_else(|error| {
@@ -50,16 +59,18 @@ fn main() {
         && !args.save
         && args.args.is_empty();
 
-    // Define actions and options for each arguments
+    // Assign actions and options for each arguments
     // -m / --menu or no arg
     let action = if args.menu || no_args {
         Action::Menu
     // -s / --save
     } else if args.save {
-        let man = args.args.get(0)
+        let man_page = args.args.get(0)
             .expect("missing man page")
             .clone();
-        let file = args.args.get(1).cloned();
+        let file = args.args.get(1)
+            .cloned()
+            .unwrap_or_else(|| format!("man_{}.pdf", man_page));
         Action::Save { man_page, file }
     // -h / --help
     } else if args.help {
@@ -86,10 +97,7 @@ fn main() {
         // Save the man page as a PDF file if the -s / --save arg is passed
         Action::Save { man_page, file } => {
             check_man_page(&man_page);
-            match file {
-                Some(f) => save_man_page(&man_page, &f),
-                None => save_man_page(&man_page),
-            }
+            save_man_page(&man_page, &file);
         }
 
         // Show name and version if the -V / --version arg is passed
@@ -101,4 +109,11 @@ fn main() {
         Action::Help => {
             help::show_help();
         }
+
+        // Print man as a PDF
+        Action::Open(man_page) => {
+            check_man_page(&man_page);
+            print2pdf(&man_page);
+        }
+    }
 }
