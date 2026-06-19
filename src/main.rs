@@ -6,10 +6,9 @@ use std::{env, process};
 
 // Import internal modules
 mod help;
-mod tmpdir;
-mod check_man_page;
 mod menu;
 mod save;
+mod tmpdir;
 
 // Argument parser
 #[derive(Parser)]
@@ -90,13 +89,11 @@ fn main() {
         Action::Menu => {
             menu::show_menu();
             let man_page = menu::man_selected();
-            check_man_page(&man_page);
             print2pdf(&man_page);
         }
 
         // Save the man page as a PDF file if the -s / --save arg is passed
         Action::Save { man_page, file } => {
-            check_man_page(&man_page);
             save_man_page(&man_page, &file);
         }
 
@@ -112,7 +109,6 @@ fn main() {
 
         // Print man as a PDF
         Action::Open(man_page) => {
-            check_man_page(&man_page);
             print2pdf(&man_page);
         }
     }
