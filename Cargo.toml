@@ -6,10 +6,6 @@ edition = "2024"
 description = "A simple CLI / TUI tool to display (or save) man pages as PDFs"
 license = "GPL-3.0-or-later"
 
-[dependencies]
-log = "0.4.29"
-env_logger = "0.11.9"
-
 [dev-dependencies]
 assert_cmd = "2.0.0"
 predicates = "3.1.4"
