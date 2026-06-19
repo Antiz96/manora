@@ -7,15 +7,13 @@ use std::{env, process};
 // Import internal modules
 mod help;
 mod menu;
+mod print;
 mod save;
 mod tmpdir;
 
 // Argument parser
 #[derive(Parser)]
-#[command(
-    disable_help_flag = true,
-    disable_version_flag = true
-)]
+#[command(disable_help_flag = true, disable_version_flag = true)]
 struct Args {
     #[arg(value_name = "ARGS")]
     args: Vec<String>,
@@ -26,19 +24,20 @@ struct Args {
     #[arg(short = 's', long)]
     save: bool,
 
-    #[arg(short = 'h', long,)]
+    #[arg(short = 'h', long)]
     help: bool,
 
-    #[arg(short = 'V', long,)]
+    #[arg(short = 'V', long)]
     version: bool,
 }
 
 // Define actions for each arguments
 enum Action {
     Menu,
-    Save { man_page: String, file: Option<String> },
+    Save { man_page: String, file: String },
     Help,
     Version,
+    Invalid,
     Open(String),
 }
 
@@ -54,9 +53,7 @@ fn main() {
 
     // Parse arguments and options
     let args = Args::parse();
-    let no_args = !args.menu
-        && !args.save
-        && args.args.is_empty();
+    let no_args = !args.menu && !args.save && !args.help && !args.version && args.args.is_empty();
 
     // Assign actions and options for each arguments
     // -m / --menu or no arg
@@ -64,10 +61,10 @@ fn main() {
         Action::Menu
     // -s / --save
     } else if args.save {
-        let man_page = args.args.get(0)
-            .expect("missing man page")
-            .clone();
-        let file = args.args.get(1)
+        let man_page = args.args.get(0).expect("missing man page").clone();
+        let file = args
+            .args
+            .get(1)
             .cloned()
             .unwrap_or_else(|| format!("man_{}.pdf", man_page));
         Action::Save { man_page, file }
@@ -92,14 +89,13 @@ fn main() {
         // Show TUI menu if the -m / --menu arg is passed (or if no arg is passed)
         // Then print the man page in as a pdf
         Action::Menu => {
-            menu::show_menu();
-            let man_page = menu::man_selected();
-            print2pdf(&man_page);
+            let man_page = menu::show_menu();
+            print::print2pdf(&man_page);
         }
 
         // Save the man page as a PDF file if the -s / --save arg is passed
         Action::Save { man_page, file } => {
-            save_man_page(&man_page, &file);
+            save::save_man_page(&man_page, &file);
         }
 
         // Show help message if the -h / --help arg is passed
@@ -120,7 +116,7 @@ fn main() {
 
         // Print man as a PDF
         Action::Open(man_page) => {
-            print2pdf(&man_page);
+            print::print2pdf(&man_page);
         }
     }
 }
