@@ -26,7 +26,10 @@ fn main() {
 
     // Create temporary working directory
     let workdir = tmpdir::create_tmpdir().unwrap_or_else(|error| {
-        eprintln!("Failed to create the temporary working directory:\n{}", error);
+        eprintln!(
+            "Failed to create the temporary working directory:\n{}",
+            error
+        );
         process::exit(4);
     });
 }
