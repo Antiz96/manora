@@ -54,6 +54,9 @@ manora ls
 *3*
 	Error when exporting a man page with the `-o / --output` or `-O / --save` options.
 
+*4*
+	Error when creating the temporary working directory.
+
 # SEE ALSO
 
 *man*(1),

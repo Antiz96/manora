@@ -1,10 +1,11 @@
 //! Manora - A simple CLI / TUI tool to display (or save) man pages as PDFs.
 
 // Import external modules
-use std::env;
+use std::{env, process};
 
 // Import internal modules
 mod help;
+mod tmpdir;
 
 fn main() {
     // Parse arguments
@@ -22,4 +23,10 @@ fn main() {
         println!("{} {}", env!("CARGO_PKG_NAME"), env!("CARGO_PKG_VERSION"));
         return;
     }
+
+    // Create temporary working directory
+    let workdir = tmpdir::create_tmpdir().unwrap_or_else(|error| {
+        eprintln!("Failed to create the temporary working directory:\n{}", error);
+        process::exit(4);
+    });
 }
