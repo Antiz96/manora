@@ -7,7 +7,7 @@ use std::env;
 // Import internal modules
 mod help;
 
-fn main() -> anyhow::Result<()> {
+fn main() {
     // Initialize logger
     env_logger::init();
 
@@ -18,13 +18,12 @@ fn main() -> anyhow::Result<()> {
     // Show help message if the -h / --help arg is passed
     if has_arg("-h") || has_arg("--help") {
         help::show_help();
-        return Ok(());
+        return;
     }
 
     // Show name and version if the -V / --version arg is passed
     if has_arg("-V") || has_arg("--version") {
         println!("{} {}", env!("CARGO_PKG_NAME"), env!("CARGO_PKG_VERSION"));
-        return Ok(());
+        return;
     }
-    Ok(())
 }

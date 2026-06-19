@@ -7,7 +7,6 @@ description = "A simple CLI / TUI tool to display (or save) man pages as PDFs"
 license = "GPL-3.0-or-later"
 
 [dependencies]
-anyhow = "1.0.102"
 log = "0.4.29"
 env_logger = "0.11.9"
 
