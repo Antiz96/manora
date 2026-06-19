@@ -25,14 +25,10 @@ manora ls
 *-m, --menu*
 	Display the list of all the available man pages in a TUI, allowing you to search for the one to display as a PDF (default operation).
 
-*-o, --output* <man_page> <file>
-	Export <man page> into the <file> PDF file.
-	For instance, `manora -o ls ~/Documents/man/ls.pdf`.
-
-*-O, --save* <man_page>
-	Export <man page> into a "man_<man page>.pdf" file in the current directory.
-	For instance, `manora -O ls` will save the `ls` man page in a file called `man_ls.pdf` PDF file in your current directory.
-	if <man page> isn't specified, open a TUI listing every man pages to choose from.
+*-s, --save* <man_page> <file>
+	Save <man page> into the <file> PDF file.
+	If <man page> isn't specified, open a TUI listing every man pages to choose from.
+        If <file> isn't specified, save to a "man_<man page>.pdf" file in the current directory.
 
 *-V, --version*
 	Display version information.
@@ -52,7 +48,7 @@ manora ls
 	No PDF reader found (no PDF reader defined in XDG Mime Application and `zathura` (fallback option) isn't installed).
 
 *3*
-	Error when exporting a man page with the `-o / --output` or `-O / --save` options.
+	Error when exporting a man page with the `-s / --save` option.
 
 *4*
 	Error when creating the temporary working directory.

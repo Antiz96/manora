@@ -10,9 +10,8 @@ pub fn show_help() {
     println!(
         "  -m, --menu                      Display the list of all the available man pages in a TUI, allowing you to search for the one to display as a PDF (default operation)"
     );
-    println!("  -o, --output <man page> <file>  Export <man page> into the <file> PDF file");
     println!(
-        "  -O, --save <man page>           Export <man page> into a \"man_<man page>.pdf\" file in the current directory; if <man page> isn't specified, open a TUI listing every man pages to choose from"
+        "  -s, --save <man page> <file>    Save <man page> into the <file> PDF file. If <man page> isn't specified, open a TUI listing every man pages to choose from. If <file> isn't specified, save to a \"man_<man page>.pdf\" file in the current directory" 
     );
     println!("  -h, --help                      Display this message");
     println!("  -V, --version                   Display version information");
