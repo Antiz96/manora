@@ -13,7 +13,11 @@ mod tmpdir;
 
 // Argument parser
 #[derive(Parser)]
-#[command(disable_help_flag = true, disable_version_flag = true)]
+#[command(
+    disable_help_flag = true,
+    disable_version_flag = true,
+    allow_hyphen_values = true
+)]
 struct Args {
     #[arg(value_name = "ARGS")]
     args: Vec<String>,
