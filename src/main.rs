@@ -78,8 +78,13 @@ fn main() {
     } else if args.version {
         Action::Version
     } else {
-    // Print man page as a PDF
-        Action::Open(args.args[0].clone())
+        if args.args[0].starts_with('-') {
+            // Invalid option
+            Action::Invalid
+        } else {
+            // Print man page as a PDF
+            Action::Open(args.args[0].clone())
+        }
     };
 
     // Execute steps for the different actions / arguments
@@ -97,14 +102,20 @@ fn main() {
             save_man_page(&man_page, &file);
         }
 
+        // Show help message if the -h / --help arg is passed
+        Action::Help => {
+            help::show_help();
+        }
+
         // Show name and version if the -V / --version arg is passed
         Action::Version => {
             println!("{} {}", env!("CARGO_PKG_NAME"), env!("CARGO_PKG_VERSION"));
         }
 
-        // Show help message if the -h / --help arg is passed
-        Action::Help => {
-            help::show_help();
+        // Show error on invalid option
+        Action::Invalid => {
+            eprintln!("Invalid option\nTry 'manora --help' for more information");
+            process::exit(1);
         }
 
         // Print man as a PDF
