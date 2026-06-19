@@ -1,7 +1,7 @@
 //! Manora - A simple CLI / TUI tool to display (or save) man pages as PDFs.
 
 // Import external modules
-use clap::{ArgAction, Parser};
+use clap::Parser;
 use std::{env, process};
 
 // Import internal modules
@@ -65,7 +65,13 @@ fn main() {
         Action::Menu
     // -s / --save
     } else if args.save {
-        let man_page = args.args.get(0).expect("missing man page").clone();
+        let man_page = if let Some(m) = args.args.get(0) {
+            m.clone()
+        } else {
+            eprintln!("Missing man page\nTry 'manora --help' for more information");
+            process::exit(3);
+        };
+
         let file = args
             .args
             .get(1)
