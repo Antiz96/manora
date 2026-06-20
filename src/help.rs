@@ -8,13 +8,13 @@ pub fn show_help() {
     println!();
     println!("Options:");
     println!(
-        "  -m, --menu                      Display the list of all the available man pages in a TUI, allowing you to search for the one to display as a PDF (default operation)"
+        "  -m, --menu                    Display the list of all the available man pages in a TUI, allowing you to search for the one to display as a PDF (default operation)"
     );
     println!(
-        "  -s, --save <man page> <file>    Save <man page> into the <file> PDF file. If <file> isn't specified, save it to a \"man_<man page>.pdf\" file in the current directory"
+        "  -s, --save <man page> <file>  Save <man page> into the <file> PDF file. If <file> isn't specified, save it to a \"man_<man page>.pdf\" file in the current directory"
     );
-    println!("  -h, --help                      Display this message");
-    println!("  -V, --version                   Display version information");
+    println!("  -h, --help                    Display this message");
+    println!("  -V, --version                 Display version information");
     println!();
     println!("For more information, see the manora(1) man page.");
 }
