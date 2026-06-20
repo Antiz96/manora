@@ -59,7 +59,7 @@ fn main() {
         });
 
         let file = args
-            .args
+            .pos_args
             .get(1)
             .cloned()
             .unwrap_or_else(|| format!("man_{}.pdf", man_page));
