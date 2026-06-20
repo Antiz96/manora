@@ -19,9 +19,7 @@ mod tmpdir;
     allow_hyphen_values = true
 )]
 struct Args {
-    #[arg(value_name = "ARGS")]
-    args: Vec<String>,
-
+    // Options / flags
     #[arg(short = 'm', long)]
     menu: bool,
 
@@ -33,15 +31,19 @@ struct Args {
 
     #[arg(short = 'V', long)]
     version: bool,
+
+    // Positional arguments
+    #[arg(value_name = "ARGS")]
+    pos_args: Vec<String>,
 }
 
 fn main() {
     // Parse arguments
     let args = Args::parse();
-    let no_args = !args.menu && !args.save && !args.help && !args.version && args.args.is_empty();
+    let no_args = args.pos_args.is_empty() && !args.menu && !args.save && !args.help && !args.version;
 
-    // Define mutable & optional man_page variable
-    // Can be set either via -m / --menu or the first argument
+    // Define empty (optional) and mutable man_page variable
+    // Will be set either from the menu or the first CLI argument
     let mut man_page: Option<String> = None;
 
     // Show TUI menu to choose man page if the -m / --menu arg (or no arg) is passed
@@ -51,7 +53,7 @@ fn main() {
 
     // Save the man page as a PDF file if the -s / --save arg is passed
     if args.save {
-        let man_page = args.args.first().cloned().unwrap_or_else(|| {
+        let man_page = args.pos_args.first().cloned().unwrap_or_else(|| {
             eprintln!("Missing man page\nTry 'manora --help' for more information");
             process::exit(3);
         });
@@ -79,7 +81,7 @@ fn main() {
     }
 
     // Show error on invalid option
-    if args.args.first().is_some_and(|arg| arg.starts_with('-')) {
+    if args.pos_args.first().is_some_and(|arg| arg.starts_with('-')) {
         eprintln!("Invalid option\nTry 'manora --help' for more information");
         process::exit(1);
     }
@@ -95,7 +97,7 @@ fn main() {
 
     // Print man page as a PDF
     let man_page = man_page
-        .or_else(|| args.args.first().cloned())
+        .or_else(|| args.pos_args.first().cloned())
         // Just making the assumption visible
         // In theory, we should never reach that expect()
         .expect("man_page should come from menu or positional argument");
