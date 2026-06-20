@@ -27,8 +27,7 @@ manora ls
 
 *-s, --save* <man_page> <file>
 	Save <man page> into the <file> PDF file.
-	If <man page> isn't specified, open a TUI listing every man pages to choose from.
-	If <file> isn't specified, save to a "man_<man page>.pdf" file in the current directory.
+	If <file> isn't specified, save it to a "man_<man page>.pdf" file in the current directory.
 
 *-V, --version*
 	Display version information.
