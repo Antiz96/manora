@@ -10,6 +10,7 @@ mod menu;
 mod print;
 mod save;
 mod tmpdir;
+mod version;
 
 // Argument parser
 #[derive(Parser)]
@@ -85,7 +86,7 @@ fn main() {
 
     // Show name and version if the -V / --version arg is passed
     if args.version {
-        println!("{} {}", env!("CARGO_PKG_NAME"), env!("CARGO_PKG_VERSION"));
+        version::show_version();
         return;
     }
 
