@@ -40,7 +40,8 @@ struct Args {
 fn main() {
     // Parse arguments
     let args = Args::parse();
-    let no_args = args.pos_args.is_empty() && !args.menu && !args.save && !args.help && !args.version;
+    let no_args =
+        args.pos_args.is_empty() && !args.menu && !args.save && !args.help && !args.version;
 
     // Define empty (optional) and mutable man_page variable
     // Will be set either from the menu or the first CLI argument
@@ -48,7 +49,15 @@ fn main() {
 
     // Show TUI menu to choose man page if the -m / --menu arg (or no arg) is passed
     if args.menu || no_args {
-        man_page = Some(menu::show_menu());
+        match menu::show_menu() {
+            Ok(page) => man_page = Some(page),
+            Err(error) => {
+                eprintln!("{}",
+                    error
+                );
+                process::exit(1);
+            }
+        }
     }
 
     // Save the man page as a PDF file if the -s / --save arg is passed
@@ -81,7 +90,11 @@ fn main() {
     }
 
     // Show error on invalid option
-    if args.pos_args.first().is_some_and(|arg| arg.starts_with('-')) {
+    if args
+        .pos_args
+        .first()
+        .is_some_and(|arg| arg.starts_with('-'))
+    {
         eprintln!("Invalid option\nTry 'manora --help' for more information");
         process::exit(1);
     }

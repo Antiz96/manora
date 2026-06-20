@@ -41,7 +41,7 @@ manora ls
 	OK.
 
 *1*
-	Invalid option or unknown man page.
+	Invalid option or unknown / missing man page.
 
 *2*
 	No PDF reader found (no PDF reader defined in XDG Mime Application and `zathura` (fallback option) isn't installed).
