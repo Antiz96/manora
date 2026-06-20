@@ -1,7 +1,7 @@
 //! Manora - A simple CLI / TUI tool to display (or save) man pages as PDFs.
 
 use clap::Parser;
-use std::{env, process};
+use std::process;
 
 mod help;
 mod menu;
