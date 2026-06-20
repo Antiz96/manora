@@ -1,7 +1,6 @@
 //! Test the --help argument
 
 use assert_cmd::Command;
-use predicates::str::contains;
 
 #[test]
 fn help_arg() {
