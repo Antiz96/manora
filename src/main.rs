@@ -51,9 +51,7 @@ fn main() {
         match menu::show_menu() {
             Ok(page) => man_page = Some(page),
             Err(error) => {
-                eprintln!("{}",
-                    error
-                );
+                eprintln!("{}", error);
                 process::exit(1);
             }
         }
