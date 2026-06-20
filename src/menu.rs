@@ -80,7 +80,12 @@ fn get_man_pages() -> color_eyre::Result<Vec<String>> {
 }
 
 // Render the man page list
-fn render_man_page_list(frame: &mut Frame, area: Rect, items: &[String], list_state: &mut ListState) {
+fn render_man_page_list(
+    frame: &mut Frame,
+    area: Rect,
+    items: &[String],
+    list_state: &mut ListState,
+) {
     let list = List::new(items.iter().map(|item| item.as_str()))
         .style(Color::White)
         .highlight_style(Modifier::REVERSED)
