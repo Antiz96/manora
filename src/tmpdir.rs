@@ -1,7 +1,6 @@
 //! Create temporary working directory (automatically deleted once the process exits)
 //! ${TMPDIR:-/tmp}/manora-XXXXXX
 
-// Import external module
 use std::env;
 use tempfile::{Builder, TempDir};
 

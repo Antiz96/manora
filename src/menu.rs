@@ -2,7 +2,6 @@
 //! Built with ratatui, inspired / based on the list widget example
 //! https://ratatui.rs/examples/widgets/list/
 
-// Import external modules
 use crossterm::event::{self, KeyCode};
 use ratatui::Frame;
 use ratatui::layout::{Constraint, Layout, Rect};
