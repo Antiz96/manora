@@ -14,4 +14,6 @@ fn save_arg() {
 
     assert!(metadata.is_file());
     assert!(metadata.len() > 0);
+
+    fs::remove_file(output).unwrap();
 }
