@@ -93,7 +93,10 @@ fn main() {
             eprintln!("Failed to save man page:\n{}", error);
             process::exit(3);
         });
-        println!("The {} man page has been saved to the {} file", man_page, file);
+        println!(
+            "The {} man page has been saved to the {} file",
+            man_page, file
+        );
         return;
     }
 

@@ -107,24 +107,24 @@ fn render_help(frame: &mut Frame, area: Rect) {
 // Update the displayed list according to the search query
 impl App {
     fn update_filter(&mut self) {
-    let query = self.query.to_lowercase();
+        let query = self.query.to_lowercase();
 
-    let mut exact = Vec::new();
-    let mut fuzzy = Vec::new();
+        let mut exact = Vec::new();
+        let mut fuzzy = Vec::new();
 
-    for item in &self.items {
-        let item_lower = item.to_lowercase();
+        for item in &self.items {
+            let item_lower = item.to_lowercase();
 
-        if item_lower == query {
-            exact.push(item.clone());
-        } else if matches_query(&item_lower, &query) {
-            fuzzy.push(item.clone());
+            if item_lower == query {
+                exact.push(item.clone());
+            } else if matches_query(&item_lower, &query) {
+                fuzzy.push(item.clone());
+            }
         }
-    }
 
-    exact.extend(fuzzy);
+        exact.extend(fuzzy);
 
-    self.filtered_items = exact;
+        self.filtered_items = exact;
     }
 }
 
