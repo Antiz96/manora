@@ -107,15 +107,35 @@ fn render_help(frame: &mut Frame, area: Rect) {
 // Update the displayed list according to the search query
 impl App {
     fn update_filter(&mut self) {
-        let query = self.query.to_lowercase();
+    let query = self.query.to_lowercase();
 
-        self.filtered_items = self
-            .items
-            .iter()
-            .filter(|item| item.to_lowercase().contains(&query))
-            .cloned()
-            .collect();
+    let mut exact = Vec::new();
+    let mut fuzzy = Vec::new();
+
+    for item in &self.items {
+        let item_lower = item.to_lowercase();
+
+        if item_lower == query {
+            exact.push(item.clone());
+        } else if matches_query(&item_lower, &query) {
+            fuzzy.push(item.clone());
+        }
     }
+
+    exact.extend(fuzzy);
+
+    self.filtered_items = exact;
+    }
+}
+
+// Filter results according to search queries
+fn matches_query(item: &str, query: &str) -> bool {
+    let mut chars = query.chars();
+
+    item.chars()
+        .filter(|c| chars.next().is_some_and(|q| *c == q))
+        .count()
+        == query.len()
 }
 
 // Render the TUI interface with the different lists
