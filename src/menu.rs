@@ -6,7 +6,7 @@ use crossterm::event::{self, KeyCode};
 use ratatui::Frame;
 use ratatui::layout::{Constraint, Layout, Rect};
 use ratatui::style::{Color, Modifier, Stylize};
-use ratatui::text::Line;
+use ratatui::text::{Line, Span};
 use ratatui::widgets::{List, ListState, Paragraph};
 use std::process::Command;
 
@@ -132,7 +132,10 @@ fn render(frame: &mut Frame, app: &App, list_state: &mut ListState) {
     let title = Line::from("Man Pages").bold();
     frame.render_widget(title.centered(), header);
 
-    let search = Paragraph::new(format!("Search: {}", app.query));
+    let search = Paragraph::new(Line::from(vec![
+        Span::styled("Search: ", ratatui::style::Style::default().bold()),
+        Span::raw(&app.query),
+    ]));
     frame.render_widget(search, search_area);
 
     render_man_page_list(frame, list, &app.filtered_items, list_state);

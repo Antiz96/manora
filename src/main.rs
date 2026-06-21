@@ -3,12 +3,12 @@
 use clap::Parser;
 use std::process;
 
+mod cachedir;
 mod help;
 mod menu;
 mod open;
 mod save;
 mod version;
-mod cachedir;
 
 // Argument parser
 #[derive(Parser)]
