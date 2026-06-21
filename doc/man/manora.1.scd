@@ -7,8 +7,9 @@ manora(1) ["Manora 1.3.3" ["Manora Manual"]]
 # DESCRIPTION
 
 A simple CLI / TUI tool to display (or save) man pages as PDFs files for an easier reading.
+
 Manora first looks for the default PDF reader defined in XDG MIME Applications and fallback to Zathura if no default PDF reader is set.
-It also allows to navigate through all the man pages available on the system through a TUI.
+It also allows to navigate through all the man pages available on the system through a TUI menu.
 
 # SYNOPSIS
 
@@ -58,7 +59,6 @@ manora ls
 *groff*(1),
 *xdg-mime*(1),
 *xdg-open*(1),
-*zathura*(1)
 
 # BUGS
 
