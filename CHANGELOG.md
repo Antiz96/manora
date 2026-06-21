@@ -2,6 +2,33 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v2.0.0](https://github.com/Antiz96/manora/releases/tag/v2.0.0) - 2026-06-22
+
+### Fixes
+
+- *(test)* Cleanup file after save test ([#90](https://github.com/Antiz96/manora/pull/90)) - ([66f19b9](https://github.com/Antiz96/manora/commit/66f19b99a46b1f2fb4aeb402cfdafcf9638b74b8)) by @Antiz96
+
+### Styling
+
+- Use consistent indentation ([#74](https://github.com/Antiz96/manora/pull/74)) - ([1aee8dc](https://github.com/Antiz96/manora/commit/1aee8dc092b3bc8d7cb4ed65273d54db33dfa529)) by @Antiz96
+
+### Miscellaneous
+
+- *(CONTRIBUTING)* Minor fixes ([#85](https://github.com/Antiz96/manora/pull/85)) - ([e62e660](https://github.com/Antiz96/manora/commit/e62e660431048a7014c08919a6bd53ccda038185)) by @Antiz96
+- *(deps)* Update actions/checkout action to v7.0.0 ([#88](https://github.com/Antiz96/manora/pull/88)) - ([5e356f7](https://github.com/Antiz96/manora/commit/5e356f7c4318a0bc06b250871be7fe71b3aa2bb8)) by @renovate[bot]
+- *(deps)* Update actions/checkout action to v6 ([#78](https://github.com/Antiz96/manora/pull/78)) - ([149f829](https://github.com/Antiz96/manora/commit/149f8294a63af8c8b64a6eeb3abf2cdd4b228e38)) by @renovate[bot]
+- *(issues)* Update labels ([#80](https://github.com/Antiz96/manora/pull/80)) - ([32d44cd](https://github.com/Antiz96/manora/commit/32d44cda7e71d3641c7a91761d498bbd36cd01cd)) by @Antiz96
+- *(release)* Add line break and fix substitution pattern in release script ([#76](https://github.com/Antiz96/manora/pull/76)) - ([4eea597](https://github.com/Antiz96/manora/commit/4eea59720a38576480c8cc7a7f07016e65a5f0b9)) by @Antiz96
+- *(release)* Improve the release process ([#75](https://github.com/Antiz96/manora/pull/75)) - ([4ae470d](https://github.com/Antiz96/manora/commit/4ae470dc04fb12fc6d62cfc31cb77a307417a386)) by @Antiz96
+- *(renovate)* Add assignees ([#79](https://github.com/Antiz96/manora/pull/79)) - ([51ea1a2](https://github.com/Antiz96/manora/commit/51ea1a273e684042fdb08fcdf843811c5554dd48)) by @Antiz96
+- [**breaking**] *(codebase)*: Rewrite in rust ([#89](https://github.com/Antiz96/manora/pull/89)) - ([c773e4b](https://github.com/Antiz96/manora/commit/c773e4be716238c3a11ce0de75d62c6219e661f0)) by @Antiz96
+- Update sponsor links ([#87](https://github.com/Antiz96/manora/pull/87)) - ([b6fd047](https://github.com/Antiz96/manora/commit/b6fd0474b2f06bcd8785ca1b9b0e0f3e27ac38e1)) by @Antiz96
+- [**breaking**] Rename to manora ([#86](https://github.com/Antiz96/manora/pull/86)) - ([c7b89ad](https://github.com/Antiz96/manora/commit/c7b89ad13d868db47f79960363d8011c43b03266)) by @Antiz96
+- Improve wording in MAINTAINERS.md ([#84](https://github.com/Antiz96/manora/pull/84)) - ([2e2e020](https://github.com/Antiz96/manora/commit/2e2e02084a70cf2138d9bed2f4e2b14c2c9bf2b1)) by @Antiz96
+- Configure Renovate ([#77](https://github.com/Antiz96/manora/pull/77)) - ([159dfe3](https://github.com/Antiz96/manora/commit/159dfe34414123baab81cef0d403751a5345dc26)) by @renovate[bot]
+- Add security concerns reporting guidelines ([#72](https://github.com/Antiz96/manora/pull/72)) - ([a5c1537](https://github.com/Antiz96/manora/commit/a5c1537462c4797c7bec1a3612150cf85f7556d9)) by @Antiz96
+- Add `.gitignore` ([#71](https://github.com/Antiz96/manora/pull/71)) - ([2dfb288](https://github.com/Antiz96/manora/commit/2dfb288f02438d132f942bf37211368e92d4fccd)) by @Antiz96
+
 ## [v1.3.3](https://github.com/Antiz96/zaman/releases/tag/v1.3.3) - 2025-02-17
 
 ### Styling
