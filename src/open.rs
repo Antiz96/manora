@@ -36,10 +36,10 @@ fn get_pdf_reader() -> Result<String, String> {
         .args(["query", "default", "application/pdf"])
         .output();
 
-    if let Ok(output) = xdg_pdf_reader {
-        if !output.stdout.is_empty() {
-            return Ok("xdg-open".into());
-        }
+    if let Ok(output) = xdg_pdf_reader
+        && !output.stdout.is_empty()
+    {
+        return Ok("xdg-open".into());
     }
 
     // If no default PDF reader is configured in XDG, check if zathura is installed as a fallback
