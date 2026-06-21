@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v2.0.1](https://github.com/Antiz96/manora/releases/tag/v2.0.1) - 2026-06-22
+
+### Miscellaneous
+
+- *(test)* Delete test for the save argument ([#91](https://github.com/Antiz96/manora/pull/91)) - ([d86cf6a](https://github.com/Antiz96/manora/commit/d86cf6a4b120339d0d90192938ec2067f15b5cba)) by @Antiz96
+
 ## [v2.0.0](https://github.com/Antiz96/manora/releases/tag/v2.0.0) - 2026-06-22
 
 ### Fixes
