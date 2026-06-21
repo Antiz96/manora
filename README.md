@@ -16,6 +16,8 @@ A simple CLI / TUI tool to display (or save) man pages as PDF files for an easie
 Manora opens man pages in the default PDF reader defined in [XDG MIME Applications](https://wiki.archlinux.org/title/XDG_MIME_Applications), or fallback to [Zathura](https://pwmt.org/projects/zathura/) if no default PDF reader is set.  
 It also allows to navigate through all the man pages available on the system through TUI menu (made with [Ratatui](https://ratatui.rs/)).
 
+<https://github.com/user-attachments/assets/c173aa9f-90e1-4744-9b76-cfdf4cf05a3f>
+
 ## Installation
 
 ### Runtime dependencies
