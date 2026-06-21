@@ -13,7 +13,7 @@
 
 A simple CLI / TUI tool to display (or save) man pages as PDF files for an easier reading.
 
-Manora first looks for the default PDF reader defined in [XDG MIME Applications](https://wiki.archlinux.org/title/XDG_MIME_Applications) and fallback to [Zathura](https://pwmt.org/projects/zathura/) if no default PDF reader is set.  
+Manora opens man pages in the default PDF reader defined in [XDG MIME Applications](https://wiki.archlinux.org/title/XDG_MIME_Applications), or fallback to [Zathura](https://pwmt.org/projects/zathura/) if no default PDF reader is set.  
 It also allows to navigate through all the man pages available on the system through TUI menu (made with [Ratatui](https://ratatui.rs/)).
 
 ## Installation
@@ -78,7 +78,7 @@ There are also shell completions available in the [`res/completions/`](https://g
 
 Run the `manora` command in your terminal to display a list of all the available man pages on your system in a TUI menu, allowing you to search for the one to display as a PDF. Alternatively, directly specify the man page to open as an argument (e.g. `manora ls`).
 
-Manora will open the man page in the default PDF reader defined in [XDG MIME Applications](https://wiki.archlinux.org/title/XDG_MIME_Applications), or fallback to [Zathura](https://pwmt.org/projects/zathura/) if no default PDF reader is set.  
+Manora opens man pages in the default PDF reader defined in [XDG MIME Applications](https://wiki.archlinux.org/title/XDG_MIME_Applications), or fallback to [Zathura](https://pwmt.org/projects/zathura/) if no default PDF reader is set.  
 
 To save / export a man page locally as a PDF file, run `manora --save <man_page>` where `<man_page>` is the man page to save (e.g. `manora --save ls`). The file will be saved as `man_<man_page>.pdf` (e.g. `man_ls.pdf`) in the current directory.  
 You can optionally specify the file to save the man page to: `manora --save <man_page> <file>` (e.g. `manora --save ls ~/Documents/man_pages/ls.pdf`).

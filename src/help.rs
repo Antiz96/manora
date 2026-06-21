@@ -1,7 +1,7 @@
 //! Print help message
 
 pub fn show_help() {
-    println!("manora - A simple CLI / TUI tool to display (or save) man pages as PDFs.");
+    println!("manora - A simple CLI / TUI tool to display (or save) man pages as PDF files");
     println!();
     println!("You can directly specify the man page to display as a PDF.");
     println!("For instance, to display the 'ls' man page: manora ls");
