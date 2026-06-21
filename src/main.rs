@@ -7,8 +7,8 @@ mod help;
 mod menu;
 mod open;
 mod save;
-mod tmpdir;
 mod version;
+mod cachedir;
 
 // Argument parser
 #[derive(Parser)]
@@ -96,12 +96,9 @@ fn main() {
         process::exit(1);
     }
 
-    // Create temporary working directory
-    let workdir = tmpdir::create_tmpdir().unwrap_or_else(|error| {
-        eprintln!(
-            "Failed to create the temporary working directory:\n{}",
-            error
-        );
+    // Create cache directory (if it doesn't exist)
+    let cachedir = cachedir::create_cachedir().unwrap_or_else(|error| {
+        eprintln!("Failed to create the cache directory:\n{}", error);
         process::exit(4);
     });
 
@@ -112,7 +109,7 @@ fn main() {
         // In theory, we should never reach that expect()
         .expect("man_page should come from menu or positional argument");
 
-    open::open_man_page(&man_page, workdir.path()).unwrap_or_else(|error| {
+    open::open_man_page(&man_page, &cachedir).unwrap_or_else(|error| {
         eprintln!("Failed to open the man page:\n{}", error);
         process::exit(1);
     });

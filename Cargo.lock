@@ -543,12 +543,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "dd2e7510819d6fbf51a5545c8f922716ecfb14df168a3242f7d33e0239efe6a1"
 
 [[package]]
-name = "fastrand"
-version = "2.4.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "9f1f227452a390804cdb637b74a86990f2a7d7ba4b7d5693aac9b4dd6defd8d6"
-
-[[package]]
 name = "filedescriptor"
 version = "0.8.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -822,9 +816,9 @@ dependencies = [
 
 [[package]]
 name = "log"
-version = "0.4.32"
+version = "0.4.33"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "953f07c43838f8e6f9758cab68bf5bed85465e7587ebe0b823f1bcd81978ad3a"
+checksum = "0ceec5bc11778974d1bcb055b18002eba7f4b3518b6a0081b3af5f21666da9ad"
 
 [[package]]
 name = "lru"
@@ -841,7 +835,7 @@ version = "1.1.8"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "c0aeb26bf5e836cc1c341c8106051b573f1766dfa05aa87f0b98be5e51b02303"
 dependencies = [
- "nix",
+ "nix 0.29.0",
  "winapi",
 ]
 
@@ -853,9 +847,9 @@ dependencies = [
  "clap",
  "color-eyre",
  "crossterm",
+ "nix 0.31.3",
  "predicates",
  "ratatui",
- "tempfile",
 ]
 
 [[package]]
@@ -917,6 +911,18 @@ dependencies = [
  "cfg_aliases",
  "libc",
  "memoffset",
+]
+
+[[package]]
+name = "nix"
+version = "0.31.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "cf20d2fde8ff38632c426f1165ed7436270b44f199fc55284c38276f9db47c3d"
+dependencies = [
+ "bitflags 2.13.0",
+ "cfg-if",
+ "cfg_aliases",
+ "libc",
 ]
 
 [[package]]
@@ -1587,19 +1593,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "tempfile"
-version = "3.27.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "32497e9a4c7b38532efcdebeef879707aa9f794296a4f0244f6f69e9bc8574bd"
-dependencies = [
- "fastrand",
- "getrandom 0.4.3",
- "once_cell",
- "rustix",
- "windows-sys",
-]
-
-[[package]]
 name = "termina"
 version = "0.3.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1657,7 +1650,7 @@ dependencies = [
  "libc",
  "log",
  "memmem",
- "nix",
+ "nix 0.29.0",
  "num-derive",
  "num-traits",
  "ordered-float",

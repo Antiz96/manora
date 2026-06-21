@@ -3,7 +3,7 @@
 use std::path::Path;
 use std::process::{Command, Stdio};
 
-pub fn open_man_page(man_page: &str, workdir: &Path) -> std::io::Result<()> {
+pub fn open_man_page(man_page: &str, cachedir: &Path) -> std::io::Result<()> {
     // Convert man page as a PDF
     let output = Command::new("man").args(["-Tpdf", man_page]).output()?;
 
@@ -13,8 +13,8 @@ pub fn open_man_page(man_page: &str, workdir: &Path) -> std::io::Result<()> {
         ));
     }
 
-    // Save the converted man page as a PDF file in the temporary workdir
-    let pdf_path = workdir.join(format!("{}.pdf", man_page));
+    // Save the converted man page as a PDF file in the cachedir
+    let pdf_path = cachedir.join(format!("{}.pdf", man_page));
     std::fs::write(&pdf_path, output.stdout)?;
 
     // Open in PDF reader
@@ -25,11 +25,6 @@ pub fn open_man_page(man_page: &str, workdir: &Path) -> std::io::Result<()> {
         .stdout(Stdio::null())
         .stderr(Stdio::null())
         .spawn()?;
-
-    // Slightly inelegant workaround:
-    // Add a small delay before returning to give the PDF reader time
-    // to open the file before the temporary working directory gets deleted.
-    std::thread::sleep(std::time::Duration::from_millis(250));
 
     Ok(())
 }

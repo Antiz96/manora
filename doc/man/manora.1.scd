@@ -50,7 +50,7 @@ manora ls
 	Error when exporting a man page with the `-s / --save` option.
 
 *4*
-	Error when creating the temporary working directory.
+	Error when creating the cache directory.
 
 # SEE ALSO
 
