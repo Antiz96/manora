@@ -1,6 +1,7 @@
 //! Manora - A simple CLI / TUI tool to display (or save) man pages as PDFs.
 
 use clap::Parser;
+use std::path::Path;
 use std::process;
 
 mod cachedir;
@@ -70,7 +71,11 @@ fn main() {
             .cloned()
             .unwrap_or_else(|| format!("man_{}.pdf", man_page));
 
-        save::save_man_page(&man_page, &file);
+        save::save_man_page(&man_page, Path::new(&file)).unwrap_or_else(|error| {
+            eprintln!("Failed to save man page:\n{}", error);
+            process::exit(3);
+        });
+        println!("The {} man page has been saved to the {} file", man_page, file);
         return;
     }
 
