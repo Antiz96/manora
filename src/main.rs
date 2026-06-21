@@ -5,7 +5,7 @@ use std::process;
 
 mod help;
 mod menu;
-mod print;
+mod open;
 mod save;
 mod tmpdir;
 mod version;
@@ -111,5 +111,9 @@ fn main() {
         // Just making the assumption visible
         // In theory, we should never reach that expect()
         .expect("man_page should come from menu or positional argument");
-    print::print2pdf(&man_page);
+
+    open::open_man_page(&man_page, workdir.path()).unwrap_or_else(|error| {
+        eprintln!("Failed to open the man page:\n{}", error);
+        process::exit(1);
+    });
 }
