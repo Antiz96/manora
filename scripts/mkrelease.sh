@@ -42,7 +42,13 @@ esac
 
 # Bump version where necessary
 sed_pattern="${latest_tag//./\\.}" # escape dots
-sed -i "s/${sed_pattern#v}/${release_tag}/g" doc/man/manora.* src/manora.sh
+sed -i "s/version = \"${sed_pattern#v}\"/version = \"${release_tag}\"/g" Cargo.toml
+sed -i "s/${sed_pattern#v}/${release_tag}/g" doc/man/manora.1.scd
+
+# Build binary
+rm -rf target/
+repro-env update
+repro-env build -- cargo build --release --target x86_64-unknown-linux-musl
 
 # Update changelog
 git-cliff -up CHANGELOG.md
@@ -83,6 +89,22 @@ gpg --local-user D33FAA16B937F3B2 --armor --detach-sign "manora-${release_tag}.t
 sha256sum "manora-${release_tag}.tar.gz" > "manora-${release_tag}.tar.gz.sha256"
 gpg --local-user D33FAA16B937F3B2 --armor --detach-sign "manora-${release_tag}.tar.gz.sha256"
 
-# Upload source tarball and checksum signatures
-gh release upload "v${release_tag}" "manora-${release_tag}.tar.gz.asc" "manora-${release_tag}.tar.gz.sha256" "manora-${release_tag}.tar.gz.sha256.asc"
-rm -f "manora-${release_tag}.tar.gz"*
+# Sign binary and checksum
+mv target/x86_64-unknown-linux-musl/release/manora "target/x86_64-unknown-linux-musl/release/manora-${release_tag}-x86_64"
+gpg --local-user D33FAA16B937F3B2 --armor --detach-sign "target/x86_64-unknown-linux-musl/release/manora-${release_tag}-x86_64"
+sha256sum "target/x86_64-unknown-linux-musl/release/manora-${release_tag}-x86_64" > "target/x86_64-unknown-linux-musl/release/manora-${release_tag}-x86_64.sha256"
+gpg --local-user D33FAA16B937F3B2 --armor --detach-sign "target/x86_64-unknown-linux-musl/release/manora-${release_tag}-x86_64.sha256"
+
+# Upload assets
+gh release upload "v${release_tag}" \
+	"manora-${release_tag}.tar.gz.asc" \
+	"manora-${release_tag}.tar.gz.sha256" \
+	"manora-${release_tag}.tar.gz.sha256.asc" \
+	"target/x86_64-unknown-linux-musl/release/manora-${release_tag}-x86_64" \
+	"target/x86_64-unknown-linux-musl/release/manora-${release_tag}-x86_64.asc" \
+	"target/x86_64-unknown-linux-musl/release/manora-${release_tag}-x86_64.sha256" \
+	"target/x86_64-unknown-linux-musl/release/manora-${release_tag}-x86_64.sha256.asc"
+
+# Cleanup
+rm -rf "manora-${release_tag}.tar.gz"* target/
+podman image prune -af

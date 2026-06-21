@@ -15,19 +15,28 @@ jobs:
         run: actionlint -ignore 'label "CI-CD" is unknown' .github/workflows/CI.yml
 
       - name: Run codespell
-        run: codespell --enable-colors
+        run: codespell --enable-colors --ignore-words .github/workflows/codespell_ignore.txt
 
       - name: Run mdl
         run: mdl --style .github/workflows/mdl_style.rb .
 
+      - name: Run scdoc
+        run: scdoc < doc/man/manora.1.scd > doc/man/manora.1
+
       - name: Run shellcheck
         run: find . -name '*.sh' -exec shellcheck --color=always {} +
 
-      - name: Run make clean
-        run: make clean
+      - name: Run cargo fmt
+        run: cargo fmt --check
 
-      - name: Run make
-        run: make
+      - name: Run cargo clippy
+        run: cargo clippy --all-targets --all-features -- -D warnings
 
-      - name: Run make test
-        run: make test
+      - name: Run cargo test
+        run: cargo test
+
+      - name: Run cargo build
+        run: cargo build --release
+
+      - name: Cleanup
+        run: rm -rvf target/ ~/.cargo

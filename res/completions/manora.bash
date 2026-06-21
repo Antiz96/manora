@@ -3,9 +3,7 @@ _manora() {
 	local -a opts 
 
 	opts=('-m --menu
-	       -o --output
-	       -O --save
-	       -D --debug
+	       -s --save
 	       -h --help
 	       -V --version')
 

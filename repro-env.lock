@@ -1,0 +1,99 @@
+[container]
+image = "docker.io/archlinux/archlinux@sha256:6586c12a3953c18737ec89dcdd4a1af3862585d1be5a77b74e78fc9202f41ec1"
+
+[[package]]
+name = "compiler-rt"
+version = "22.1.6-1"
+system = "archlinux"
+url = "https://archive.archlinux.org/packages/c/compiler-rt/compiler-rt-22.1.6-1-x86_64.pkg.tar.zst"
+sha256 = "7b5e7ad63bd4cf58cbe7cbdb4bccb2df7b3f6186868fe08000faa2432e0fe5f6"
+signature = "iHUEABYKAB0WIQTS6V/sAVzx+RGqqww9TFAIu1yNKQUCahMxRgAKCRA9TFAIu1yNKV/XAQCL9FwCnOn12sFtjAjXKi3I94hP33aX7WBsmQoF+7s7MQEAm/EWUk/KHptXiEEdM8njdloI60cG5B9iZ+4VVRK59wk="
+
+[[package]]
+name = "gcc"
+version = "16.1.1+r12+g301eb08fa2c5-1"
+system = "archlinux"
+url = "https://archive.archlinux.org/packages/g/gcc/gcc-16.1.1+r12+g301eb08fa2c5-1-x86_64.pkg.tar.zst"
+sha256 = "80ecc89c7ca567a2c1d460803e1efa434040861f824c34d8fe7000bf27ad82c0"
+signature = "iNUEABYKAH0WIQQFx3danouXdAf+COadTFqhVCbaCgUCafS5tV8UgAAAAAAuAChpc3N1ZXItZnByQG5vdGF0aW9ucy5vcGVucGdwLmZpZnRoaG9yc2VtYW4ubmV0MDVDNzc3NUE5RThCOTc3NDA3RkUwOEU2OUQ0QzVBQTE1NDI2REEwQQAKCRCdTFqhVCbaCuUiAQCgvoBNp3cS3853nVXfsTs+d/es9OS4BeQYBmVGWL6r0AEAlA6Udb4ZVS6Bhrn9tDrQRVWgGw/cqRgWi4boE2D3rAA="
+
+[[package]]
+name = "libedit"
+version = "20260512_3.1-1"
+system = "archlinux"
+url = "https://archive.archlinux.org/packages/l/libedit/libedit-20260512_3.1-1-x86_64.pkg.tar.zst"
+sha256 = "70cb736e4fdee330cd0dfab45875f6ea378ae819958dd15748c300b8d7285b42"
+signature = "iQIzBAABCgAdFiEE4kC1fixGMLp2ji8m/BtUfI2BcsgFAmoI97oACgkQ/BtUfI2BcsikyQ/7B/S1MQ9uI6NeSwoCUxSh8LvJjSc0ixgimM4BsDqxYM0HGTPGXEGMqdjvCFE3duhNfmGphGqSmTGQcxiJjgKKGmzj4xW1b4M3lWoyiv98jx7kR1aRtVthXGWbVFmJKuCuUQd9iWT+h3gh5QHVKib122FAWuWnWgXrXPyfYFMaY7I5nUMr8URDEYVZje5Cjx81AcavUg+6nAQyeH4hDxgsVhvyhqBNzfodN6v/1oV50jaayMs4QvU/CXQL2lnXB1NjMcTJMdYDJ0mXaLHEqYwUj6evQEXlkqlakG32OJ9uQBojYLpATpCheWxqDmjsoRwIay/EGmyYJVvzzqx21bmP5VtAKz63LIQTHqNAZS06hjF65+NYnjFGcwGdWE6FD1DAXWKM/K0KP+tjFg9i7DqwSK578Q6GdLCPty3Jjn7PlaOs9Qt1ysWOOVym3RRAI8isAb+33uCodqhgh5+i52sHhxZDJC9tLju+ESVKWceOschHx9GBz/K6jLa+/xodsEdv/G2J8U1WgIrty2tVWwsy0OaWghLEgx/6yNO09+/D9CYNOukBebOnLiiCQFtkjI6Aj+YiT9LKbf204trvzgWqc0huMrkh80ZcvEt3Rc9MQciuQCyFIy6FF/Pva02PXi0D42S1trgkmnMmLHLP0RGkqKPxdKrofibe5D0Uucyaaus="
+
+[[package]]
+name = "libgit2"
+version = "1:1.9.4-1"
+system = "archlinux"
+url = "https://archive.archlinux.org/packages/l/libgit2/libgit2-1:1.9.4-1-x86_64.pkg.tar.zst"
+sha256 = "ec507544d16aa08da8df08af5de80dab4d99b4f0ae0fe256c59f0324b149b838"
+signature = "iHUEABYKAB0WIQQEKYl95fO9rFN6MGltQr3RFuAGjwUCahA8ngAKCRBtQr3RFuAGjxv+AQDKndcpN2CWEV06t1kU7UM/r1YbIROXuB0MZNYm5uSZPQD+LYLEmoFtwmATKRkma6KUG4n612P/32MoncWhqhRnrwg="
+
+[[package]]
+name = "libisl"
+version = "0.27-1"
+system = "archlinux"
+url = "https://archive.archlinux.org/packages/l/libisl/libisl-0.27-1-x86_64.pkg.tar.zst"
+sha256 = "55a36e8195e6d9ce2efeb4276c60df6b6e7d94812fa36f8423d5ce664a5d34df"
+signature = "iNUEABYKAH0WIQQFx3danouXdAf+COadTFqhVCbaCgUCZtWJeV8UgAAAAAAuAChpc3N1ZXItZnByQG5vdGF0aW9ucy5vcGVucGdwLmZpZnRoaG9yc2VtYW4ubmV0MDVDNzc3NUE5RThCOTc3NDA3RkUwOEU2OUQ0QzVBQTE1NDI2REEwQQAKCRCdTFqhVCbaCgPbAP9GNpnE0ra4qZOGYyJtfnyG42f8Z9dLpX21F/sY/a2UCgD/dz8x7harwjTofWctVHyyCacJsLhSq2jvSfrvvL4H/w8="
+
+[[package]]
+name = "libmpc"
+version = "1.4.1-1"
+system = "archlinux"
+url = "https://archive.archlinux.org/packages/l/libmpc/libmpc-1.4.1-1-x86_64.pkg.tar.zst"
+sha256 = "880bdba957ebe5136449c7b61821e92628d7bdd43f370e5a0818d229372d3851"
+signature = "iQEzBAABCgAdFiEEFRnVq6Zb9vwrc8dWek52CV2KUuQFAmnhAlsACgkQek52CV2KUuSBcgf9E61NpAV+F+wHPlOgZOT9yurZAhQwUNd4SRQkNEFrbyMJ1C3Bu9vUayr05Q+MxeQ8/J0W5aACrWSOEAtvYlu9vfmzbn7/S9rHtH9fmvmj46hZemo48cVTq9YTQA1Doe5e9j3DTOWdEsWv7XCMSIXGI2RdIXYB+TH1DLNi7B95EwDySH7SpznjH+SGv9ttVMsmAChRbGR3fIVi6hz6OgSGErFJJmTI5jwt06U6L7Yhl/4ybvYXuh1DGhdFpNhJBGLcYmQhBhv3OGa2dwj051fEjneL2PK80u4nmc+3dP7cOW3pY8jBDpOVfRvnAwiY/NuJMK1YK3iFd3YbYQnuu1D2cQ=="
+
+[[package]]
+name = "lld"
+version = "22.1.6-1"
+system = "archlinux"
+url = "https://archive.archlinux.org/packages/l/lld/lld-22.1.6-1-x86_64.pkg.tar.zst"
+sha256 = "2c369793a14dacc432297a19b244c8561b51beb1810c47c7ad8de022382ac36e"
+signature = "iHUEABYKAB0WIQTS6V/sAVzx+RGqqww9TFAIu1yNKQUCahM6WgAKCRA9TFAIu1yNKbfZAP9Pyphz5Ue2qBrbToYL4aRMyKqBkTZgTq9jo5QigPX9JgD+PkBHAo3HZxxOUyI4+Kd/btODZ8FDm/iuKFkK4FmT+ww="
+
+[[package]]
+name = "llhttp"
+version = "9.3.1-1"
+system = "archlinux"
+url = "https://archive.archlinux.org/packages/l/llhttp/llhttp-9.3.1-1-x86_64.pkg.tar.zst"
+sha256 = "e93332a577aacebdef11d0626df9a4f45dd6468187309693ccaa8de1547dc71c"
+signature = "iQIzBAABCgAdFiEEsNZSlUdmBrcfDG+CqF6BHrTKLggFAmmQzoAACgkQqF6BHrTKLgjUNw/+KlDsMf3ITF8QKgoEMWg57td+bZVbLijaRgOWlbJozcO76Ri8mOhCOv+mIpT/H44upsBeCHkooYi1YmV48m7vLbtBPcqKpr5d1+ccfh3BTzPZXZacw5jUASifAD84M2w4g2GrvrfUn4lFvy8WAYWUmYLEKdMIXVR9abV0M+B8yrNxgeyPzbHHlleJ9tGHHVuTV99GbRsA5HktkrknfoLKZnzMt+jk1uqhqLAPZaSJ41oFwhRyEkCXqOUb2kEqlSJo6Y94n/ipy50pk04RjiB5D75VTm/lJHPBFOIH/bA20K/G15EBH7ql7D9M/tFWaBWaErlTSKf/hT+x8NIf913dcnCxzDBwinMUnrsiJJyp4gSa+dRKgu6BOuF5z35neZVLYHNtyhQmWGzMc0J6w0mhLFqglhEFen+G9NMTfhu9agvxHAZKgA3hnZEsBs09F6XvgZN5jA23pNUKL+lw0hBd6zgPM5yILHVXsBPgGuwr7NjvfBKx10z/uHRz+Jtvm0r5KSTlq4pwz1sWNoSwKQN/2Hb8YdEw1DLoxYXSpDcDtPhUGqZz4wExfFoC+Qo2M1hp7zRTRrRkwf9S8Lnx7IxEX9Qv0miqoJTEkB0TnIsLlg2sT9AISOMHbB6eMyPLscS/PYB3QzJ4uv5RMQx1zJ7GuY7XahJGYY0moYFfcrWFoSw="
+
+[[package]]
+name = "llvm-libs"
+version = "22.1.6-1"
+system = "archlinux"
+url = "https://archive.archlinux.org/packages/l/llvm-libs/llvm-libs-22.1.6-1-x86_64.pkg.tar.zst"
+sha256 = "6ced8a3e24c933e7b4c1c37cbaf26e497fe4a1f9f891ffe249fde0521900e339"
+signature = "iHUEABYKAB0WIQTS6V/sAVzx+RGqqww9TFAIu1yNKQUCahMwUQAKCRA9TFAIu1yNKRsgAP9E+UnLkDPKoYW8tU51N6vX3IX7sF/PTYwnBk24kVInLQD9G95RVVwSz5mAP4wTn+IdN+sOlt6hwAu7txe7KSzdugU="
+
+[[package]]
+name = "musl"
+version = "1.2.6-1"
+system = "archlinux"
+url = "https://archive.archlinux.org/packages/m/musl/musl-1.2.6-1-x86_64.pkg.tar.zst"
+sha256 = "193b040c7174637ebcb7449914017e4b300089884a659d00bce59888744dc184"
+signature = "iQJLBAABCgA1FiEEiee5MxxK59f699MFwTIpOVS75K0FAmm/In4XHHNwdXB5a2luQGFyY2hsaW51eC5vcmcACgkQwTIpOVS75K11JBAAtrp8Ovvj6VJOhuR/QKfUDDCpWbcvh+wyqSwXIgRGBR3+m5+HcHkaTUGxtodWpCjiEJeM303SGTgPVsSKlUpNzK/emqhRpKX6pETNvFCjGYZGplvBhdh/LNRf/OMzU2Ld16woc4RUYKciV1LDohB1XVMHpG//QkTHcLOJT4G57NJoS9t0JumxPdZUwEbVrYG56wEMIIVABfY2zb2iFCrjkr1N8GlTCnI8HXpsq0E4yMkhIZ/a1dkFEDmWgFX8g+7JaVVbMFGDaJMGBIM/9bI7Ydc9JtXFbC6aRizF86ZfZdlK3xj0/WAFaqDoj1/O3aToaTqYic/qgPeOqo/nBOyyMxPU9dpz3RBOD9poSiLhjvhERyMSGwuGeAt8D2EGsrUjhJvydF84WfF0ZhlIZIWh1pW+Rf/CPzMeeM3eipLv58HTj5v70JSJuinTM0oIHWoIhsyZPz39dW0UJ+Qqi455f8h8Nj3a/UZfwElNqwLFkV4Qjt9qSRy8twaBNlQuh04PpRhSktRiXNKqc4Ldvcuo/9rhxdByORyfaelYL7OvyX5DyZqmlr1MmtREu4mHU2wN0znRfGinGdVNcqFtFScaABM2tnG8ZE1fOngHg6+P7cFzYYNN8PRaNUHGmSEmbHOoC3k236GmWbCTbDfcZcLauORmJg5GxxoW64PO53CdBRs="
+
+[[package]]
+name = "rust"
+version = "1:1.96.0-1"
+system = "archlinux"
+url = "https://archive.archlinux.org/packages/r/rust/rust-1:1.96.0-1-x86_64.pkg.tar.zst"
+provides = ["cargo"]
+sha256 = "adb3c70e4502e314297d3ec18eed73468d579f71ca16744d49537798a86a813c"
+signature = "iHUEABYKAB0WIQSDvIiJNRtd67toQW64rAhgDxCM3wUCahlHLwAKCRC4rAhgDxCM3z4KAP0bQq9Np3OklfJiPOeGyfPStLiQLl2dSD5yH2cp7u0fFQEAuI0KxPvlm6ZKtkE4PiSWhNPgyFYNBzkXdLcwTRBjMAk="
+
+[[package]]
+name = "rust-musl"
+version = "1:1.96.0-1"
+system = "archlinux"
+url = "https://archive.archlinux.org/packages/r/rust-musl/rust-musl-1:1.96.0-1-x86_64.pkg.tar.zst"
+sha256 = "3d70be0e73c7830bad45818d59abd7460d83ee1cc997a732b0dda9dc9f20bd22"
+signature = "iHUEABYKAB0WIQSDvIiJNRtd67toQW64rAhgDxCM3wUCahlHMQAKCRC4rAhgDxCM36WPAQC+ENCi/0JUHFgbmhB9csnPM4bKKqhwaiA6L15eX+MfvwEAuVLNwGe1eBQE0Xec7RAVMnzOh5alGsfs1ZraSH76MwM="
