@@ -26,29 +26,29 @@ pub fn download_man_page(man_page: &str, cachedir: &Path) -> std::io::Result<()>
     }
 
     // Convert raw_man_page to PDF
-    let mut groff = Command::new("groff")
+    let mut conversion = Command::new("groff")
         .args(["-mandoc", "-Tpdf"])
         .stdin(std::process::Stdio::piped())
         .stdout(std::process::Stdio::piped())
         .spawn()?;
 
-    groff
+    conversion
         .stdin
         .take()
         .ok_or_else(|| std::io::Error::other("Failed to access groff stdin"))?
         .write_all(raw_man_page.as_bytes())?;
 
-    let output = groff.wait_with_output()?;
+    let conversion_output = conversion.wait_with_output()?;
 
-    if !output.status.success() {
+    if !conversion_output.status.success() {
         return Err(std::io::Error::other(
-            String::from_utf8_lossy(&output.stderr).to_string(),
+            String::from_utf8_lossy(&conversion_output.stderr).to_string(),
         ));
     }
 
     // Save converted man page in cache directory
-    let pdf_path = cachedir.join(format!("{}.pdf", man_page));
-    std::fs::write(pdf_path, output.stdout)?;
+    let dest_file_path = cachedir.join(format!("{}.pdf", man_page));
+    std::fs::write(dest_file_path, conversion_output.stdout)?;
 
     Ok(())
 }

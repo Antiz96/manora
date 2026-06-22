@@ -7,39 +7,38 @@ use std::process::{Command, Stdio};
 // Open man page as a PDF
 pub fn open_man_page(man_page: &str, cachedir: &Path) -> std::io::Result<()> {
     // Convert man page as a PDF
-    let output = Command::new("man").args(["-Tpdf", man_page]).output()?;
+    let conversion = Command::new("man").args(["-Tpdf", man_page]).output()?;
 
-    if !output.status.success() {
+    if !conversion.status.success() {
         return Err(std::io::Error::new(
             std::io::ErrorKind::NotFound,
-            String::from_utf8_lossy(&output.stderr).to_string(),
+            String::from_utf8_lossy(&conversion.stderr).to_string(),
         ));
     }
 
     // Save the converted man page as a PDF file in the cachedir
-    let pdf_path = cachedir.join(format!("{}.pdf", man_page));
-    std::fs::write(&pdf_path, output.stdout)?;
+    let dest_file_path = cachedir.join(format!("{}.pdf", man_page));
+    std::fs::write(&dest_file_path, conversion.stdout)?;
 
     // Open in PDF reader
     let pdf_reader = get_pdf_reader().map_err(std::io::Error::other)?;
-    let mut command = Command::new(&pdf_reader);
+    let mut open = Command::new(&pdf_reader);
 
-    command
-        .arg(&pdf_path)
+    open.arg(&dest_file_path)
         .stdin(Stdio::null())
         .stdout(Stdio::null())
         .stderr(Stdio::null());
 
     // Detach PDF reader process from terminal session
     unsafe {
-        command.pre_exec(|| {
+        open.pre_exec(|| {
             nix::unistd::setsid()
                 .map(|_| ())
                 .map_err(std::io::Error::other)
         });
     }
 
-    command.spawn()?;
+    open.spawn()?;
 
     Ok(())
 }
@@ -47,28 +46,27 @@ pub fn open_man_page(man_page: &str, cachedir: &Path) -> std::io::Result<()> {
 // Open downloaded man page as a PDF
 pub fn open_downloaded_man_page(man_page: &str, cachedir: &Path) -> std::io::Result<()> {
     // Set path to downloaded man page
-    let pdf_path = cachedir.join(format!("{}.pdf", man_page));
+    let dest_file_path = cachedir.join(format!("{}.pdf", man_page));
 
     // Open in PDF reader
     let pdf_reader = get_pdf_reader().map_err(std::io::Error::other)?;
-    let mut command = Command::new(&pdf_reader);
+    let mut open = Command::new(&pdf_reader);
 
-    command
-        .arg(&pdf_path)
+    open.arg(&dest_file_path)
         .stdin(Stdio::null())
         .stdout(Stdio::null())
         .stderr(Stdio::null());
 
     // Detach PDF reader process from terminal session
     unsafe {
-        command.pre_exec(|| {
+        open.pre_exec(|| {
             nix::unistd::setsid()
                 .map(|_| ())
                 .map_err(std::io::Error::other)
         });
     }
 
-    command.spawn()?;
+    open.spawn()?;
 
     Ok(())
 }
@@ -97,6 +95,7 @@ fn get_pdf_reader() -> Result<String, String> {
         return Ok("zathura".to_string());
     }
 
+    // Return an error if none can be found
     Err(
         "No PDF reader defined in XDG Mime Application and zathura (fallback option) isn't installed"
             .to_string(),

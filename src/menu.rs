@@ -70,9 +70,9 @@ pub fn show_menu() -> color_eyre::Result<String> {
 
 // Get the list of local man pages
 fn get_man_pages() -> color_eyre::Result<Vec<String>> {
-    let output = Command::new("man").args(["-k", "."]).output()?;
+    let man_list = Command::new("man").args(["-k", "."]).output()?;
 
-    Ok(String::from_utf8_lossy(&output.stdout)
+    Ok(String::from_utf8_lossy(&man_list.stdout)
         .lines()
         .filter_map(|line| line.split_whitespace().next())
         .map(String::from)
@@ -104,7 +104,7 @@ fn render_help(frame: &mut Frame, area: Rect) {
 }
 
 // Implementation of the search / filtering functionality
-// Update the displayed list according to the search query
+// Update the displayed list according to search queries
 impl App {
     fn update_filter(&mut self) {
         let query = self.query.to_lowercase();

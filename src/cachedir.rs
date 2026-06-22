@@ -1,4 +1,4 @@
-//! Create cache directory:
+//! Create cache directory (if it doesn't exist):
 //! ${TMPDIR:-/tmp}/manora-${UID}
 
 use std::path::PathBuf;
