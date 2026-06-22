@@ -1,5 +1,6 @@
 //! Convert the man page as a PDF and open it
 
+use std::os::unix::process::CommandExt;
 use std::path::Path;
 use std::process::{Command, Stdio};
 
@@ -19,12 +20,24 @@ pub fn open_man_page(man_page: &str, cachedir: &Path) -> std::io::Result<()> {
 
     // Open in PDF reader
     let pdf_reader = get_pdf_reader().map_err(std::io::Error::other)?;
+    let mut command = Command::new(&pdf_reader);
 
-    Command::new(&pdf_reader)
+    command
         .arg(&pdf_path)
+        .stdin(Stdio::null())
         .stdout(Stdio::null())
-        .stderr(Stdio::null())
-        .spawn()?;
+        .stderr(Stdio::null());
+
+    // Detach PDF reader process from terminal session
+    unsafe {
+        command.pre_exec(|| {
+            nix::unistd::setsid()
+                .map(|_| ())
+                .map_err(std::io::Error::other)
+        });
+    }
+
+    command.spawn()?;
 
     Ok(())
 }
