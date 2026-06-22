@@ -95,7 +95,7 @@ The file will be saved as `man_<man page>.pdf` (e.g. `man_ls.pdf`) in the curren
 Alternatively, specify the file to save the man page to: `manora --save <man page> <file>` (e.g. `manora --save ls ~/Documents/man_pages/ls.pdf`).
 
 If a man page cannot be found locally, Manora offers to try to download it from <https://manned.org> (whether it is to open or save it).  
-Use the `-d / --download` option to skip local man pages lookup and directly try to download the man page from <https://manned.org> instead, (e.g. `manora --download ls` / `manora --download --save ls`).
+Use the `-d / --download` option to skip searching for the man page locally and directly try to download it from <https://manned.org> instead, (e.g. `manora --download ls` / `manora --download --save ls`).
 
 Manora can also be opened from a keybinding. For instance, one can bind the `alacritty -e manora` command to a keybinding, which will open the `manora` TUI menu in `alacritty` (allowing to select the man page to open in the PDF reader).
 
