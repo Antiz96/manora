@@ -188,7 +188,6 @@ fn main() {
             std::io::stdin().read_line(&mut answer).unwrap();
 
             if matches!(answer.trim().to_lowercase().as_str(), "" | "y" | "yes") {
-
                 download::download_man_page(&man_page, &cachedir).unwrap_or_else(|error| {
                     eprintln!("\nFailed to download the man page:\n{}", error);
                     process::exit(5);
