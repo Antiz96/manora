@@ -3,7 +3,7 @@ name = "manora"
 version = "2.0.1"
 authors = ["Robin Candau <robincandau@protonmail.com>"]
 edition = "2024"
-description = "A simple CLI / TUI tool to display (or save) man pages as PDF files"
+description = "A simple CLI / TUI tool to display, download and save man pages as PDF files for an easier reading"
 license = "GPL-3.0-or-later"
 
 [dependencies]
@@ -12,6 +12,7 @@ color-eyre = "0.6.5"
 crossterm = "0.29.0"
 nix = { version = "0.31.3", features = ["user", "process"] }
 ratatui = "0.30.2"
+reqwest = { version = "0.13.4", features = ["blocking"] }
 
 [dev-dependencies]
 assert_cmd = "2.0.0"
