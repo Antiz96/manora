@@ -8,8 +8,12 @@ manora(1) ["Manora 2.0.1" ["Manora Manual"]]
 
 A simple CLI / TUI tool to display (or save) man pages as PDF files for an easier reading.
 
+Run the `manora` command to display a list of all the available man pages on the system in a TUI menu, allowing to search for the one to display as a PDF.
+Alternatively, specify the man page to open directly as an argument (e.g. `manora ls`).
+
 Manora opens man pages in the default PDF reader defined in XDG MIME Applications, or fallback to Zathura if no default PDF reader is set.  
-It also allows to navigate through all the man pages available on the system through a TUI menu.
+
+Manora can also be ran from keybindings. For instance, one can bind the `alacritty -e manora` command to a keybind, which will open the `manora` TUI menu in `alacritty` (allowing to select the man page to open in the PDF reader).
 
 # SYNOPSIS
 
