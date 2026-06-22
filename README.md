@@ -22,7 +22,7 @@ Manora can also save / export man pages to a local PDF file, download man pages 
 
 See the "[Usage](#usage)" chapter and the demo video below for more details:
 
-<https://github.com/user-attachments/assets/c173aa9f-90e1-4744-9b76-cfdf4cf05a3f>
+<https://github.com/user-attachments/assets/57cbec82-11ff-45d4-983f-eefb6a63a01c>
 
 ## Installation
 
