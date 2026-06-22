@@ -1,4 +1,5 @@
-//! Show version
+//! Show name and version
+//! Info retrieved directly from Cargo 
 
 use std::env;
 

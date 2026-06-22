@@ -97,6 +97,7 @@ fn get_pdf_reader() -> Result<String, String> {
         return Ok("zathura".to_string());
     }
 
+    // Return an error if none can be found
     Err(
         "No PDF reader defined in XDG Mime Application and zathura (fallback option) isn't installed"
             .to_string(),

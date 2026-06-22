@@ -31,9 +31,9 @@ pub fn save_downloaded_man_page(
     let pdf_path = cachedir.join(format!("{}.pdf", man_page));
 
     // Move downloaded man page to file
-    // Doing "copy" then "remove_file" as the "rename" function
-    // requires the source and destination to be on the same filesystem
-    // while cachedir is in /tmp which is mostly likely tmpfs
+    // Using "copy" then "remove_file" functions instead of "rename" function
+    // as it requires the source and destination to be on the same filesystem
+    // while cachedir is in /tmp (which is likely tmpfs)
     std::fs::copy(&pdf_path, file)?;
     std::fs::remove_file(pdf_path)?;
 

@@ -104,7 +104,7 @@ fn render_help(frame: &mut Frame, area: Rect) {
 }
 
 // Implementation of the search / filtering functionality
-// Update the displayed list according to the search query
+// Update the displayed list according to search queries
 impl App {
     fn update_filter(&mut self) {
         let query = self.query.to_lowercase();
