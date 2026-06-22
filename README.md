@@ -18,7 +18,7 @@ Alternatively, specify the man page to open directly as an argument (e.g. `manor
 
 Manora opens man pages in the default PDF reader defined in [XDG MIME Applications](https://wiki.archlinux.org/title/XDG_MIME_Applications), or fallback to [Zathura](https://pwmt.org/projects/zathura/) if no default PDF reader is set.
 
-Manora can also save / export man pages to a local PDF file, it offers to download man pages that cannot be found locally (from <https://manned.org>) and can be ran from a keybinding.
+Manora can also save / export man pages to a local PDF file, download man pages from <https://manned.org> (if requested or offered as a fallback option if the targeted man page cannot be found locally) and can be opened from a keybinding.
 
 See the "[Usage](#usage)" chapter and the demo video below for more details:
 
@@ -89,14 +89,15 @@ Alternatively, specify the man page to open directly as an argument (e.g. `manor
 
 Manora opens man pages in the default PDF reader defined in [XDG MIME Applications](https://wiki.archlinux.org/title/XDG_MIME_Applications), or fallback to [Zathura](https://pwmt.org/projects/zathura/) if no default PDF reader is set.
 
-To save / export a man page to a local PDF file, run `manora --save <man_page>` where `<man_page>` is the man page to save (e.g. `manora --save ls`).  
-The file will be saved as `man_<man_page>.pdf` (e.g. `man_ls.pdf`) in the current directory.  
+To save / export a man page to a local PDF file, run `manora --save <man page>` where `<man page>` is the man page to save (e.g. `manora --save ls`).  
+The file will be saved as `man_<man page>.pdf` (e.g. `man_ls.pdf`) in the current directory.  
 
-Alternatively, specify the file to save the man page to: `manora --save <man_page> <file>` (e.g. `manora --save ls ~/Documents/man_pages/ls.pdf`).
+Alternatively, specify the file to save the man page to: `manora --save <man page> <file>` (e.g. `manora --save ls ~/Documents/man_pages/ls.pdf`).
 
-If a man page cannot be found locally, Manora offers to (try to) download it from <https://manned.org> (whether it is to open or save it).
+If a man page cannot be found locally, Manora offers to (try to) download it from <https://manned.org> (whether it is to open or save it).  
+Use the `-d / --download` option to skip local man pages lookup and directly try to download the man page from <https://manned.org> instead, (e.g. `manora --download ls` / `manora --download --save ls`).
 
-Manora can also be ran from a keybinding. For instance, one can bind the `alacritty -e manora` command to a keybinding, which will open the `manora` TUI menu in `alacritty` (allowing to select the man page to open in the PDF reader).
+Manora can also be opened from a keybinding. For instance, one can bind the `alacritty -e manora` command to a keybinding, which will open the `manora` TUI menu in `alacritty` (allowing to select the man page to open in the PDF reader).
 
 See `manora --help`, the [manora(1) man page](https://raw.githubusercontent.com/Antiz96/manora/refs/heads/main/doc/man/manora.1.scd) and the [demo video](#description) for more details.
 

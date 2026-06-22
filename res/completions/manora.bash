@@ -4,6 +4,7 @@ _manora() {
 
 	opts=('-m --menu
 	       -s --save
+	       -d --download
 	       -h --help
 	       -V --version')
 

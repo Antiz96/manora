@@ -13,7 +13,7 @@ Alternatively, specify the man page to open directly as an argument (e.g. `manor
 
 Manora opens man pages in the default PDF reader defined in XDG MIME Applications, or fallback to Zathura if no default PDF reader is set.  
 
-Manora can also be ran from keybindings. For instance, one can bind the `alacritty -e manora` command to a keybind, which will open the `manora` TUI menu in `alacritty` (allowing to select the man page to open in the PDF reader).
+Manora can also be opened from a keybinding. For instance, one can bind the `alacritty -e manora` command to a keybind, which will open the `manora` TUI menu in `alacritty` (allowing to select the man page to open in the PDF reader).
 
 # SYNOPSIS
 
@@ -24,9 +24,13 @@ Manora can also be ran from keybindings. For instance, one can bind the `alacrit
 *-m, --menu*
 	Display the list of all the available man pages in a TUI, allowing you to search for the one to display as a PDF (default operation).
 
-*-s, --save* <man_page> <file>
+*-s, --save* <man page> <file>
 	Save <man page> into the <file> PDF file.
 	If <file> isn't specified, save it to a "man_<man page>.pdf" file in the current directory.
+
+*-d, --download* <option> <man page>
+	Skip local man pages lookup and directly try to download the man page from <https://manned.org> instead.
+	This option can be used when specifying a man page to open as an argument (`manora --download <man page>`) or in combination with the `-s / --save` option (`manora --download --save <man page>`).
 
 *-V, --version*
 	Display version information.
