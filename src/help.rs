@@ -1,13 +1,19 @@
 //! Print help message
 
 pub fn show_help() {
-    println!("manora - A simple CLI / TUI tool to display (or save) man pages as PDF files");
+    println!(
+        "Manora - A simple CLI / TUI tool to display, download and save man pages as PDF files for an easier reading."
+    );
     println!();
     println!(
         "Run the `manora` command to display a list of all the available man pages on the system in a TUI menu, allowing to search for the one to display as a PDF."
     );
     println!(
         "Alternatively, specify the man page to open directly as an argument (e.g. `manora ls`)."
+    );
+    println!();
+    println!(
+        "If a man page cannot be found locally, Manora offers to (try to) download it from <https://manned.org>."
     );
     println!();
     println!("Options:");

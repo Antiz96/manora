@@ -2,11 +2,11 @@ manora(1) ["Manora 2.0.1" ["Manora Manual"]]
 
 # NAME
 
-*Manora* - A simple CLI / TUI tool to display (or save) man pages as PDF files
+*Manora* - A simple CLI / TUI tool to display, download and save man pages as PDF files for an easier reading.
 
 # DESCRIPTION
 
-A simple CLI / TUI tool to display (or save) man pages as PDF files for an easier reading.
+A simple CLI / TUI tool allowing to display, download and save man pages as PDF files files for an easier reading.
 
 Run the `manora` command to display a list of all the available man pages on the system in a TUI menu, allowing to search for the one to display as a PDF.
 Alternatively, specify the man page to open directly as an argument (e.g. `manora ls`).
@@ -20,12 +20,6 @@ Manora can also be ran from keybindings. For instance, one can bind the `alacrit
 *manora* [OPTION] [MAN_PAGE]
 
 # OPTIONS
-
-You can directly specify the man page to display as a PDF. For instance, to display the `ls` man page:
-
-```
-manora ls
-```
 
 *-m, --menu*
 	Display the list of all the available man pages in a TUI, allowing you to search for the one to display as a PDF (default operation).
@@ -56,6 +50,9 @@ manora ls
 
 *4*
 	Error when creating the cache directory.
+
+*5*
+	Error when downloading the man page from https://manned.org.
 
 # SEE ALSO
 

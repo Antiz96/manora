@@ -1,4 +1,4 @@
-//! Manora - A simple CLI / TUI tool to display (or save) man pages as PDF files
+//! Manora - A simple CLI / TUI tool to display, download and save man pages as PDF files for an easier reading
 
 use clap::Parser;
 use std::io::{self, Write};
@@ -6,6 +6,7 @@ use std::path::Path;
 use std::process;
 
 mod cachedir;
+mod download;
 mod help;
 mod menu;
 mod open;
@@ -89,10 +90,48 @@ fn main() {
             }
         }
 
-        save::save_man_page(&man_page, Path::new(&file)).unwrap_or_else(|error| {
-            eprintln!("Failed to save man page:\n{}", error);
-            process::exit(3);
-        });
+        match save::save_man_page(&man_page, Path::new(&file)) {
+            Ok(_) => {}
+
+            Err(error) if error.kind() == std::io::ErrorKind::NotFound => {
+                eprintln!("Failed to save the man page:\n{}", error);
+                print!("Would you like to try downloading it from https://manned.org? [Y/n] ");
+                io::stdout().flush().unwrap();
+
+                let mut answer = String::new();
+                std::io::stdin().read_line(&mut answer).unwrap();
+
+                if matches!(answer.trim().to_lowercase().as_str(), "" | "y" | "yes") {
+                    // Create cache directory (if it doesn't exist)
+                    // Needed to temporarily store the downloaded man page before moving it to the
+                    // destination file
+                    let cachedir = cachedir::create_cachedir().unwrap_or_else(|error| {
+                        eprintln!("\nFailed to create the cache directory:\n{}", error);
+                        process::exit(4);
+                    });
+
+                    download::download_man_page(&man_page, &cachedir).unwrap_or_else(|error| {
+                        eprintln!("\nFailed to download the man page:\n{}", error);
+                        process::exit(5);
+                    });
+
+                    save::save_downloaded_man_page(&man_page, &cachedir, Path::new(&file))
+                        .unwrap_or_else(|error| {
+                            eprintln!("\nFailed to save the man page:\n{}", error);
+                            process::exit(3);
+                        });
+                } else {
+                    eprintln!("\nAborted");
+                    process::exit(5);
+                }
+            }
+
+            Err(error) => {
+                eprintln!("Failed to save the man page:\n{}", error);
+                process::exit(3);
+            }
+        }
+
         println!(
             "The {} man page has been saved to the {} file",
             man_page, file
@@ -123,20 +162,51 @@ fn main() {
     }
 
     // Create cache directory (if it doesn't exist)
+    // Needed to store the local or downloaded man page before opening it
     let cachedir = cachedir::create_cachedir().unwrap_or_else(|error| {
         eprintln!("Failed to create the cache directory:\n{}", error);
         process::exit(4);
     });
 
-    // Print man page as a PDF
+    // Open man page as a PDF
+    // If it isn't found, offer to download it
     let man_page = man_page
         .or_else(|| args.pos_args.first().cloned())
         // Just making the assumption visible
         // In theory, we should never reach that expect()
         .expect("man_page should come from menu or positional argument");
 
-    open::open_man_page(&man_page, &cachedir).unwrap_or_else(|error| {
-        eprintln!("Failed to open the man page:\n{}", error);
-        process::exit(1);
-    });
+    match open::open_man_page(&man_page, &cachedir) {
+        Ok(_) => {}
+
+        Err(error) if error.kind() == std::io::ErrorKind::NotFound => {
+            eprintln!("Failed to open the man page:\n{}", error);
+            print!("Would you like to try downloading it from https://manned.org? [Y/n] ");
+            io::stdout().flush().unwrap();
+
+            let mut answer = String::new();
+            std::io::stdin().read_line(&mut answer).unwrap();
+
+            if matches!(answer.trim().to_lowercase().as_str(), "" | "y" | "yes") {
+
+                download::download_man_page(&man_page, &cachedir).unwrap_or_else(|error| {
+                    eprintln!("\nFailed to download the man page:\n{}", error);
+                    process::exit(5);
+                });
+
+                open::open_downloaded_man_page(&man_page, &cachedir).unwrap_or_else(|error| {
+                    eprintln!("\nFailed to open the man page:\n{}", error);
+                    process::exit(1);
+                });
+            } else {
+                eprintln!("\nAborted");
+                process::exit(5);
+            }
+        }
+
+        Err(error) => {
+            eprintln!("Failed to open the man page:\n{}", error);
+            process::exit(1);
+        }
+    }
 }
