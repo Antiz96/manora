@@ -92,17 +92,17 @@ fn main() {
         // If used in combination with the -s / --save arg, save the downloaded man page
         if args.save {
             // Set destination file from positional arguments or fallback to default filename
-            let file = args
+            let dest_file = args
                 .pos_args
                 .get(1)
                 .cloned()
                 .unwrap_or_else(|| format!("man_{}.pdf", man_page));
 
-            let path = Path::new(&file);
+            let dest_file_path = Path::new(&dest_file);
 
             // Ask confirmation to overwrite the destination file if it already exists
-            if path.exists() {
-                print!("The {} file already exists\nOverwrite? [y/N] ", file);
+            if dest_file_path.exists() {
+                print!("The {} file already exists\nOverwrite? [y/N] ", dest_file);
                 io::stdout().flush().unwrap();
 
                 let mut answer = String::new();
@@ -117,16 +117,15 @@ fn main() {
             }
 
             // Save the downloaded the man page to the destination file
-            save::save_downloaded_man_page(&man_page, &cachedir, Path::new(&file)).unwrap_or_else(
-                |error| {
+            save::save_downloaded_man_page(&man_page, &cachedir, dest_file_path))
+                .unwrap_or_else(|error| {
                     eprintln!("Failed to save the man page:\n{}", error);
                     process::exit(3);
-                },
-            );
+                });
 
             println!(
                 "The {} man page has been downloaded from https://manned.org and saved to the {} file",
-                man_page, file
+                man_page, dest_file
             );
         } else {
             // If not used in combination with `-s / --save` arg, open the downloaded man page
@@ -159,17 +158,17 @@ fn main() {
         });
 
         // Set destination file from positional arguments or fallback to default filename
-        let file = args
+        let dest_file = args
             .pos_args
             .get(1)
             .cloned()
             .unwrap_or_else(|| format!("man_{}.pdf", man_page));
 
-        let path = Path::new(&file);
+        let dest_file_path = Path::new(&dest_file);
 
         // Ask confirmation to overwrite the destination file if it already exists
-        if path.exists() {
-            print!("The {} file already exists\nOverwrite? [y/N] ", file);
+        if dest_file_path.exists() {
+            print!("The {} file already exists\nOverwrite? [y/N] ", dest_file);
             io::stdout().flush().unwrap();
 
             let mut answer = String::new();
@@ -184,7 +183,7 @@ fn main() {
         }
 
         // Save the man page to the destination file
-        match save::save_man_page(&man_page, Path::new(&file)) {
+        match save::save_man_page(&man_page, dest_file_path) {
             Ok(_) => {}
 
             // If the man page isn't found locally, offer to download it from https://manned.org
@@ -197,7 +196,6 @@ fn main() {
                 std::io::stdin().read_line(&mut answer).unwrap();
 
                 if matches!(answer.trim().to_lowercase().as_str(), "" | "y" | "yes") {
-
                     // Create cache directory (if it doesn't exist)
                     // Needed to temporarily store the downloaded man page before moving it to the
                     // destination file
@@ -213,7 +211,7 @@ fn main() {
                     });
 
                     // Save the downloaded man page to the destination file
-                    save::save_downloaded_man_page(&man_page, &cachedir, Path::new(&file))
+                    save::save_downloaded_man_page(&man_page, &cachedir, dest_file_path)
                         .unwrap_or_else(|error| {
                             eprintln!("\nFailed to save the man page:\n{}", error);
                             process::exit(3);
@@ -232,7 +230,7 @@ fn main() {
 
         println!(
             "The {} man page has been saved to the {} file",
-            man_page, file
+            man_page, dest_file
         );
         return;
     }

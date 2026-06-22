@@ -1,5 +1,5 @@
 //! Show name and version
-//! Info retrieved directly from Cargo 
+//! Info retrieved directly from Cargo
 
 use std::env;
 
