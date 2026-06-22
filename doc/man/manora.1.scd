@@ -29,7 +29,7 @@ Manora can also be opened from a keybinding. For instance, one can bind the `ala
 	If <file> isn't specified, save it to a "man_<man page>.pdf" file in the current directory.
 
 *-d, --download* <option> <man page>
-	Skip local man pages lookup and directly try to download the man page from <https://manned.org> instead.
+	Skip searching for the man page locally and directly try to download it from <https://manned.org> instead.
 	This option can be used when specifying a man page to open as an argument (`manora --download <man page>`) or in combination with the `-s / --save` option (`manora --download --save <man page>`).
 
 *-V, --version*

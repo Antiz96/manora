@@ -25,7 +25,7 @@ pub fn show_help() {
         "                                If <file> isn't specified, save it to a \"man_<man page>.pdf\" file in the current directory"
     );
     println!(
-        "  -d, --download                Skip local man pages lookup and directly try to download the man page from <https://manned.org> instead"
+        "  -d, --download                Skip searching for the man page locally and directly try to download it from <https://manned.org> instead"
     );
     println!(
         "                                This option can be used when specifying a man page to open as an argument (`manora --download <man page>`)"
