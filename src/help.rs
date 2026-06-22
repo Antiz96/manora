@@ -13,7 +13,7 @@ pub fn show_help() {
     );
     println!();
     println!(
-        "If a man page cannot be found locally, Manora offers to (try to) download it from <https://manned.org>."
+        "If a man page cannot be found locally, Manora offers to try to download it from <https://manned.org>."
     );
     println!();
     println!("Options:");
