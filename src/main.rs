@@ -117,11 +117,12 @@ fn main() {
             }
 
             // Save the downloaded the man page to the destination file
-            save::save_downloaded_man_page(&man_page, &cachedir, dest_file_path))
-                .unwrap_or_else(|error| {
+            save::save_downloaded_man_page(&man_page, &cachedir, dest_file_path).unwrap_or_else(
+                |error| {
                     eprintln!("Failed to save the man page:\n{}", error);
                     process::exit(3);
-                });
+                },
+            );
 
             println!(
                 "The {} man page has been downloaded from https://manned.org and saved to the {} file",
