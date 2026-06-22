@@ -2,6 +2,31 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v2.1.0](https://github.com/Antiz96/manora/releases/tag/v2.1.0) - 2026-06-22
+
+### Features
+
+- Add the `-d / --download` option to force downloading from https://manned.org ([#95](https://github.com/Antiz96/manora/pull/95)) - ([710d051](https://github.com/Antiz96/manora/commit/710d05101dda65450b07d3b475c55a113b23725b)) by @Antiz96
+- Add support for downloading man pages from manned.org ([#94](https://github.com/Antiz96/manora/pull/94)) - ([692d9df](https://github.com/Antiz96/manora/commit/692d9dfb4b77aa61eaa2ab259d85bc34c26b14aa)) by @Antiz96
+
+### Fixes
+
+- Properly detach the PDF reader process from the terminal session ([#92](https://github.com/Antiz96/manora/pull/92)) - ([94ddc00](https://github.com/Antiz96/manora/commit/94ddc0015db946150ff6d74851a215a4eb6850e6)) by @Antiz96
+
+### Documentation
+
+- *(README)* Update demo video ([#98](https://github.com/Antiz96/manora/pull/98)) - ([f5721b1](https://github.com/Antiz96/manora/commit/f5721b18eeae8339277892ca5bdca7dda801553c)) by @Antiz96
+- Slight wording improvement ([#99](https://github.com/Antiz96/manora/pull/99)) - ([e2ea9db](https://github.com/Antiz96/manora/commit/e2ea9db2464cab6375b0e865d9b2a8e53cea244f)) by @Antiz96
+- Document the possibility to run from keybindings ([#93](https://github.com/Antiz96/manora/pull/93)) - ([800d3c7](https://github.com/Antiz96/manora/commit/800d3c772e75348a44173127312816bb908c5602)) by @Antiz96
+
+### Styling
+
+- *(README)* Add missing parentheses ([#97](https://github.com/Antiz96/manora/pull/97)) - ([f802d82](https://github.com/Antiz96/manora/commit/f802d82866badd5d0bbc20d929b2bba5a4cf72e2)) by @Antiz96
+
+### Miscellaneous
+
+- Global code cleanup ([#96](https://github.com/Antiz96/manora/pull/96)) - ([066455b](https://github.com/Antiz96/manora/commit/066455b8c44a773f57142b68b9b26fba3a38343f)) by @Antiz96
+
 ## [v2.0.1](https://github.com/Antiz96/manora/releases/tag/v2.0.1) - 2026-06-22
 
 ### Miscellaneous
