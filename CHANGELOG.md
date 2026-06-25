@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v2.2.0](https://github.com/Antiz96/manora/releases/tag/v2.2.0) - 2026-06-25
+
+### Features
+
+- *(menu)* Add an online mode to the TUI menu to download man pages from <https://manned.org> ([#100](https://github.com/Antiz96/manora/pull/100)) - ([1709340](https://github.com/Antiz96/manora/commit/17093400f230db10db9c214938d080b13cd8006e)) by @Antiz96
+
+### Documentation
+
+- *(README)* Update demo video ([#103](https://github.com/Antiz96/manora/pull/103)) - ([ecace94](https://github.com/Antiz96/manora/commit/ecace941a5b98286e0d5b67dfbcd4772dca9bb37)) by @Antiz96
+- General update & rework of the documentation ([#101](https://github.com/Antiz96/manora/pull/101)) - ([589a6bf](https://github.com/Antiz96/manora/commit/589a6bffcff1ca054ec7ef641387fa47270a31c8)) by @Antiz96
+
+
+### Styling
+
+- *(TUI)* Add Manora title ([#102](https://github.com/Antiz96/manora/pull/102)) - ([2a29cd2](https://github.com/Antiz96/manora/commit/2a29cd2d3cc637e0fe7575383a2da136aa49f5a1)) by @Antiz96
+
 ## [v2.1.0](https://github.com/Antiz96/manora/releases/tag/v2.1.0) - 2026-06-22
 
 ### Features

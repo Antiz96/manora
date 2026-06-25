@@ -1,6 +1,6 @@
 [package]
 name = "manora"
-version = "2.1.0"
+version = "2.2.0"
 authors = ["Robin Candau <robincandau@protonmail.com>"]
 edition = "2024"
 description = "A simple CLI & TUI tool to display, download and save man pages as PDF files"

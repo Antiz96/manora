@@ -1,5 +1,5 @@
 [container]
-image = "docker.io/archlinux/archlinux@sha256:7cf49aee1c01661b8fdb26da39e71671ee52cdb7e06597d0473342bd41be2f1e"
+image = "docker.io/archlinux/archlinux@sha256:78993387b3d4b2407cc574c1630d25bc2144e1660d6f5ac97eb6a79bfa0690b6"
 
 [[package]]
 name = "compiler-rt"
