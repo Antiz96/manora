@@ -171,19 +171,30 @@ fn matches_query(item: &str, query: &str) -> bool {
 fn render(frame: &mut Frame, app: &App, list_state: &mut ListState, mode: Mode) {
     let constraints = [
         Constraint::Length(1), // header
+        Constraint::Length(1), // mode title
         Constraint::Length(2), // mode description
         Constraint::Length(1), // search
         Constraint::Fill(1),   // list
         Constraint::Length(1), // footer
     ];
     let layout = Layout::vertical(constraints).spacing(1);
-    let [header, mode_desc_area, search_area, list, footer] = frame.area().layout(&layout);
+    let [
+        header,
+        mode_title_area,
+        mode_desc_area,
+        search_area,
+        list,
+        footer,
+    ] = frame.area().layout(&layout);
 
-    let title = match mode {
+    let title = Line::from("Manora").bold();
+    frame.render_widget(title.centered(), header);
+
+    let mode_title = match mode {
         Mode::Local => Line::from("[Local] Online").bold(),
         Mode::Online => Line::from(" Local [Online]").bold(),
     };
-    frame.render_widget(title.centered(), header);
+    frame.render_widget(mode_title.centered(), mode_title_area);
 
     let mode_desc = match mode {
         Mode::Local => Text::from(vec![
