@@ -6,9 +6,16 @@ use crossterm::event::{self, KeyCode};
 use ratatui::Frame;
 use ratatui::layout::{Constraint, Layout, Rect};
 use ratatui::style::{Color, Modifier, Stylize};
-use ratatui::text::{Line, Span};
+use ratatui::text::{Line, Span, Text};
 use ratatui::widgets::{List, ListState, Paragraph};
 use std::process::Command;
+
+// Definition of the TUI modes
+#[derive(Clone, Copy, PartialEq, Eq)]
+enum Mode {
+    Local,
+    Online,
+}
 
 // State of the TUI menu (man pages list + search query)
 struct App {
@@ -18,8 +25,10 @@ struct App {
 }
 
 // Show the TUI menu and return the selected man page
-pub fn show_menu() -> color_eyre::Result<String> {
+pub fn show_menu() -> color_eyre::Result<(String, bool)> {
     color_eyre::install()?;
+
+    let mut mode = Mode::Local;
 
     let items = get_man_pages()?;
 
@@ -33,7 +42,7 @@ pub fn show_menu() -> color_eyre::Result<String> {
 
     let man_selected = ratatui::run(|terminal| {
         loop {
-            terminal.draw(|frame| render(frame, &app, &mut list_state))?;
+            terminal.draw(|frame| render(frame, &app, &mut list_state, mode))?;
 
             if let Some(key) = event::read()?.as_key_press_event() {
                 match key.code {
@@ -41,20 +50,40 @@ pub fn show_menu() -> color_eyre::Result<String> {
                     KeyCode::Up => list_state.select_previous(),
                     KeyCode::Char(c) => {
                         app.query.push(c);
-                        app.update_filter();
+                        if mode == Mode::Local {
+                            app.update_filter();
+                        }
                         list_state.select(Some(0));
                     }
                     KeyCode::Backspace => {
                         app.query.pop();
-                        app.update_filter();
+                        if mode == Mode::Local {
+                            app.update_filter();
+                        }
                         list_state.select(Some(0));
                     }
-                    KeyCode::Enter => {
-                        if let Some(index) = list_state.selected()
-                            && let Some(item) = app.filtered_items.get(index)
-                        {
-                            break Ok(item.clone());
+                    KeyCode::Enter => match mode {
+                        Mode::Local => {
+                            if let Some(index) = list_state.selected()
+                                && let Some(item) = app.filtered_items.get(index)
+                            {
+                                break Ok((item.clone(), false));
+                            }
                         }
+
+                        Mode::Online => {
+                            let query = app.query.trim();
+
+                            if !query.is_empty() {
+                                break Ok((query.to_string(), true));
+                            }
+                        }
+                    },
+                    KeyCode::Tab => {
+                        mode = match mode {
+                            Mode::Local => Mode::Online,
+                            Mode::Online => Mode::Local,
+                        };
                     }
                     KeyCode::Esc => {
                         break Err(color_eyre::eyre::eyre!("No man page selected"));
@@ -97,7 +126,7 @@ fn render_man_page_list(
 // Render the helper footer text
 fn render_help(frame: &mut Frame, area: Rect) {
     let help = Paragraph::new(
-        "Navigate with arrow keys, type to search, select with Enter, exit with ESC",
+        "Navigate with arrow keys, type to search, select with Enter, switch mode with TAB, exit with ESC",
     );
 
     frame.render_widget(help.centered(), area);
@@ -139,18 +168,34 @@ fn matches_query(item: &str, query: &str) -> bool {
 }
 
 // Render the TUI interface with the different lists
-fn render(frame: &mut Frame, app: &App, list_state: &mut ListState) {
+fn render(frame: &mut Frame, app: &App, list_state: &mut ListState, mode: Mode) {
     let constraints = [
         Constraint::Length(1), // header
+        Constraint::Length(2), // mode description
         Constraint::Length(1), // search
         Constraint::Fill(1),   // list
         Constraint::Length(1), // footer
     ];
     let layout = Layout::vertical(constraints).spacing(1);
-    let [header, search_area, list, footer] = frame.area().layout(&layout);
+    let [header, mode_desc_area, search_area, list, footer] = frame.area().layout(&layout);
 
-    let title = Line::from("Man Pages").bold();
+    let title = match mode {
+        Mode::Local => Line::from("[Local] Online").bold(),
+        Mode::Online => Line::from(" Local [Online]").bold(),
+    };
     frame.render_widget(title.centered(), header);
+
+    let mode_desc = match mode {
+        Mode::Local => Text::from(vec![
+            Line::from("Local mode:"),
+            Line::from("Search a local man page to open"),
+        ]),
+        Mode::Online => Text::from(vec![
+            Line::from("Online mode:"),
+            Line::from("Type a man page name to download from https://manned.org"),
+        ]),
+    };
+    frame.render_widget(Paragraph::new(mode_desc).centered(), mode_desc_area);
 
     let search = Paragraph::new(Line::from(vec![
         Span::styled("Search: ", ratatui::style::Style::default().bold()),
@@ -158,6 +203,9 @@ fn render(frame: &mut Frame, app: &App, list_state: &mut ListState) {
     ]));
     frame.render_widget(search, search_area);
 
-    render_man_page_list(frame, list, &app.filtered_items, list_state);
+    if mode == Mode::Local {
+        render_man_page_list(frame, list, &app.filtered_items, list_state);
+    }
+
     render_help(frame, footer);
 }

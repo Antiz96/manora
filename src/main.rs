@@ -56,6 +56,11 @@ fn main() {
     // Will be set either from the menu or the first positional CLI argument
     let mut man_page: Option<String> = None;
 
+    // Initialize menu_download_mode variable to false
+    // Used later to track if the man page has been selected from the "download" mode
+    // in the TUI menu (meaning it should be downloaded from https://manned.org)
+    let mut menu_download_mode = false;
+
     // Show help message if the -h / --help arg is passed
     if args.help {
         help::show_help();
@@ -68,12 +73,29 @@ fn main() {
         return;
     }
 
+    // Show TUI menu to choose man page if the -m / --menu arg (or no arg) is passed
+    if args.menu || no_args {
+        match menu::show_menu() {
+            Ok((page, download_mode)) => {
+                man_page = Some(page);
+                menu_download_mode = download_mode;
+            }
+            Err(error) => {
+                eprintln!("{}", error);
+                process::exit(1);
+            }
+        }
+    }
+
     // Download man page from https://manned.org if the -d / --download arg is passed
-    if args.download {
+    // or if the man page selection was made from the "download" mode in the TUI menu
+    if args.download || menu_download_mode {
         // Set man page from positional arguments
-        let man_page = args.pos_args.first().cloned().unwrap_or_else(|| {
-            eprintln!("Missing man page\nTry 'manora --help' for more information");
-            process::exit(3);
+        let man_page = man_page.unwrap_or_else(|| {
+            args.pos_args.first().cloned().unwrap_or_else(|| {
+                eprintln!("Missing man page\nTry 'manora --help' for more information");
+                process::exit(3);
+            })
         });
 
         // Create cache directory (if it doesn't exist)
@@ -137,17 +159,6 @@ fn main() {
         }
 
         return;
-    }
-
-    // Show TUI menu to choose man page if the -m / --menu arg (or no arg) is passed
-    if args.menu || no_args {
-        match menu::show_menu() {
-            Ok(page) => man_page = Some(page),
-            Err(error) => {
-                eprintln!("{}", error);
-                process::exit(1);
-            }
-        }
     }
 
     // Save the man page as a PDF file if the -s / --save arg is passed
