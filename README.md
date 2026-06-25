@@ -24,7 +24,7 @@ Manora also have a CLI including multiple options and can be opened from a keybi
 
 See the "[Usage](#usage)" chapter and the demo video below for more details:
 
-<https://github.com/user-attachments/assets/57cbec82-11ff-45d4-983f-eefb6a63a01c>
+<https://github.com/user-attachments/assets/b85a7e05-48c5-4a77-9c38-56b1b3ab6ad2>
 
 ## Installation
 
