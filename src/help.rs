@@ -2,18 +2,16 @@
 
 pub fn show_help() {
     println!(
-        "Manora - A simple CLI / TUI tool to display, download and save man pages as PDF files for an easier reading."
+        "Manora - A simple CLI & TUI tool to display, download and save man pages as PDF files."
     );
     println!();
     println!(
         "Run the `manora` command to open a TUI menu that allows searching through local man pages, downloading man pages from <https://manned.org>, and displaying them as PDF files."
     );
     println!();
+    println!("Alternatively, specify the man page to open as an argument (e.g. `manora ls`).");
     println!(
-        "Alternatively, specify the man page to open directly as an argument (e.g. `manora ls`)."
-    );
-    println!(
-        "If a man page cannot be found locally, Manora offers to try to download it from <https://manned.org>."
+        "If the specified man page cannot be found locally, Manora offers to download it from <https://manned.org>."
     );
     println!();
     println!("Options:");
@@ -25,7 +23,10 @@ pub fn show_help() {
         "                                If <file> isn't specified, save it to a \"man_<man page>.pdf\" file in the current directory"
     );
     println!(
-        "  -d, --download                Skip searching for the man page locally and directly try to download it from <https://manned.org> instead"
+        "                                If <file> already exists, ask for a confirmation to overwrite it"
+    );
+    println!(
+        "  -d, --download                Skip searching for the man page locally and directly download it from <https://manned.org> instead"
     );
     println!(
         "                                This option can be used when specifying a man page to open as an argument (`manora --download <man page>`)"

@@ -1,4 +1,4 @@
-//! Try to download man page from https://manned.org
+//! Download man page from https://manned.org
 //! and convert it to PDF (in case it cannot be found locally)
 
 use reqwest::blocking::get;

@@ -11,15 +11,16 @@
 
 ## Description
 
-A simple CLI / TUI tool to display, download and save man pages as PDF files for an easier reading.
+A simple CLI & TUI tool to display, download and save man pages as PDF files.
 
 Run the `manora` command to open a TUI menu (made with [Ratatui](https://ratatui.rs/)) that allows searching through local man pages, downloading man pages from <https://manned.org>, and displaying them as PDF files.
 
-Alternatively, specify the man page to open directly as an argument (e.g. `manora ls`).
+Alternatively, specify the man page to open as an argument (e.g. `manora ls`).
+If the specified man page cannot be found locally, Manora offers to download it from <https://manned.org>.
 
 Manora opens man pages in the default PDF reader defined in [XDG MIME Applications](https://wiki.archlinux.org/title/XDG_MIME_Applications), or fallback to [Zathura](https://pwmt.org/projects/zathura/) if no default PDF reader is set.
 
-Manora can also save / export man pages to a local PDF file, download man pages from <https://manned.org> and be opened from a keybinding.
+Manora also have a CLI including multiple options and can be opened from a keybinding.
 
 See the "[Usage](#usage)" chapter and the demo video below for more details:
 
@@ -85,19 +86,16 @@ There are also shell completions available in the [`res/completions/`](https://g
 
 ## Usage
 
-Run the `manora` command to open a TUI menu that allows searching through local man pages, downloading man pages from <https://manned.org>, and displaying them as PDF files.
-
-Alternatively, specify the man page to open directly as an argument (e.g. `manora ls`).
+Run the `manora` command to open a TUI menu that allows searching through local man pages, downloading man pages from <https://manned.org>, and displaying them as PDF files.  
+Alternatively, specify the man page to open as an argument (e.g. `manora ls`).
 
 Manora opens man pages in the default PDF reader defined in [XDG MIME Applications](https://wiki.archlinux.org/title/XDG_MIME_Applications), or fallback to [Zathura](https://pwmt.org/projects/zathura/) if no default PDF reader is set.
 
-To save / export a man page to a local PDF file, run `manora --save <man page>` where `<man page>` is the man page to save (e.g. `manora --save ls`).  
-The file will be saved as `man_<man page>.pdf` (e.g. `man_ls.pdf`) in the current directory.  
+To save / export a man page to a local PDF file, run `manora --save <man page>` where `<man page>` is the man page to save (e.g. `manora --save ls`). The file will be saved as `man_<man page>.pdf` (e.g. `man_ls.pdf`) in the current directory. Alternatively, specify the file to save the man page to: `manora --save <man page> <file>` (e.g. `manora --save ls ~/Documents/man_pages/ls.pdf`).  
+If the destination file already exists, Manora asks for a confirmation to overwrite it.
 
-Alternatively, specify the file to save the man page to: `manora --save <man page> <file>` (e.g. `manora --save ls ~/Documents/man_pages/ls.pdf`).
-
-If a man page cannot be found locally, Manora offers to try to download it from <https://manned.org> (whether it is to open or save it).  
-Use the `-d / --download` option to skip searching for the man page locally and directly try to download it from <https://manned.org> instead, (e.g. `manora --download ls` / `manora --download --save ls`).
+If the selected man page cannot be found locally, Manora offers to download it from <https://manned.org> (whether it is to open or save it).  
+Alternatively, use the `-d / --download` option to skip searching for the man page locally and directly download it from <https://manned.org> instead (e.g. `manora --download ls`, `manora --download --save ls`).
 
 Manora can also be opened from a keybinding. For instance, one can bind the `alacritty -e manora` command to a keybinding, which will open the `manora` TUI menu in `alacritty` (allowing to select the man page to open in the PDF reader).
 

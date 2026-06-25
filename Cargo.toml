@@ -3,7 +3,7 @@ name = "manora"
 version = "2.1.0"
 authors = ["Robin Candau <robincandau@protonmail.com>"]
 edition = "2024"
-description = "A simple CLI / TUI tool to display, download and save man pages as PDF files for an easier reading"
+description = "A simple CLI & TUI tool to display, download and save man pages as PDF files"
 license = "GPL-3.0-or-later"
 
 [dependencies]
