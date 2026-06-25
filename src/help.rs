@@ -6,19 +6,19 @@ pub fn show_help() {
     );
     println!();
     println!(
-        "Run the `manora` command to display a list of all the available man pages on the system in a TUI menu, allowing to search for the one to display as a PDF."
+        "Run the `manora` command to open a TUI menu that allows searching through local man pages, downloading man pages from <https://manned.org>, and displaying them as PDF files."
     );
+    println!();
     println!(
         "Alternatively, specify the man page to open directly as an argument (e.g. `manora ls`)."
     );
-    println!();
     println!(
         "If a man page cannot be found locally, Manora offers to try to download it from <https://manned.org>."
     );
     println!();
     println!("Options:");
     println!(
-        "  -m, --menu                    Display the list of all the available man pages in a TUI menu, allowing you to search for the one to display as a PDF (default operation)"
+        "  -m, --menu                    Open a TUI menu that allows searching through local man pages, downloading man pages from <https://manned.org>, and displaying them as PDF files (default operation)"
     );
     println!("  -s, --save <man page> <file>  Save <man page> into the <file> PDF file");
     println!(

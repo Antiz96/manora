@@ -13,7 +13,8 @@
 
 A simple CLI / TUI tool to display, download and save man pages as PDF files for an easier reading.
 
-Run the `manora` command to display a list of all the available man pages on the system in a TUI menu (made with [Ratatui](https://ratatui.rs/)), allowing to search for the one to display as a PDF.  
+Run the `manora` command to open a TUI menu (made with [Ratatui](https://ratatui.rs/)) that allows searching through local man pages, downloading man pages from <https://manned.org>, and displaying them as PDF files.
+
 Alternatively, specify the man page to open directly as an argument (e.g. `manora ls`).
 
 Manora opens man pages in the default PDF reader defined in [XDG MIME Applications](https://wiki.archlinux.org/title/XDG_MIME_Applications), or fallback to [Zathura](https://pwmt.org/projects/zathura/) if no default PDF reader is set.
@@ -84,7 +85,8 @@ There are also shell completions available in the [`res/completions/`](https://g
 
 ## Usage
 
-Run the `manora` command to display a list of all the available man pages on the system in a TUI menu, allowing to search for the one to display as a PDF.  
+Run the `manora` command to open a TUI menu that allows searching through local man pages, downloading man pages from <https://manned.org>, and displaying them as PDF files.
+
 Alternatively, specify the man page to open directly as an argument (e.g. `manora ls`).
 
 Manora opens man pages in the default PDF reader defined in [XDG MIME Applications](https://wiki.archlinux.org/title/XDG_MIME_Applications), or fallback to [Zathura](https://pwmt.org/projects/zathura/) if no default PDF reader is set.
