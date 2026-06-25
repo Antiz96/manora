@@ -6,7 +6,7 @@ All notable changes to this project will be documented in this file.
 
 ### Features
 
-- Add the `-d / --download` option to force downloading from https://manned.org ([#95](https://github.com/Antiz96/manora/pull/95)) - ([710d051](https://github.com/Antiz96/manora/commit/710d05101dda65450b07d3b475c55a113b23725b)) by @Antiz96
+- Add the `-d / --download` option to force downloading from <https://manned.org> ([#95](https://github.com/Antiz96/manora/pull/95)) - ([710d051](https://github.com/Antiz96/manora/commit/710d05101dda65450b07d3b475c55a113b23725b)) by @Antiz96
 - Add support for downloading man pages from manned.org ([#94](https://github.com/Antiz96/manora/pull/94)) - ([692d9df](https://github.com/Antiz96/manora/commit/692d9dfb4b77aa61eaa2ab259d85bc34c26b14aa)) by @Antiz96
 
 ### Fixes
