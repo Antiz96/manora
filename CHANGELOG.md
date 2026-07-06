@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v2.2.1](https://github.com/Antiz96/manora/releases/tag/v2.2.1) - 2026-07-06
+
+### Miscellaneous
+
+- *(deps)* Lock file maintenance ([#105](https://github.com/Antiz96/manora/pull/105)) - ([9046ba6](https://github.com/Antiz96/manora/commit/9046ba6c5b2fdc357fd4bacb0c3521aacfb72262)) by @renovate[bot]
+- *(deps)* Lock file maintenance ([#104](https://github.com/Antiz96/manora/pull/104)) - ([ada4a7c](https://github.com/Antiz96/manora/commit/ada4a7c8769f4d746f3ee31e1d9c5d28c61d09f3)) by @renovate[bot]
+- Refactor error handling ([#106](https://github.com/Antiz96/manora/pull/106)) - ([b0817bf](https://github.com/Antiz96/manora/commit/b0817bfdfdab57d85df94af9037a6cf435973290)) by @Antiz96
+
 ## [v2.2.0](https://github.com/Antiz96/manora/releases/tag/v2.2.0) - 2026-06-25
 
 ### Features
