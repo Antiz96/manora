@@ -1,27 +1,30 @@
 //! Convert the man page as a PDF and open it
 
+use nix::unistd;
+use std::fs;
+use std::io::{self, Error, ErrorKind};
 use std::os::unix::process::CommandExt;
 use std::path::Path;
 use std::process::{Command, Stdio};
 
 // Open man page as a PDF
-pub fn open_man_page(man_page: &str, cachedir: &Path) -> std::io::Result<()> {
+pub fn open_man_page(man_page: &str, cachedir: &Path) -> io::Result<()> {
     // Convert man page as a PDF
     let conversion = Command::new("man").args(["-Tpdf", man_page]).output()?;
 
     if !conversion.status.success() {
-        return Err(std::io::Error::new(
-            std::io::ErrorKind::NotFound,
+        return Err(Error::new(
+            ErrorKind::NotFound,
             String::from_utf8_lossy(&conversion.stderr).to_string(),
         ));
     }
 
     // Save the converted man page as a PDF file in the cachedir
     let dest_file_path = cachedir.join(format!("{}.pdf", man_page));
-    std::fs::write(&dest_file_path, conversion.stdout)?;
+    fs::write(&dest_file_path, conversion.stdout)?;
 
     // Open in PDF reader
-    let pdf_reader = get_pdf_reader().map_err(std::io::Error::other)?;
+    let pdf_reader = get_pdf_reader().map_err(Error::other)?;
     let mut open = Command::new(&pdf_reader);
 
     open.arg(&dest_file_path)
@@ -31,11 +34,7 @@ pub fn open_man_page(man_page: &str, cachedir: &Path) -> std::io::Result<()> {
 
     // Detach PDF reader process from terminal session
     unsafe {
-        open.pre_exec(|| {
-            nix::unistd::setsid()
-                .map(|_| ())
-                .map_err(std::io::Error::other)
-        });
+        open.pre_exec(|| unistd::setsid().map(|_| ()).map_err(Error::other));
     }
 
     open.spawn()?;
@@ -44,12 +43,12 @@ pub fn open_man_page(man_page: &str, cachedir: &Path) -> std::io::Result<()> {
 }
 
 // Open downloaded man page as a PDF
-pub fn open_downloaded_man_page(man_page: &str, cachedir: &Path) -> std::io::Result<()> {
+pub fn open_downloaded_man_page(man_page: &str, cachedir: &Path) -> io::Result<()> {
     // Set path to downloaded man page
     let dest_file_path = cachedir.join(format!("{}.pdf", man_page));
 
     // Open in PDF reader
-    let pdf_reader = get_pdf_reader().map_err(std::io::Error::other)?;
+    let pdf_reader = get_pdf_reader().map_err(Error::other)?;
     let mut open = Command::new(&pdf_reader);
 
     open.arg(&dest_file_path)
@@ -59,11 +58,7 @@ pub fn open_downloaded_man_page(man_page: &str, cachedir: &Path) -> std::io::Res
 
     // Detach PDF reader process from terminal session
     unsafe {
-        open.pre_exec(|| {
-            nix::unistd::setsid()
-                .map(|_| ())
-                .map_err(std::io::Error::other)
-        });
+        open.pre_exec(|| unistd::setsid().map(|_| ()).map_err(Error::other));
     }
 
     open.spawn()?;
