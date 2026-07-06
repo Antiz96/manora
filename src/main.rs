@@ -1,7 +1,7 @@
 //! Manora - A simple CLI & TUI tool to display, download and save man pages as PDF files
 
 use clap::Parser;
-use std::io::{self, Write};
+use std::io::{self, ErrorKind, Write};
 use std::path::Path;
 use std::process;
 
@@ -75,16 +75,13 @@ fn main() {
 
     // Show TUI menu to choose man page if the -m / --menu arg (or no arg) is passed
     if args.menu || no_args {
-        match menu::show_menu() {
-            Ok((page, download_mode)) => {
-                man_page = Some(page);
-                menu_download_mode = download_mode;
-            }
-            Err(error) => {
-                eprintln!("{}", error);
-                process::exit(1);
-            }
-        }
+        let (page, download_mode) = menu::show_menu().unwrap_or_else(|error| {
+            eprintln!("{}", error);
+            process::exit(1);
+        });
+
+        man_page = Some(page);
+        menu_download_mode = download_mode;
     }
 
     // Download man page from https://manned.org if the -d / --download arg is passed
@@ -125,10 +122,12 @@ fn main() {
             // Ask confirmation to overwrite the destination file if it already exists
             if dest_file_path.exists() {
                 print!("The {} file already exists\nOverwrite? [y/N] ", dest_file);
-                io::stdout().flush().unwrap();
+                io::stdout().flush().expect("Can't flush stdout");
 
                 let mut answer = String::new();
-                io::stdin().read_line(&mut answer).unwrap();
+                io::stdin()
+                    .read_line(&mut answer)
+                    .expect("Can't read stdin");
 
                 if !matches!(answer.trim().to_lowercase().as_str(), "y" | "yes") {
                     eprintln!("\nAborted");
@@ -181,10 +180,12 @@ fn main() {
         // Ask confirmation to overwrite the destination file if it already exists
         if dest_file_path.exists() {
             print!("The {} file already exists\nOverwrite? [y/N] ", dest_file);
-            io::stdout().flush().unwrap();
+            io::stdout().flush().expect("Can't flush stdout");
 
             let mut answer = String::new();
-            io::stdin().read_line(&mut answer).unwrap();
+            io::stdin()
+                .read_line(&mut answer)
+                .expect("Can't read stdin");
 
             if !matches!(answer.trim().to_lowercase().as_str(), "y" | "yes") {
                 eprintln!("\nAborted");
@@ -195,17 +196,17 @@ fn main() {
         }
 
         // Save the man page to the destination file
-        match save::save_man_page(&man_page, dest_file_path) {
-            Ok(_) => {}
-
+        save::save_man_page(&man_page, dest_file_path).unwrap_or_else(|error| {
             // If the man page isn't found locally, offer to download it from https://manned.org
-            Err(error) if error.kind() == std::io::ErrorKind::NotFound => {
+            if error.kind() == ErrorKind::NotFound {
                 eprintln!("Failed to save the man page:\n{}", error);
                 print!("Would you like to try downloading it from https://manned.org? [Y/n] ");
-                io::stdout().flush().unwrap();
+                io::stdout().flush().expect("Can't flush stdout");
 
                 let mut answer = String::new();
-                std::io::stdin().read_line(&mut answer).unwrap();
+                io::stdin()
+                    .read_line(&mut answer)
+                    .expect("Can't read stdin");
 
                 if matches!(answer.trim().to_lowercase().as_str(), "" | "y" | "yes") {
                     // Create cache directory (if it doesn't exist)
@@ -232,13 +233,12 @@ fn main() {
                     eprintln!("\nAborted");
                     process::exit(5);
                 }
-            }
-
-            Err(error) => {
+            // For any other kind of error, return it and exit
+            } else {
                 eprintln!("Failed to save the man page:\n{}", error);
                 process::exit(3);
             }
-        }
+        });
 
         println!(
             "The {} man page has been saved to the {} file",
@@ -273,17 +273,17 @@ fn main() {
     });
 
     // Open the man page converted as a PDF in the PDF reader
-    match open::open_man_page(&man_page, &cachedir) {
-        Ok(_) => {}
-
+    open::open_man_page(&man_page, &cachedir).unwrap_or_else(|error| {
         // If the man page isn't found locally, offer to download it from https://manned.org
-        Err(error) if error.kind() == std::io::ErrorKind::NotFound => {
+        if error.kind() == ErrorKind::NotFound {
             eprintln!("Failed to open the man page:\n{}", error);
             print!("Would you like to try downloading it from https://manned.org? [Y/n] ");
-            io::stdout().flush().unwrap();
+            io::stdout().flush().expect("Can't flush stdout");
 
             let mut answer = String::new();
-            std::io::stdin().read_line(&mut answer).unwrap();
+            io::stdin()
+                .read_line(&mut answer)
+                .expect("Can't read stdin");
 
             if matches!(answer.trim().to_lowercase().as_str(), "" | "y" | "yes") {
                 // Download man page in cachedir
@@ -301,11 +301,10 @@ fn main() {
                 eprintln!("\nAborted");
                 process::exit(5);
             }
-        }
-
-        Err(error) => {
+        // For any other kind of error, return it and exit
+        } else {
             eprintln!("Failed to open the man page:\n{}", error);
             process::exit(1);
         }
-    }
+    })
 }

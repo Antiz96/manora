@@ -74,12 +74,10 @@ pub fn open_downloaded_man_page(man_page: &str, cachedir: &Path) -> std::io::Res
 // Get PDF reader, return error if none can be found
 fn get_pdf_reader() -> Result<String, String> {
     // Check if a default PDF reader is configured in XDG
-    let xdg_pdf_reader = Command::new("xdg-mime")
+    if Command::new("xdg-mime")
         .args(["query", "default", "application/pdf"])
-        .output();
-
-    if let Ok(output) = xdg_pdf_reader
-        && !output.stdout.is_empty()
+        .output()
+        .is_ok_and(|output| !output.stdout.is_empty())
     {
         return Ok("xdg-open".into());
     }
