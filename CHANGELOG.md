@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v2.2.2](https://github.com/Antiz96/manora/releases/tag/v2.2.2) - 2026-07-07
+
+### Documentation
+
+- *(CONTRIBUTING)* Expand Coding Style section ([#108](https://github.com/Antiz96/manora/pull/108)) - ([0386d13](https://github.com/Antiz96/manora/commit/0386d134b39276a98722096e10151c5a40cbc7a8)) by @Antiz96
+
+### Miscellaneous
+
+- Refactor imports ([#107](https://github.com/Antiz96/manora/pull/107)) - ([0e925f4](https://github.com/Antiz96/manora/commit/0e925f4b7e6ef58be1c7b54c1aa66f8338908def)) by @Antiz96
+
 ## [v2.2.1](https://github.com/Antiz96/manora/releases/tag/v2.2.1) - 2026-07-06
 
 ### Miscellaneous
