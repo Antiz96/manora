@@ -2,10 +2,11 @@
 //! Built with ratatui, inspired / based on the list widget example
 //! https://ratatui.rs/examples/widgets/list/
 
+use color_eyre::eyre;
 use crossterm::event::{self, KeyCode};
 use ratatui::Frame;
 use ratatui::layout::{Constraint, Layout, Rect};
-use ratatui::style::{Color, Modifier, Stylize};
+use ratatui::style::{Color, Modifier, Style, Stylize};
 use ratatui::text::{Line, Span, Text};
 use ratatui::widgets::{List, ListState, Paragraph};
 use std::process::Command;
@@ -86,7 +87,7 @@ pub fn show_menu() -> color_eyre::Result<(String, bool)> {
                         };
                     }
                     KeyCode::Esc => {
-                        break Err(color_eyre::eyre::eyre!("No man page selected"));
+                        break Err(eyre::eyre!("No man page selected"));
                     }
                     _ => {}
                 }
@@ -209,7 +210,7 @@ fn render(frame: &mut Frame, app: &App, list_state: &mut ListState, mode: Mode) 
     frame.render_widget(Paragraph::new(mode_desc).centered(), mode_desc_area);
 
     let search = Paragraph::new(Line::from(vec![
-        Span::styled("Search: ", ratatui::style::Style::default().bold()),
+        Span::styled("Search: ", Style::default().bold()),
         Span::raw(&app.query),
     ]));
     frame.render_widget(search, search_area);
