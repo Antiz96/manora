@@ -50,7 +50,7 @@ For instance:
 - Avoid calling functions through their fully qualified paths directly. Instead, import the relevant module (or type) with `use` and keep only the path components that provide meaningful context. As a *general* rule of thumb:
    - For free functions, keep the module path only (e.g. `io::stdout()` rather than `std::io::stdout()`).
    - For typed functions and enums, omit the module path (e.g. `HashMap::new()` rather than `std::collections::HashMap::new()` and `ErrorKind::NotFound` rather than `std::io::ErrorKind::NotFound`).
-As an indicator, this will often naturally end up with roughly one `::` per call / reference.
+   - As an indicator, this will often naturally end up with roughly one `::` per call / reference.
 - Use `eprintln!` for user-facing error messages.
 - Generally avoid executing processing logic from `main.rs`. Ideally, it should remain a "wrapper" around functions called from separate modules under `/src`.
 - [...]
