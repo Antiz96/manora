@@ -30,7 +30,7 @@ pub fn save_downloaded_man_page(
     dest_file_path: &Path,
 ) -> io::Result<()> {
     // Set path to downloaded man page
-    let dl_man_page_file_path = cachedir.join(format!("{}.pdf", man_page));
+    let dl_man_page_file_path = cachedir.join(format!("{man_page}.pdf"));
 
     // Move downloaded man page to the destination file
     // Using "copy" then "remove_file" functions instead of "rename" function

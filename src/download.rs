@@ -9,7 +9,7 @@ use std::process::{Command, Stdio};
 
 pub fn download_man_page(man_page: &str, cachedir: &Path) -> io::Result<()> {
     // Try to download raw man page
-    let url = format!("https://manned.org/raw/{}", man_page);
+    let url = format!("https://manned.org/raw/{man_page}");
     let raw_man_page = get(&url)
         .map_err(Error::other)?
         .text()
@@ -19,10 +19,7 @@ pub fn download_man_page(man_page: &str, cachedir: &Path) -> io::Result<()> {
     if raw_man_page.contains("the page you were looking for doesn't exist.") {
         return Err(Error::new(
             ErrorKind::NotFound,
-            format!(
-                "No manual entry found on https://manned.org for {}",
-                man_page
-            ),
+            format!("No manual entry found on https://manned.org for {man_page}"),
         ));
     }
 
@@ -48,7 +45,7 @@ pub fn download_man_page(man_page: &str, cachedir: &Path) -> io::Result<()> {
     }
 
     // Save converted man page in cache directory
-    let dest_file_path = cachedir.join(format!("{}.pdf", man_page));
+    let dest_file_path = cachedir.join(format!("{man_page}.pdf"));
     fs::write(dest_file_path, conversion_output.stdout)?;
 
     Ok(())

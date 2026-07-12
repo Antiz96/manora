@@ -20,7 +20,7 @@ pub fn open_man_page(man_page: &str, cachedir: &Path) -> io::Result<()> {
     }
 
     // Save the converted man page as a PDF file in the cachedir
-    let dest_file_path = cachedir.join(format!("{}.pdf", man_page));
+    let dest_file_path = cachedir.join(format!("{man_page}.pdf"));
     fs::write(&dest_file_path, conversion.stdout)?;
 
     // Open in PDF reader
@@ -45,7 +45,7 @@ pub fn open_man_page(man_page: &str, cachedir: &Path) -> io::Result<()> {
 // Open downloaded man page as a PDF
 pub fn open_downloaded_man_page(man_page: &str, cachedir: &Path) -> io::Result<()> {
     // Set path to downloaded man page
-    let dest_file_path = cachedir.join(format!("{}.pdf", man_page));
+    let dest_file_path = cachedir.join(format!("{man_page}.pdf"));
 
     // Open in PDF reader
     let pdf_reader = get_pdf_reader().map_err(Error::other)?;
