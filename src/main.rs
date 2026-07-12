@@ -76,7 +76,7 @@ fn main() {
     // Show TUI menu to choose man page if the -m / --menu arg (or no arg) is passed
     if args.menu || no_args {
         let (page, download_mode) = menu::show_menu().unwrap_or_else(|error| {
-            eprintln!("{}", error);
+            eprintln!("{error}");
             process::exit(1);
         });
 
@@ -98,13 +98,13 @@ fn main() {
         // Create cache directory (if it doesn't exist)
         // Needed to store the downloaded man page
         let cachedir = cachedir::create_cachedir().unwrap_or_else(|error| {
-            eprintln!("Failed to create the cache directory:\n{}", error);
+            eprintln!("Failed to create the cache directory:\n{error}");
             process::exit(4);
         });
 
         // Download man page in cachedir
         download::download_man_page(&man_page, &cachedir).unwrap_or_else(|error| {
-            eprintln!("Failed to download the man page:\n{}", error);
+            eprintln!("Failed to download the man page:\n{error}");
             process::exit(5);
         });
 
@@ -115,13 +115,13 @@ fn main() {
                 .pos_args
                 .get(1)
                 .cloned()
-                .unwrap_or_else(|| format!("man_{}.pdf", man_page));
+                .unwrap_or_else(|| format!("man_{man_page}.pdf"));
 
             let dest_file_path = Path::new(&dest_file);
 
             // Ask confirmation to overwrite the destination file if it already exists
             if dest_file_path.exists() {
-                print!("The {} file already exists\nOverwrite? [y/N] ", dest_file);
+                print!("The {dest_file} file already exists\nOverwrite? [y/N] ");
                 io::stdout().flush().expect("Can't flush stdout");
 
                 let mut answer = String::new();
@@ -140,19 +140,18 @@ fn main() {
             // Save the downloaded the man page to the destination file
             save::save_downloaded_man_page(&man_page, &cachedir, dest_file_path).unwrap_or_else(
                 |error| {
-                    eprintln!("Failed to save the man page:\n{}", error);
+                    eprintln!("Failed to save the man page:\n{error}");
                     process::exit(3);
                 },
             );
 
             println!(
-                "The {} man page has been downloaded from https://manned.org and saved to the {} file",
-                man_page, dest_file
+                "The {man_page} man page has been downloaded from https://manned.org and saved to the {dest_file} file"
             );
         } else {
             // If not used in combination with `-s / --save` arg, open the downloaded man page
             open::open_downloaded_man_page(&man_page, &cachedir).unwrap_or_else(|error| {
-                eprintln!("Failed to open the man page:\n{}", error);
+                eprintln!("Failed to open the man page:\n{error}");
                 process::exit(1);
             });
         }
@@ -173,13 +172,13 @@ fn main() {
             .pos_args
             .get(1)
             .cloned()
-            .unwrap_or_else(|| format!("man_{}.pdf", man_page));
+            .unwrap_or_else(|| format!("man_{man_page}.pdf"));
 
         let dest_file_path = Path::new(&dest_file);
 
         // Ask confirmation to overwrite the destination file if it already exists
         if dest_file_path.exists() {
-            print!("The {} file already exists\nOverwrite? [y/N] ", dest_file);
+            print!("The {dest_file} file already exists\nOverwrite? [y/N] ");
             io::stdout().flush().expect("Can't flush stdout");
 
             let mut answer = String::new();
@@ -199,7 +198,7 @@ fn main() {
         save::save_man_page(&man_page, dest_file_path).unwrap_or_else(|error| {
             // If the man page isn't found locally, offer to download it from https://manned.org
             if error.kind() == ErrorKind::NotFound {
-                eprintln!("Failed to save the man page:\n{}", error);
+                eprintln!("Failed to save the man page:\n{error}");
                 print!("Would you like to try downloading it from https://manned.org? [Y/n] ");
                 io::stdout().flush().expect("Can't flush stdout");
 
@@ -213,20 +212,20 @@ fn main() {
                     // Needed to temporarily store the downloaded man page before moving it to the
                     // destination file
                     let cachedir = cachedir::create_cachedir().unwrap_or_else(|error| {
-                        eprintln!("\nFailed to create the cache directory:\n{}", error);
+                        eprintln!("\nFailed to create the cache directory:\n{error}");
                         process::exit(4);
                     });
 
                     // Download man page in cachedir
                     download::download_man_page(&man_page, &cachedir).unwrap_or_else(|error| {
-                        eprintln!("\nFailed to download the man page:\n{}", error);
+                        eprintln!("\nFailed to download the man page:\n{error}");
                         process::exit(5);
                     });
 
                     // Save the downloaded man page to the destination file
                     save::save_downloaded_man_page(&man_page, &cachedir, dest_file_path)
                         .unwrap_or_else(|error| {
-                            eprintln!("\nFailed to save the man page:\n{}", error);
+                            eprintln!("\nFailed to save the man page:\n{error}");
                             process::exit(3);
                         });
                 } else {
@@ -235,15 +234,12 @@ fn main() {
                 }
             // For any other kind of error, return it and exit
             } else {
-                eprintln!("Failed to save the man page:\n{}", error);
+                eprintln!("Failed to save the man page:\n{error}");
                 process::exit(3);
             }
         });
 
-        println!(
-            "The {} man page has been saved to the {} file",
-            man_page, dest_file
-        );
+        println!("The {man_page} man page has been saved to the {dest_file} file");
         return;
     }
 
@@ -268,7 +264,7 @@ fn main() {
     // Create cache directory (if it doesn't exist)
     // Needed to store the local or downloaded man page before opening it
     let cachedir = cachedir::create_cachedir().unwrap_or_else(|error| {
-        eprintln!("Failed to create the cache directory:\n{}", error);
+        eprintln!("Failed to create the cache directory:\n{error}");
         process::exit(4);
     });
 
@@ -276,7 +272,7 @@ fn main() {
     open::open_man_page(&man_page, &cachedir).unwrap_or_else(|error| {
         // If the man page isn't found locally, offer to download it from https://manned.org
         if error.kind() == ErrorKind::NotFound {
-            eprintln!("Failed to open the man page:\n{}", error);
+            eprintln!("Failed to open the man page:\n{error}");
             print!("Would you like to try downloading it from https://manned.org? [Y/n] ");
             io::stdout().flush().expect("Can't flush stdout");
 
@@ -288,13 +284,13 @@ fn main() {
             if matches!(answer.trim().to_lowercase().as_str(), "" | "y" | "yes") {
                 // Download man page in cachedir
                 download::download_man_page(&man_page, &cachedir).unwrap_or_else(|error| {
-                    eprintln!("\nFailed to download the man page:\n{}", error);
+                    eprintln!("\nFailed to download the man page:\n{error}");
                     process::exit(5);
                 });
 
                 // Open the downloaded man page
                 open::open_downloaded_man_page(&man_page, &cachedir).unwrap_or_else(|error| {
-                    eprintln!("\nFailed to open the man page:\n{}", error);
+                    eprintln!("\nFailed to open the man page:\n{error}");
                     process::exit(1);
                 });
             } else {
@@ -303,7 +299,7 @@ fn main() {
             }
         // For any other kind of error, return it and exit
         } else {
-            eprintln!("Failed to open the man page:\n{}", error);
+            eprintln!("Failed to open the man page:\n{error}");
             process::exit(1);
         }
     })
