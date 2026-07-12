@@ -130,7 +130,6 @@ fn main() {
                     .expect("Can't read stdin");
 
                 if !matches!(answer.trim().to_lowercase().as_str(), "y" | "yes") {
-                    eprintln!("\nAborted");
                     process::exit(3);
                 } else {
                     println!();
@@ -187,7 +186,6 @@ fn main() {
                 .expect("Can't read stdin");
 
             if !matches!(answer.trim().to_lowercase().as_str(), "y" | "yes") {
-                eprintln!("\nAborted");
                 process::exit(3);
             } else {
                 println!();
@@ -229,7 +227,6 @@ fn main() {
                             process::exit(3);
                         });
                 } else {
-                    eprintln!("\nAborted");
                     process::exit(5);
                 }
             // For any other kind of error, return it and exit
@@ -294,7 +291,6 @@ fn main() {
                     process::exit(1);
                 });
             } else {
-                eprintln!("\nAborted");
                 process::exit(5);
             }
         // For any other kind of error, return it and exit
