@@ -53,7 +53,7 @@ See below for the CLI options.
 	No PDF reader found (no PDF reader defined in XDG Mime Application and `zathura` (fallback option) isn't installed).
 
 *3*
-	Error when exporting a man page with the `-s / --save` option.
+	Error when converting and exporting the man page.
 
 *4*
 	Error when creating the cache directory.

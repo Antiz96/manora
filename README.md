@@ -35,6 +35,7 @@ See the "[Usage](#usage)" chapter and the demo video below for more details:
    - `man` (`man-db` or `mandoc`)
    - `groff`
    - `xdg-utils`
+   - `util-linux`
 
 - Optional:
 
