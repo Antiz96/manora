@@ -1,5 +1,5 @@
 [container]
-image = "docker.io/archlinux/archlinux@sha256:85fd8690db98c34b286424dd01aa232c95c78e4367d78cc1e4e924bbda15a896"
+image = "docker.io/archlinux/archlinux@sha256:b4dbb5f017c4ce05fbb1a96b4946b4e65b76051edf4c752daa2b13619da782cd"
 
 [[package]]
 name = "compiler-rt"
@@ -8,14 +8,6 @@ system = "archlinux"
 url = "https://archive.archlinux.org/packages/c/compiler-rt/compiler-rt-22.1.8-1-x86_64.pkg.tar.zst"
 sha256 = "e7531589d13fcbacf3fe4a64624b2a62081f2532b690e77bbf88fbe0a5d1b75e"
 signature = "iHUEABYKAB0WIQQhkbiUMbrAqLlt6T0kR0DRfH/Q7AUCajfhYwAKCRAkR0DRfH/Q7BkBAQD/2Kj1l+/9hGeo0pQqRP6wVTKCVoILVRvSXiLGB1WXDAD8CmUyN8kDvGYasFDEbCmZL5aAwH+TF2NlkcSaJuGT8w0="
-
-[[package]]
-name = "coreutils"
-version = "9.11-2"
-system = "archlinux"
-url = "https://archive.archlinux.org/packages/c/coreutils/coreutils-9.11-2-x86_64.pkg.tar.zst"
-sha256 = "8d6668fba51085e680b1510f16ff43d32fbfdd068e78b2000783a4dab1c15513"
-signature = "iQEzBAABCgAdFiEEW34/txt/EDKaHAOrdx32Yn7faB8FAmpXG9QACgkQdx32Yn7faB9tmgf+OGzWc034VfMs+6pZVfPxYbd+leqNEqtvnPwhU6eyMbcA1PX0JTE8/MBJKSPJp8vc6owJmEo2iYaITQwErrQZ2qy/vBIeU/TylQUsSKR3FSsueLv4nVKQCqm+vD49eEQMM5Ayf2flHEIMWDhqM5+2q8/tozMfu73AetVo39hHBk2c+zt7goBttDaeYWAcxQR1JH18h4T8po/wyF0edErBdlfvcnIRyUqSIqKyZW0e2le0yN3FhzV3/4PPvBw+PK7vJI/QlyDaG3BNkL/lAbSCNiANihakAfAuMcWlyxPEK6yA7n4lPb0pydiFuR0a8hl8PBgPyOUOnZ7hXxCk9LXJ1Q=="
 
 [[package]]
 name = "gcc"
@@ -32,6 +24,14 @@ system = "archlinux"
 url = "https://archive.archlinux.org/packages/l/libedit/libedit-20260512_3.1-1-x86_64.pkg.tar.zst"
 sha256 = "70cb736e4fdee330cd0dfab45875f6ea378ae819958dd15748c300b8d7285b42"
 signature = "iQIzBAABCgAdFiEE4kC1fixGMLp2ji8m/BtUfI2BcsgFAmoI97oACgkQ/BtUfI2BcsikyQ/7B/S1MQ9uI6NeSwoCUxSh8LvJjSc0ixgimM4BsDqxYM0HGTPGXEGMqdjvCFE3duhNfmGphGqSmTGQcxiJjgKKGmzj4xW1b4M3lWoyiv98jx7kR1aRtVthXGWbVFmJKuCuUQd9iWT+h3gh5QHVKib122FAWuWnWgXrXPyfYFMaY7I5nUMr8URDEYVZje5Cjx81AcavUg+6nAQyeH4hDxgsVhvyhqBNzfodN6v/1oV50jaayMs4QvU/CXQL2lnXB1NjMcTJMdYDJ0mXaLHEqYwUj6evQEXlkqlakG32OJ9uQBojYLpATpCheWxqDmjsoRwIay/EGmyYJVvzzqx21bmP5VtAKz63LIQTHqNAZS06hjF65+NYnjFGcwGdWE6FD1DAXWKM/K0KP+tjFg9i7DqwSK578Q6GdLCPty3Jjn7PlaOs9Qt1ysWOOVym3RRAI8isAb+33uCodqhgh5+i52sHhxZDJC9tLju+ESVKWceOschHx9GBz/K6jLa+/xodsEdv/G2J8U1WgIrty2tVWwsy0OaWghLEgx/6yNO09+/D9CYNOukBebOnLiiCQFtkjI6Aj+YiT9LKbf204trvzgWqc0huMrkh80ZcvEt3Rc9MQciuQCyFIy6FF/Pva02PXi0D42S1trgkmnMmLHLP0RGkqKPxdKrofibe5D0Uucyaaus="
+
+[[package]]
+name = "libevent"
+version = "2.1.13-2"
+system = "archlinux"
+url = "https://archive.archlinux.org/packages/l/libevent/libevent-2.1.13-2-x86_64.pkg.tar.zst"
+sha256 = "9fd8563e3aa1c64d80257b7b4f60d37cf8589260ba3eb015f8257e2cfd118b04"
+signature = "iHUEABYKAB0WIQQEKYl95fO9rFN6MGltQr3RFuAGjwUCaliivgAKCRBtQr3RFuAGj1v8AQDcjrPVvu6iZUj93QfjHevrKODS7PaGDjqX/g0504EL9gEA3gEgBAGHbuI8R77YV4JXbKfmZzkzJV5WyPryv/4+/gA="
 
 [[package]]
 name = "libgit2"

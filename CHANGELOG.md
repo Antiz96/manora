@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v2.2.4](https://github.com/Antiz96/manora/releases/tag/v2.2.4) - 2026-07-16
+
+### Miscellaneous
+
+- Global refactor ([#115](https://github.com/Antiz96/manora/pull/115)) - ([1dd3c66](https://github.com/Antiz96/manora/commit/1dd3c66d1d1d41dd02fc1acf63ec72bb48cb7e0f)) by @Antiz96
+
 ## [v2.2.3](https://github.com/Antiz96/manora/releases/tag/v2.2.3) - 2026-07-16
 
 ### Documentation
