@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v2.2.3](https://github.com/Antiz96/manora/releases/tag/v2.2.3) - 2026-07-16
+
+### Documentation
+
+- *(CONTRIBUTING)* Wording improvements ([#109](https://github.com/Antiz96/manora/pull/109)) - ([67f9d52](https://github.com/Antiz96/manora/commit/67f9d52c7940990aebdca50f29a47fe90335ce18)) by @Antiz96
+- Update CONTRIBUTING.md ([#110](https://github.com/Antiz96/manora/pull/110)) - ([997d20b](https://github.com/Antiz96/manora/commit/997d20bfc502464276d4014ea9b6c07dec5af74b)) by @Antiz96
+
+### Miscellaneous
+
+- *(deps)* Update Rust crate clap to 4.6.2 ([#114](https://github.com/Antiz96/manora/pull/114)) - ([bbb0741](https://github.com/Antiz96/manora/commit/bbb07412257cb7e146a00e9e45219caea61fb4ce)) by @renovate[bot]
+- *(deps)* Lock file maintenance ([#113](https://github.com/Antiz96/manora/pull/113)) - ([359d3df](https://github.com/Antiz96/manora/commit/359d3dfa0be189edeec98b02f5eb94a161bba66a)) by @renovate[bot]
+- Drop useless output msg ([#112](https://github.com/Antiz96/manora/pull/112)) - ([7f2f6d4](https://github.com/Antiz96/manora/commit/7f2f6d47a0bb2fd0ff755e73bc6c1b35a9edfa12)) by @Antiz96
+- Use more modern variable calling method ([#111](https://github.com/Antiz96/manora/pull/111)) - ([ef0d4bf](https://github.com/Antiz96/manora/commit/ef0d4bf273aff50d78cd9eba3f9e153b37ceeac5)) by @Antiz96
+
 ## [v2.2.2](https://github.com/Antiz96/manora/releases/tag/v2.2.2) - 2026-07-07
 
 ### Documentation

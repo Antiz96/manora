@@ -1,4 +1,4 @@
-manora(1) ["Manora 2.2.2" ["Manora Manual"]]
+manora(1) ["Manora 2.2.3" ["Manora Manual"]]
 
 # NAME
 
