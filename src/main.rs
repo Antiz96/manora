@@ -2,15 +2,15 @@
 
 use clap::Parser;
 use std::io::{self, ErrorKind, Write};
-use std::path::Path;
+use std::path::{Path, PathBuf};
 use std::process;
 
 mod cachedir;
+mod convert;
 mod download;
 mod help;
 mod menu;
 mod open;
-mod save;
 mod version;
 
 // Argument parser
@@ -54,12 +54,23 @@ fn main() {
 
     // Define empty (optional) and mutable man_page variable
     // Will be set either from the menu or the first positional CLI argument
+    // Used later to track the selected man page
     let mut man_page: Option<String> = None;
 
-    // Initialize menu_download_mode variable to false
+    // Initialize menu_download_mode variable
     // Used later to track if the man page has been selected from the "download" mode
-    // in the TUI menu (meaning it should be downloaded from https://manned.org)
+    // in the TUI menu
     let mut menu_download_mode = false;
+
+    // Define empty (optional) and mutable dl_man_page variable
+    // Will eventually be populated via the "download" feature (containing the raw downloaded man page)
+    // Used later to skip local conversion and convert the downloaded content instead
+    let mut dl_man_page: Option<String> = None;
+
+    // Define empty (optional) and mutable dest_file_path variable
+    // Will eventually be set from the save feature or fallback to the cachedir
+    // Used later to determine where the man page should be saved on the filesystem
+    let mut dest_file_path: Option<PathBuf> = None;
 
     // Show help message if the -h / --help arg is passed
     if args.help {
@@ -75,108 +86,61 @@ fn main() {
 
     // Show TUI menu to choose man page if the -m / --menu arg (or no arg) is passed
     if args.menu || no_args {
-        let (page, download_mode) = menu::show_menu().unwrap_or_else(|error| {
+        let (selected_man_page, download_mode) = menu::show_menu().unwrap_or_else(|error| {
             eprintln!("{error}");
             process::exit(1);
         });
 
-        man_page = Some(page);
+        // Return man page & download mode status (boolean) for later operations
+        man_page = Some(selected_man_page);
         menu_download_mode = download_mode;
     }
 
     // Download man page from https://manned.org if the -d / --download arg is passed
     // or if the man page selection was made from the "download" mode in the TUI menu
     if args.download || menu_download_mode {
-        // Set man page from positional arguments
-        let man_page = man_page.unwrap_or_else(|| {
+        // Set man page, inherited from the menu (download mode) or positional argument
+        let selected_man_page = man_page.unwrap_or_else(|| {
             args.pos_args.first().cloned().unwrap_or_else(|| {
                 eprintln!("Missing man page\nTry 'manora --help' for more information");
                 process::exit(3);
             })
         });
 
-        // Create cache directory (if it doesn't exist)
-        // Needed to store the downloaded man page
-        let cachedir = cachedir::create_cachedir().unwrap_or_else(|error| {
-            eprintln!("Failed to create the cache directory:\n{error}");
-            process::exit(4);
-        });
-
-        // Download man page in cachedir
-        download::download_man_page(&man_page, &cachedir).unwrap_or_else(|error| {
-            eprintln!("Failed to download the man page:\n{error}");
-            process::exit(5);
-        });
-
-        // If used in combination with the -s / --save arg, save the downloaded man page
-        if args.save {
-            // Set destination file from positional arguments or fallback to default filename
-            let dest_file = args
-                .pos_args
-                .get(1)
-                .cloned()
-                .unwrap_or_else(|| format!("man_{man_page}.pdf"));
-
-            let dest_file_path = Path::new(&dest_file);
-
-            // Ask confirmation to overwrite the destination file if it already exists
-            if dest_file_path.exists() {
-                print!("The {dest_file} file already exists\nOverwrite? [y/N] ");
-                io::stdout().flush().expect("Can't flush stdout");
-
-                let mut answer = String::new();
-                io::stdin()
-                    .read_line(&mut answer)
-                    .expect("Can't read stdin");
-
-                if !matches!(answer.trim().to_lowercase().as_str(), "y" | "yes") {
-                    process::exit(3);
-                } else {
-                    println!();
-                }
-            }
-
-            // Save the downloaded the man page to the destination file
-            save::save_downloaded_man_page(&man_page, &cachedir, dest_file_path).unwrap_or_else(
-                |error| {
-                    eprintln!("Failed to save the man page:\n{error}");
-                    process::exit(3);
-                },
-            );
-
-            println!(
-                "The {man_page} man page has been downloaded from https://manned.org and saved to the {dest_file} file"
-            );
-        } else {
-            // If not used in combination with `-s / --save` arg, open the downloaded man page
-            open::open_downloaded_man_page(&man_page, &cachedir).unwrap_or_else(|error| {
-                eprintln!("Failed to open the man page:\n{error}");
-                process::exit(1);
+        // Download man page from https://manned.org
+        let selected_dl_man_page =
+            download::download_man_page(&selected_man_page).unwrap_or_else(|error| {
+                eprintln!("Failed to download the man page:\n{error}");
+                process::exit(5);
             });
-        }
 
-        return;
+        // Return the selected man page & downloaded man page for later operations
+        man_page = Some(selected_man_page);
+        dl_man_page = Some(selected_dl_man_page);
     }
 
     // Save the man page as a PDF file if the -s / --save arg is passed
     if args.save {
-        // Set man page from positional arguments
-        let man_page = args.pos_args.first().cloned().unwrap_or_else(|| {
-            eprintln!("Missing man page\nTry 'manora --help' for more information");
-            process::exit(3);
+        // Set man page, inherited from previous definition or positional argument
+        let selected_man_page = man_page.unwrap_or_else(|| {
+            args.pos_args.first().cloned().unwrap_or_else(|| {
+                eprintln!("Missing man page\nTry 'manora --help' for more information");
+                process::exit(3);
+            })
         });
 
-        // Set destination file from positional arguments or fallback to default filename
+        // Set destination file from positional argument or fallback to default filename
         let dest_file = args
             .pos_args
             .get(1)
             .cloned()
-            .unwrap_or_else(|| format!("man_{man_page}.pdf"));
+            .unwrap_or_else(|| format!("man_{selected_man_page}.pdf"));
 
-        let dest_file_path = Path::new(&dest_file);
+        // Convert from string to Path
+        let file_path = Path::new(&dest_file);
 
         // Ask confirmation to overwrite the destination file if it already exists
-        if dest_file_path.exists() {
+        if file_path.exists() {
             print!("The {dest_file} file already exists\nOverwrite? [y/N] ");
             io::stdout().flush().expect("Can't flush stdout");
 
@@ -192,52 +156,9 @@ fn main() {
             }
         }
 
-        // Save the man page to the destination file
-        save::save_man_page(&man_page, dest_file_path).unwrap_or_else(|error| {
-            // If the man page isn't found locally, offer to download it from https://manned.org
-            if error.kind() == ErrorKind::NotFound {
-                eprintln!("Failed to save the man page:\n{error}");
-                print!("Would you like to try downloading it from https://manned.org? [Y/n] ");
-                io::stdout().flush().expect("Can't flush stdout");
-
-                let mut answer = String::new();
-                io::stdin()
-                    .read_line(&mut answer)
-                    .expect("Can't read stdin");
-
-                if matches!(answer.trim().to_lowercase().as_str(), "" | "y" | "yes") {
-                    // Create cache directory (if it doesn't exist)
-                    // Needed to temporarily store the downloaded man page before moving it to the
-                    // destination file
-                    let cachedir = cachedir::create_cachedir().unwrap_or_else(|error| {
-                        eprintln!("\nFailed to create the cache directory:\n{error}");
-                        process::exit(4);
-                    });
-
-                    // Download man page in cachedir
-                    download::download_man_page(&man_page, &cachedir).unwrap_or_else(|error| {
-                        eprintln!("\nFailed to download the man page:\n{error}");
-                        process::exit(5);
-                    });
-
-                    // Save the downloaded man page to the destination file
-                    save::save_downloaded_man_page(&man_page, &cachedir, dest_file_path)
-                        .unwrap_or_else(|error| {
-                            eprintln!("\nFailed to save the man page:\n{error}");
-                            process::exit(3);
-                        });
-                } else {
-                    process::exit(5);
-                }
-            // For any other kind of error, return it and exit
-            } else {
-                eprintln!("Failed to save the man page:\n{error}");
-                process::exit(3);
-            }
-        });
-
-        println!("The {man_page} man page has been saved to the {dest_file} file");
-        return;
+        // Return the man page & destination file path for later operations
+        man_page = Some(selected_man_page);
+        dest_file_path = Some(file_path.to_path_buf());
     }
 
     // Show error on invalid option
@@ -250,53 +171,88 @@ fn main() {
         process::exit(1);
     }
 
-    // Open man page as a PDF if it is set (either from the TUI menu or the first positional argument
-    // If it isn't found, offer to download it
+    // Set man page, inherited from previous definition or positional argument
     let man_page = man_page
         .or_else(|| args.pos_args.first().cloned())
         // Just making the assumption visible
-        // In theory, we should never reach that expect()
+        // In theory, we should never reach that expect() at that point
         .expect("The man page should be set from TUI menu or the first positional argument");
 
-    // Create cache directory (if it doesn't exist)
-    // Needed to store the local or downloaded man page before opening it
-    let cachedir = cachedir::create_cachedir().unwrap_or_else(|error| {
-        eprintln!("Failed to create the cache directory:\n{error}");
-        process::exit(4);
+    // Define fallback for the destination file to cachedir (in case we don't come from
+    // the -s / --save arg and it's therefore not set yet)
+    let dest_file_path = dest_file_path.unwrap_or_else(|| {
+        // Create cache directory (if it doesn't exist)
+        // Needed to store the man page before opening it
+        let cachedir = cachedir::create_cachedir().unwrap_or_else(|error| {
+            eprintln!("Failed to create the cache directory:\n{error}");
+            process::exit(4);
+        });
+
+        // Set the destination path to the cachedir
+        cachedir.join(format!("{man_page}.pdf"))
     });
 
-    // Open the man page converted as a PDF in the PDF reader
-    open::open_man_page(&man_page, &cachedir).unwrap_or_else(|error| {
-        // If the man page isn't found locally, offer to download it from https://manned.org
-        if error.kind() == ErrorKind::NotFound {
-            eprintln!("Failed to open the man page:\n{error}");
-            print!("Would you like to try downloading it from https://manned.org? [Y/n] ");
-            io::stdout().flush().expect("Can't flush stdout");
+    // If we don't come from the download menu more or the -d / --download arg, search for the man page
+    // locally
+    if dl_man_page.is_none() {
+        // Convert local man page as a PDF file and save it to the destination file
+        convert::convert_man_page(&man_page, &dest_file_path).unwrap_or_else(|error| {
+            // If the man page isn't found locally, offer to download it from https://manned.org
+            if error.kind() == ErrorKind::Other {
+                eprintln!("Failed to convert the man page as a PDF:\n{error}");
+                print!("Would you like to try downloading it from https://manned.org? [Y/n] ");
+                io::stdout().flush().expect("Can't flush stdout");
 
-            let mut answer = String::new();
-            io::stdin()
-                .read_line(&mut answer)
-                .expect("Can't read stdin");
+                let mut answer = String::new();
+                io::stdin()
+                    .read_line(&mut answer)
+                    .expect("Can't read stdin");
 
-            if matches!(answer.trim().to_lowercase().as_str(), "" | "y" | "yes") {
-                // Download man page in cachedir
-                download::download_man_page(&man_page, &cachedir).unwrap_or_else(|error| {
-                    eprintln!("\nFailed to download the man page:\n{error}");
+                if matches!(answer.trim().to_lowercase().as_str(), "" | "y" | "yes") {
+                    println!();
+                    // Download man page
+                    let selected_dl_man_page = download::download_man_page(&man_page)
+                        .unwrap_or_else(|error| {
+                            eprintln!("Failed to download the man page:\n{error}");
+                            process::exit(5);
+                        });
+
+                    // Return downloaded man page for later operations
+                    dl_man_page = Some(selected_dl_man_page);
+                } else {
                     process::exit(5);
-                });
-
-                // Open the downloaded man page
-                open::open_downloaded_man_page(&man_page, &cachedir).unwrap_or_else(|error| {
-                    eprintln!("\nFailed to open the man page:\n{error}");
-                    process::exit(1);
-                });
+                }
+            // For any other kind of error, return it and exit
             } else {
-                process::exit(5);
+                eprintln!("Failed to convert the man page as a PDF:\n{error}");
+                process::exit(1);
             }
-        // For any other kind of error, return it and exit
-        } else {
+        });
+    }
+
+    // If we come from the download menu mode, the -d / --download arg or if the man page was downloaded
+    // after it wasn't found locally, use the downloaded man page instead
+    if let Some(dl_man_page) = dl_man_page {
+        // Convert downloaded man page as a PDF file and save it to the destination file
+        convert::convert_downloaded_man_page(&dl_man_page, &dest_file_path).unwrap_or_else(
+            |error| {
+                eprintln!("Failed to convert the man page as a PDF:\n{error}");
+                process::exit(3);
+            },
+        );
+    };
+
+    // If we come from the save arg, print info message
+    if args.save {
+        println!(
+            "The {man_page} man page has been saved to the {} file",
+            dest_file_path.display()
+        );
+    // Otherwise, open the man page in PDF reader
+    } else {
+        open::open_pdf_man_page(&dest_file_path).unwrap_or_else(|error| {
             eprintln!("Failed to open the man page:\n{error}");
             process::exit(1);
-        }
-    })
+        });
+    }
 }
