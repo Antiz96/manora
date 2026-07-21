@@ -66,7 +66,7 @@ See below for the CLI options.
 *man*(1),
 *groff*(1),
 *xdg-mime*(1),
-*xdg-open*(1),
+*xdg-open*(1)
 
 # BUGS
 
