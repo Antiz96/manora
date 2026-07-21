@@ -6,7 +6,7 @@ manora(1) ["Manora 2.2.4" ["Manora Manual"]]
 
 # DESCRIPTION
 
-Run the `manora` command to open a TUI menu that allows searching through local man pages, downloading man pages from <https://manned.org>, and displaying them as PDF files.
+Run `manora` to open a TUI menu that allows searching through local man pages, downloading man pages from <https://manned.org>, and displaying them as PDF files.
 
 Alternatively, specify the man page to open as an argument (e.g. `manora ls`).
 If the specified man page cannot be found locally, Manora offers to download it from <https://manned.org>.
