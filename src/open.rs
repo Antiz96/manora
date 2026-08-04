@@ -3,6 +3,7 @@
 use std::io::{self, Error};
 use std::path::Path;
 use std::process::{Command, Stdio};
+use which::which;
 
 // Get PDF reader, then open PDF man page
 pub fn open_pdf_man_page(path: &Path) -> io::Result<()> {
@@ -12,14 +13,8 @@ pub fn open_pdf_man_page(path: &Path) -> io::Result<()> {
         .output()
         .is_ok_and(|output| !output.stdout.is_empty())
     {
-        "xdg-open".into()
-    } else if Command::new("zathura")
-        .arg("--version")
-        .stdout(Stdio::null())
-        .stderr(Stdio::null())
-        .status()
-        .is_ok_and(|status| status.success())
-    {
+        "xdg-open".to_string()
+    } else if which("zathura").is_ok() {
         "zathura".to_string()
     } else {
         return Err(Error::other(

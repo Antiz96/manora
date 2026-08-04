@@ -1354,6 +1354,7 @@ dependencies = [
  "predicates",
  "ratatui",
  "reqwest",
+ "which",
 ]
 
 [[package]]
@@ -3100,6 +3101,15 @@ dependencies = [
  "lazy_static",
  "serde",
  "wezterm-dynamic",
+]
+
+[[package]]
+name = "which"
+version = "8.0.5"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "8f3ef584124b911bcc3875c2f1472e80f24361ceb789bd1c62b3e9a3df9ff43c"
+dependencies = [
+ "libc",
 ]
 
 [[package]]
