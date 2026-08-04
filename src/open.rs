@@ -13,7 +13,7 @@ pub fn open_pdf_man_page(path: &Path) -> io::Result<()> {
         .output()
         .is_ok_and(|output| !output.stdout.is_empty())
     {
-        "xdg-open".into()
+        "xdg-open".to_string()
     } else if which("zathura").is_ok() {
         "zathura".to_string()
     } else {
