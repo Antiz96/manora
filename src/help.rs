@@ -16,26 +16,32 @@ pub fn show_help() {
     println!();
     println!("Options:");
     println!(
-        "  -m, --menu                    Open a TUI menu that allows searching through local man pages, downloading man pages from <https://manned.org>, and displaying them as PDF files (default operation)"
-    );
-    println!("  -s, --save <man page> <file>  Save <man page> into the <file> PDF file");
-    println!(
-        "                                If <file> isn't specified, save it to a \"man_<man page>.pdf\" file in the current directory"
+        "  -m, --menu                          Open a TUI menu that allows searching through local man pages,"
     );
     println!(
-        "                                If <file> already exists, ask for a confirmation to overwrite it"
+        "                                      downloading man pages from <https://manned.org>,"
     );
     println!(
-        "  -d, --download                Skip searching for the man page locally and directly download it from <https://manned.org> instead"
+        "                                      and displaying them as PDF files (default operation)"
+    );
+    println!("  -s, --save <man page> <file>        Save <man page> into the <file> PDF file");
+    println!(
+        "                                      If <file> isn't specified, save it to a \"man_<man page>.pdf\" file in the current directory"
     );
     println!(
-        "                                This option can be used when specifying a man page to open as an argument (`manora --download <man page>`)"
+        "                                      If <file> already exists, ask for a confirmation to overwrite it"
     );
     println!(
-        "                                or in combination with the `-s / --save` option (`manora --download --save <man page>`)"
+        "  -d, --download <option> <man page>  Skip searching for the man page locally and directly download it from <https://manned.org> instead"
     );
-    println!("  -h, --help                    Display this message");
-    println!("  -V, --version                 Display version information");
+    println!(
+        "                                      This option can be used when specifying a man page to open as an argument (`manora --download <man page>`)"
+    );
+    println!(
+        "                                      or in combination with the `-s / --save` option (`manora --download --save <man page>`)"
+    );
+    println!("  -h, --help                          Display this message");
+    println!("  -V, --version                       Display version information");
     println!();
     println!("For more information, see the manora(1) man page.");
 }
