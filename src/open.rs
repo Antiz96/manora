@@ -1,7 +1,7 @@
 //! Open man page in PDF reader
 
 use std::io::{self, Error};
-use std::path::Path;
+use std::path::{Path, PathBuf};
 use std::process::{Command, Stdio};
 use which::which;
 
@@ -13,13 +13,11 @@ pub fn open_pdf_man_page(path: &Path) -> io::Result<()> {
         .output()
         .is_ok_and(|output| !output.stdout.is_empty())
     {
-        "xdg-open".to_string()
-    } else if which("zathura").is_ok() {
-        "zathura".to_string()
+        PathBuf::from("xdg-open")
     } else {
-        return Err(Error::other(
-            "No PDF reader defined in XDG Mime Application and zathura (fallback option) isn't installed",
-        ));
+        which("zathura").map_err(|_| {
+            Error::other("No PDF reader defined in XDG Mime Application and zathura (fallback option) isn't installed")
+        })?
     };
 
     // Open the man page in PDF reader
