@@ -2,7 +2,7 @@
 //! Built with ratatui, inspired / based on the list widget example
 //! https://ratatui.rs/examples/widgets/list/
 
-use color_eyre::eyre;
+use anyhow::{Context, anyhow};
 use crossterm::event::{self, KeyCode};
 use ratatui::Frame;
 use ratatui::layout::{Constraint, Layout, Rect};
@@ -26,12 +26,10 @@ struct App {
 }
 
 // Show the TUI menu and return the selected man page
-pub fn show_menu() -> color_eyre::Result<(String, bool)> {
-    color_eyre::install()?;
-
+pub fn show_menu() -> anyhow::Result<(String, bool)> {
     let mut mode = Mode::Local;
 
-    let items = get_man_pages()?;
+    let items = get_man_pages().context("Failed to get the man pages list")?;
 
     let mut app = App {
         filtered_items: items.clone(),
@@ -43,9 +41,14 @@ pub fn show_menu() -> color_eyre::Result<(String, bool)> {
 
     let man_selected = ratatui::run(|terminal| {
         loop {
-            terminal.draw(|frame| render(frame, &app, &mut list_state, mode))?;
+            terminal
+                .draw(|frame| render(frame, &app, &mut list_state, mode))
+                .context("Failed to draw terminal")?;
 
-            if let Some(key) = event::read()?.as_key_press_event() {
+            if let Some(key) = event::read()
+                .context("Failed to read key press")?
+                .as_key_press_event()
+            {
                 match key.code {
                     KeyCode::Down => list_state.select_next(),
                     KeyCode::Up => list_state.select_previous(),
@@ -87,20 +90,28 @@ pub fn show_menu() -> color_eyre::Result<(String, bool)> {
                         };
                     }
                     KeyCode::Esc => {
-                        break Err(eyre::eyre!("No man page selected"));
+                        break Err(anyhow!("No man page selected"));
                     }
                     _ => {}
                 }
             }
         }
-    })?;
+    })
+    .context("Failed to run TUI")?;
 
     Ok(man_selected)
 }
 
 // Get the list of local man pages
-fn get_man_pages() -> color_eyre::Result<Vec<String>> {
-    let man_list = Command::new("man").args(["-k", "."]).output()?;
+fn get_man_pages() -> anyhow::Result<Vec<String>> {
+    let man_list = Command::new("man")
+        .args(["-k", "."])
+        .output()
+        .context("Failed to run man")?;
+
+    if !man_list.status.success() {
+        return Err(anyhow!("Failed to list man pages"));
+    }
 
     Ok(String::from_utf8_lossy(&man_list.stdout)
         .lines()
