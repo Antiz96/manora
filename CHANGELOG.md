@@ -2,6 +2,32 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v2.2.5](https://github.com/Antiz96/manora/releases/tag/v2.2.5) - 2026-08-09
+
+### Documentation
+
+- Minor wording improvements ([#120](https://github.com/Antiz96/manora/pull/120)) - ([420c8f4](https://github.com/Antiz96/manora/commit/420c8f436184307152f936219dae4dd71c89f25d)) by @Antiz96
+
+### Styling
+
+- *(man)* Typo fix ([#118](https://github.com/Antiz96/manora/pull/118)) - ([191d74e](https://github.com/Antiz96/manora/commit/191d74e7eda046975d26dac9bac05e7132012427)) by @Antiz96
+- Typo fix in PR template ([#119](https://github.com/Antiz96/manora/pull/119)) - ([db8e027](https://github.com/Antiz96/manora/commit/db8e0279a4abe802f133a2175b3d16ae3cf8fc23)) by @Antiz96
+
+### Miscellaneous
+
+- *(CI)* Add built man page to cleanup stage ([#116](https://github.com/Antiz96/manora/pull/116)) - ([32b3a13](https://github.com/Antiz96/manora/commit/32b3a13b3dec5bb477fc09940a71cded9f7a54f0)) by @Antiz96
+- *(deps)* Lock file maintenance ([#130](https://github.com/Antiz96/manora/pull/130)) - ([a4af74f](https://github.com/Antiz96/manora/commit/a4af74f7c0190323df63a6613abb17228475db9d)) by @Antiz96
+- *(deps)* Update Rust crate clap to 4.6.6 ([#128](https://github.com/Antiz96/manora/pull/128)) - ([9a0b527](https://github.com/Antiz96/manora/commit/9a0b527b3906f8c030a01a9c9db2227713395d3c)) by @renovate[bot]
+- *(deps)* Lock file maintenance ([#124](https://github.com/Antiz96/manora/pull/124)) - ([f592e59](https://github.com/Antiz96/manora/commit/f592e592fdbe08ca21b36ac7ab3041427c76353d)) by @renovate[bot]
+- *(deps)* Update Rust crate clap to 4.6.5 ([#123](https://github.com/Antiz96/manora/pull/123)) - ([86a330f](https://github.com/Antiz96/manora/commit/86a330f295b304ad9bf7d2e757646f3fb8dc0ced)) by @renovate[bot]
+- *(deps)* Lock file maintenance ([#122](https://github.com/Antiz96/manora/pull/122)) - ([53ee9d6](https://github.com/Antiz96/manora/commit/53ee9d6f76be3941836dfeb40c34a86e147a923b)) by @renovate[bot]
+- *(deps)* Update Rust crate clap to 4.6.4 ([#121](https://github.com/Antiz96/manora/pull/121)) - ([a8c7db9](https://github.com/Antiz96/manora/commit/a8c7db922bb28511b324b6b95b23e8537ffef957)) by @renovate[bot]
+- *(deps)* Update Rust crate clap to 4.6.3 ([#117](https://github.com/Antiz96/manora/pull/117)) - ([e3ab5e3](https://github.com/Antiz96/manora/commit/e3ab5e35c5337f043cfa9c4d66bb1f515929f585)) by @renovate[bot]
+- *(i18n)* Refine zathura detection ([#126](https://github.com/Antiz96/manora/pull/126)) - ([a660239](https://github.com/Antiz96/manora/commit/a66023931b6f93345fb39656a04262dbda36c461)) by @Antiz96
+- General code refinement ([#129](https://github.com/Antiz96/manora/pull/129)) - ([00bc3bf](https://github.com/Antiz96/manora/commit/00bc3bf5a68b22cff7455e45ededfd2e85befc1b)) by @Antiz96
+- Update help message ([#127](https://github.com/Antiz96/manora/pull/127)) - ([0e53c78](https://github.com/Antiz96/manora/commit/0e53c786b333ea71d5f6c0166a5cd1317b7cf0f6)) by @Antiz96
+- Use the `which` crate to determine if zathura is installed ([#125](https://github.com/Antiz96/manora/pull/125)) - ([d8fdb60](https://github.com/Antiz96/manora/commit/d8fdb60f6154373eea4e2e6fddb846df111a4b21)) by @Antiz96
+
 ## [v2.2.4](https://github.com/Antiz96/manora/releases/tag/v2.2.4) - 2026-07-16
 
 ### Miscellaneous
