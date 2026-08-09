@@ -1,22 +1,28 @@
 //! Download man page from https://manned.org
 
+use anyhow::{Context, anyhow};
+use reqwest::StatusCode;
 use reqwest::blocking::get;
-use std::io::{self, Error};
 
-pub fn download_man_page(man_page: &str) -> io::Result<String> {
+pub fn download_man_page(man_page: &str) -> anyhow::Result<String> {
     // Try to download man page from https://manned.org
     let url = format!("https://manned.org/raw/{man_page}");
-    let dl_man_page = get(&url)
-        .map_err(Error::other)?
-        .text()
-        .map_err(Error::other)?;
 
-    // Check if the man page was found
-    if dl_man_page.contains("the page you were looking for doesn't exist.") {
-        return Err(Error::other(format!(
+    let response = get(&url).context("Failed to request the man page from https://manned.org")?;
+
+    // HTTP 404
+    let dl_man_page = if response.status() == StatusCode::NOT_FOUND {
+        return Err(anyhow!(
             "No manual entry for {man_page} on https://manned.org"
-        )));
-    }
+        ));
+    // Any other HTTP error code
+    } else {
+        response
+            .error_for_status()
+            .context("Failed to download the man page from https://manned.org")?
+            .text()
+            .context("Failed to read the downloaded man page")?
+    };
 
     Ok(dl_man_page)
 }
