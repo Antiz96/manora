@@ -43,26 +43,19 @@ See below for the CLI options.
 
 # EXIT STATUS
 
-*0*
-	OK.
+*0* OK.
 
-*1*
-	Invalid option or unknown / missing man page.
+*1* Invalid option or unknown / missing man page.
 
-*2*
-	Error when opening the man page as a PDF.
+*2* Error when opening the man page as a PDF.
 
-*3*
-	Error when converting and exporting the man page as a PDF.
+*3* Error when converting and exporting the man page as a PDF.
 
-*4*
-	Error when creating the cache directory.
+*4* Error when creating the cache directory.
 
-*5*
-	Error when downloading the man page from https://manned.org.
+*5* Error when downloading the man page from https://manned.org.
 
-*6*
-	Error when asking confirmation to user.
+*6* Error when asking confirmation to user.
 
 # SEE ALSO
 
