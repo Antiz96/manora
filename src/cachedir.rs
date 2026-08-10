@@ -18,7 +18,7 @@ pub fn create_cachedir() -> anyhow::Result<PathBuf> {
 
     fs::create_dir_all(&cachedir).with_context(|| {
         format!(
-            "Unable to create the {} cache directory",
+            "Failed to create the {} cache directory",
             cachedir.display()
         )
     })?;
