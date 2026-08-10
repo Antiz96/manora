@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v2.2.6](https://github.com/Antiz96/manora/releases/tag/v2.2.6) - 2026-08-10
+
+### Styling
+
+- *(man)* Remove useless line breaks ([#132](https://github.com/Antiz96/manora/pull/132)) - ([cd82144](https://github.com/Antiz96/manora/commit/cd8214428806527d38a4fe0e7bbcef68c988f8fb)) by @Antiz96
+
+### Miscellaneous
+
+- *(deps)* Lock file maintenance ([#131](https://github.com/Antiz96/manora/pull/131)) - ([84ef9b3](https://github.com/Antiz96/manora/commit/84ef9b3318eb2e4ab833906e5dfd50d8d599bb20)) by @renovate[bot]
+- Improve wording of some errors message ([#133](https://github.com/Antiz96/manora/pull/133)) - ([5e26da6](https://github.com/Antiz96/manora/commit/5e26da66c912cf1d97abaadcfdd703f1e8a2c409)) by @Antiz96
+
 ## [v2.2.5](https://github.com/Antiz96/manora/releases/tag/v2.2.5) - 2026-08-09
 
 ### Documentation
