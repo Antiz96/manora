@@ -70,4 +70,4 @@ Please report bugs to the GitHub page: https://github.com/Antiz96/manora
 
 # AUTHOR
 
-Robin Candau <robincandau@protonmail.com>
+Robin Candau <robincandau@mailbox.org>
