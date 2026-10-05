@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v2.2.7](https://github.com/Antiz96/manora/releases/tag/v2.2.7) - 2026-10-05
+
+### Miscellaneous
+
+- *(deps)* Lock file maintenance ([#145](https://github.com/Antiz96/manora/pull/145)) - ([f90e776](https://github.com/Antiz96/manora/commit/f90e77634a0eae2f53a7ed9961f547d9a3c7d1aa)) by @renovate[bot]
+- *(deps)* Lock file maintenance ([#144](https://github.com/Antiz96/manora/pull/144)) - ([d3755af](https://github.com/Antiz96/manora/commit/d3755afcfce1fb1cc232630d9d9250a8e977eda2)) by @renovate[bot]
+- *(deps)* Lock file maintenance ([#143](https://github.com/Antiz96/manora/pull/143)) - ([10b333d](https://github.com/Antiz96/manora/commit/10b333d9e2ca75eee1d60929ca8daced27643703)) by @renovate[bot]
+- *(deps)* Update Rust crate clap to 4.6.7 ([#142](https://github.com/Antiz96/manora/pull/142)) - ([bfb5c9d](https://github.com/Antiz96/manora/commit/bfb5c9d429f1c7c01df32942997d307653eabaf0)) by @renovate[bot]
+- *(deps)* Lock file maintenance ([#141](https://github.com/Antiz96/manora/pull/141)) - ([4f00007](https://github.com/Antiz96/manora/commit/4f00007b724bc5a30173c5372e9d032115b90dec)) by @renovate[bot]
+- *(deps)* Update Rust crate reqwest to 0.13.5 ([#140](https://github.com/Antiz96/manora/pull/140)) - ([37912eb](https://github.com/Antiz96/manora/commit/37912ebfdfee52055f38dc86c12b210670f126b2)) by @renovate[bot]
+- *(deps)* Lock file maintenance ([#139](https://github.com/Antiz96/manora/pull/139)) - ([47a720b](https://github.com/Antiz96/manora/commit/47a720bdcd1d2d84d3691082bb7884f1611cd69f)) by @renovate[bot]
+- *(deps)* Lock file maintenance ([#137](https://github.com/Antiz96/manora/pull/137)) - ([f3fe85d](https://github.com/Antiz96/manora/commit/f3fe85d21e6d2afef84c9b46fc4f0492e83e6cd3)) by @renovate[bot]
+- *(deps)* Update Rust crate which to 8.0.6 ([#136](https://github.com/Antiz96/manora/pull/136)) - ([7b8780c](https://github.com/Antiz96/manora/commit/7b8780c205a5c1bed2785d03e5d2c90db054fe98)) by @renovate[bot]
+- *(deps)* Lock file maintenance ([#135](https://github.com/Antiz96/manora/pull/135)) - ([caa9ebf](https://github.com/Antiz96/manora/commit/caa9ebf06617cf20f83e246cf495d494c900b38f)) by @renovate[bot]
+- *(deps)* Lock file maintenance ([#134](https://github.com/Antiz96/manora/pull/134)) - ([4a4916e](https://github.com/Antiz96/manora/commit/4a4916ed5d34bf4bba979567673eed68c6d8780c)) by @renovate[bot]
+- Update email address ([#138](https://github.com/Antiz96/manora/pull/138)) - ([b96dd3f](https://github.com/Antiz96/manora/commit/b96dd3f32a4bce470061b98497e4c6d34cdd906a)) by @Antiz96
+
 ## [v2.2.6](https://github.com/Antiz96/manora/releases/tag/v2.2.6) - 2026-08-10
 
 ### Styling
