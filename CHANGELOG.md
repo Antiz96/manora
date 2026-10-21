@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v2.2.8](https://github.com/Antiz96/manora/releases/tag/v2.2.8) - 2026-10-21
+
+### Miscellaneous
+
+- *(CONTRIBUTING)* Add an AI Policy ([#147](https://github.com/Antiz96/manora/pull/147)) - ([a3e9dbd](https://github.com/Antiz96/manora/commit/a3e9dbddab48c5a6cfbaca749791bdcdbbf9cbe8)) by @Antiz96
+- *(deps)* Lock file maintenance ([#149](https://github.com/Antiz96/manora/pull/149)) - ([1da815c](https://github.com/Antiz96/manora/commit/1da815c6ca5111b56ecce1db3371255597043dd4)) by @Antiz96
+- *(deps)* Lock file maintenance ([#148](https://github.com/Antiz96/manora/pull/148)) - ([f5e0917](https://github.com/Antiz96/manora/commit/f5e0917500328c114755016681484a5120feb5a5)) by @renovate[bot]
+- *(deps)* Lock file maintenance ([#146](https://github.com/Antiz96/manora/pull/146)) - ([66084e9](https://github.com/Antiz96/manora/commit/66084e9aabe4f36276ef24b896538cda820fade6)) by @renovate[bot]
+
 ## [v2.2.7](https://github.com/Antiz96/manora/releases/tag/v2.2.7) - 2026-10-05
 
 ### Miscellaneous
