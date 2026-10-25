@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v2.2.9](https://github.com/Antiz96/manora/releases/tag/v2.2.9) - 2026-10-25
+
+### Fixes
+
+- Improve runtime directory handling ([#150](https://github.com/Antiz96/manora/pull/150)) - ([e12e6bb](https://github.com/Antiz96/manora/commit/e12e6bbc233e25596488e651c4f4a261047532cf)) by @Antiz96
+
 ## [v2.2.8](https://github.com/Antiz96/manora/releases/tag/v2.2.8) - 2026-10-21
 
 ### Miscellaneous

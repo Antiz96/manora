@@ -1,5 +1,5 @@
 [container]
-image = "docker.io/archlinux/archlinux@sha256:09d7c61fa6a0b6ec21020d75dec1cf901208ee601407fe6ef0f7988c05b94d19"
+image = "docker.io/archlinux/archlinux@sha256:c012199d5d54760078f77b62bf2b7ed15334c873e27cc9d45b13d1e8f6e1ee5c"
 
 [[package]]
 name = "compiler-rt"
@@ -24,14 +24,6 @@ system = "archlinux"
 url = "https://archive.archlinux.org/packages/l/libedit/libedit-20260512_3.1-1-x86_64.pkg.tar.zst"
 sha256 = "70cb736e4fdee330cd0dfab45875f6ea378ae819958dd15748c300b8d7285b42"
 signature = "iQIzBAABCgAdFiEE4kC1fixGMLp2ji8m/BtUfI2BcsgFAmoI97oACgkQ/BtUfI2BcsikyQ/7B/S1MQ9uI6NeSwoCUxSh8LvJjSc0ixgimM4BsDqxYM0HGTPGXEGMqdjvCFE3duhNfmGphGqSmTGQcxiJjgKKGmzj4xW1b4M3lWoyiv98jx7kR1aRtVthXGWbVFmJKuCuUQd9iWT+h3gh5QHVKib122FAWuWnWgXrXPyfYFMaY7I5nUMr8URDEYVZje5Cjx81AcavUg+6nAQyeH4hDxgsVhvyhqBNzfodN6v/1oV50jaayMs4QvU/CXQL2lnXB1NjMcTJMdYDJ0mXaLHEqYwUj6evQEXlkqlakG32OJ9uQBojYLpATpCheWxqDmjsoRwIay/EGmyYJVvzzqx21bmP5VtAKz63LIQTHqNAZS06hjF65+NYnjFGcwGdWE6FD1DAXWKM/K0KP+tjFg9i7DqwSK578Q6GdLCPty3Jjn7PlaOs9Qt1ysWOOVym3RRAI8isAb+33uCodqhgh5+i52sHhxZDJC9tLju+ESVKWceOschHx9GBz/K6jLa+/xodsEdv/G2J8U1WgIrty2tVWwsy0OaWghLEgx/6yNO09+/D9CYNOukBebOnLiiCQFtkjI6Aj+YiT9LKbf204trvzgWqc0huMrkh80ZcvEt3Rc9MQciuQCyFIy6FF/Pva02PXi0D42S1trgkmnMmLHLP0RGkqKPxdKrofibe5D0Uucyaaus="
-
-[[package]]
-name = "libelf"
-version = "0.197-1"
-system = "archlinux"
-url = "https://archive.archlinux.org/packages/l/libelf/libelf-0.197-1-x86_64.pkg.tar.zst"
-sha256 = "f8341a1e281ffd294d81891c95dfcd7cbcf9b5527b160d4b54848ec79a19abc1"
-signature = "iQIzBAABCgAdFiEELjbYYgIhSC/EXLfyqRdkdZMmtEAFAmrWzRUACgkQqRdkdZMmtEC7thAAvYlIciLhV4aEwsRVQQD8ECK1x5GWuK7fB366JVmW3VLYNXXRVL94eWCut+kvA6uvoU+z9du9U80PR+MmCtD+Vyj2WVFavlEzEVjdHJByzQ1N7vLblR2Fy9L9Sq6u8qpaY+DqmvUm0Lwk9Kk/2VVM/vTyt6x6+jNrk59e5gJZc35i1fBgLVXJM5DrWoJnOkhGcWnLUJ+Y88RM5zDa8megjBbEkmpxshsHorJKvOaHmRYoXQzhig1HyY/aqRNPkQcBabgl2Hfjc6f5sBXIpmjRzdAhgtWjJRYj3QQMHhUPl88HOphc0SgN7gtnYkGgVdULDCQnrCJb+wzRz6vqJ6sX1izyrQxtF98PpiFjIAXGh+kNmSkZQD9e6Ip17esle5Kevcqq4YZdP45a0L722ltb1Im16IiHoZr/eb76m6mh8RCrny6p3tyrBPwVafU7QD2Nm3VdjXfWXpZeocI8ECTh1R04Sc4WPqYRT1pUc/AgtPU89LY0TXokplLngAQ2bMuh+SCFAYqXvOx2o7txTiMP70icFbT3NNT8kFdyNA19zkUbSyzm1RBmBro3t7ieVDMzaRU0tRkg608d0ItAbUZyeD4u4R0hjcZXjN4gNn8DwAs6DHOV59mnppphamZDHmctZ3VhIztDsr/aVLj7YoaB67XxkLI0K6EgAHfaSoy9G6E="
 
 [[package]]
 name = "libgit2"
