@@ -5,12 +5,12 @@ use std::io::{self, ErrorKind, Write};
 use std::path::{Path, PathBuf};
 use std::process;
 
-mod cachedir;
 mod convert;
 mod download;
 mod help;
 mod menu;
 mod open;
+mod rundir;
 mod version;
 
 // Arguments definition
@@ -78,7 +78,7 @@ fn main() {
     let mut dl_man_page: Option<String> = None;
 
     // Define empty (optional) and mutable dest_file_path variable
-    // Will eventually be set from the save feature or fallback to the cachedir
+    // Will eventually be set from the save feature or fallback to the runtime dir
     // Used later to determine where the man page should be saved on the filesystem
     let mut dest_file_path: Option<PathBuf> = None;
 
@@ -181,17 +181,17 @@ fn main() {
         .expect("Error: Man page not set\nThe man page should be set from TUI menu or the first positional argument");
 
     // Set destination file path, inherited from previous definition (if we come from the -s /
-    // --save arg) or set in cachedir otherwise.
+    // --save arg) or set in runtime dir otherwise.
     let dest_file_path = dest_file_path.unwrap_or_else(|| {
-        // Create cache directory (if it doesn't exist)
+        // Create runtime directory (if it doesn't exist)
         // Needed to store the man page before opening it
-        let cachedir = cachedir::create_cachedir().unwrap_or_else(|error| {
+        let run_dir = rundir::create_run_dir().unwrap_or_else(|error| {
             eprintln!("Error: {error:?}");
             process::exit(4);
         });
 
-        // Set the destination path to the cachedir
-        cachedir.join(format!("{man_page}.pdf"))
+        // Set the destination path to the runtime dir
+        run_dir.join(format!("{man_page}.pdf"))
     });
 
     // If we don't come from the download menu more or the -d / --download arg, search for the man page

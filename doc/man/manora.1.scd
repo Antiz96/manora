@@ -51,7 +51,7 @@ See below for the CLI options.
 
 *3* Error when converting and exporting the man page as a PDF.
 
-*4* Error when creating the cache directory.
+*4* Error when creating the runtime directory.
 
 *5* Error when downloading the man page from https://manned.org.
 
