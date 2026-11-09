@@ -22,7 +22,7 @@ Manora opens man pages in the default PDF reader defined in [XDG MIME Applicatio
 
 Manora also have a CLI including multiple options and can be opened from a keybinding.
 
-See the "[Usage](#usage)" chapter and the demo video below for more details:
+See the "[Usage](#usage)" chapter and the video demo below for more details:
 
 <https://github.com/user-attachments/assets/b85a7e05-48c5-4a77-9c38-56b1b3ab6ad2>
 
@@ -100,7 +100,7 @@ Alternatively, use the `-d / --download` option to skip searching for the man pa
 
 Manora can also be opened from a keybinding. For instance, one can bind the `alacritty -e manora` command to a keybinding, which will open the `manora` TUI menu in `alacritty` (allowing to select the man page to open in the PDF reader).
 
-See `manora --help`, the [manora(1) man page](https://raw.githubusercontent.com/Antiz96/manora/refs/heads/main/doc/man/manora.1.scd) and the [demo video](#description) for more details.
+See `manora --help`, the [manora(1) man page](https://raw.githubusercontent.com/Antiz96/manora/refs/heads/main/doc/man/manora.1.scd) and the [video demo](#description) for more details.
 
 ## Documentation
 
